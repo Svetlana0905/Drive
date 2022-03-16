@@ -1,0 +1,35 @@
+@import '../../style/app.scss';
+.link--btn--big {
+  display: inline-block;
+  margin-left: 32px;
+  width: 250px;
+  text-align: center;
+  padding: 0.7em 0;
+  font-size: 1.1rem;
+  font-family: 'Roboto';
+  font-weight: 500;
+  color: $white;
+  background: $btn;
+  background-blend-mode: darken;
+  border-radius: 8px;
+  &:hover,
+  &:focus {
+    background: $btnbright10;
+  }
+  &:active {
+    background: $btnbright20;
+  }
+}
+@media (max-width: 425px) {
+  .link--btn--big {
+    margin-left: 0px;
+    padding: 0.9em 0;
+    width: 100%;
+    border-radius: 0px;
+  }
+}
+@media (min-width: 1440px) {
+  .link--btn--big {
+    margin-left: 64px;
+  }
+}

@@ -1,0 +1,68 @@
+@import '../../style/app.scss';
+.start--screen {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100vh;
+  &__content {
+    margin-bottom: 60px;
+    padding: 0 32px;
+  }
+  &__inner {
+    padding-bottom: 100px;
+  }
+  &__title {
+    font-weight: 700;
+    font-size: 4.35rem;
+    line-height: 1.2;
+    margin-bottom: 0.48rem;
+  }
+  &__mark {
+    background: transparent;
+    color: $green;
+  }
+  &__subtitle {
+    font-family: 'Roboto';
+    font-weight: 300;
+    font-size: 1.6rem;
+    line-height: 30px;
+    color: $gray100;
+  }
+}
+@media (max-width: 1000px) {
+  .start--screen {
+    flex: 0 1 100%;
+  }
+  .start--screen__top {
+    padding: 32px 32px 0;
+  }
+  .start--screen__content {
+    padding: 32px 32px 0;
+  }
+}
+@media (min-width: 1024px) {
+  .start--screen {
+    flex: 0 1 auto;
+  }
+}
+@media (min-width: 1440px) {
+  .start--screen {
+    flex: 0 1 50%;
+  }
+  .start--screen__content {
+    padding: 0 0 0 64px;
+  }
+}
+@media (max-width: 590px) {
+  .start--screen__title {
+    font-size: 2rem;
+  }
+  .start--screen__subtitle {
+    font-size: 1.1rem;
+  }
+}
+@media (max-width: 425px) {
+  .start--screen__content {
+    margin-bottom: 32px;
+  }
+}

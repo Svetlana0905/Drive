@@ -1,0 +1,27 @@
+@import '../../style/app.scss';
+.logo {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 30px;
+  line-height: 35px;
+  color: $green;
+}
+.header {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 32px;
+}
+@media (max-width: 590px) {
+  .header {
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 1em;
+  }
+}
+@media (min-width: 1440px) {
+  .header {
+    padding: 32px 64px 0 64px;
+  }
+}

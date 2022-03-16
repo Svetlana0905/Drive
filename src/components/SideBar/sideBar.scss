@@ -1,0 +1,61 @@
+@import '../../style/app.scss';
+.sidebar {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 100%;
+  width: 64px;
+  background: #151b1f;
+  padding: 32px 0 20px;
+  &__burger {
+    display: block;
+    position: relative;
+    width: 30px;
+    height: 20px;
+    position: relative;
+    z-index: 3;
+    cursor: pointer;
+  }
+  &__burger span {
+    position: absolute;
+    background-color: $white;
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    top: 9px;
+    transition: all 0.3s ease 0s;
+  }
+  &__burger:before,
+  &__burger:after {
+    content: '';
+    background-color: $white;
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    left: 0;
+    transition: all 0.3s ease 0s;
+  }
+  &__burger:before {
+    top: 0;
+  }
+  &__burger:after {
+    bottom: 0;
+  }
+}
+@media (max-width: 590px) {
+  .sidebar {
+    position: absolute;
+    background: none;
+  }
+  .sidebar__burger span {
+    background-color: $dark100;
+  }
+  .sidebar__burger:before,
+  .sidebar__burger:after {
+    content: '';
+    background-color: $dark100;
+  }
+}

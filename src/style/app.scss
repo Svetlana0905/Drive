@@ -1,0 +1,10 @@
+@import './null.scss';
+@import './shared.scss';
+@import './fonts.scss';
+body {
+  font-family: 'Roboto';
+  color: $dark100;
+}
+#root {
+  height: 100%;
+}

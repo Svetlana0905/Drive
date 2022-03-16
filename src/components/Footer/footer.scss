@@ -1,0 +1,42 @@
+@import '../../style/app.scss';
+.footer {
+  display: flex;
+  justify-content: space-between;
+  padding: 32px;
+  &__copyright {
+    font-size: 0.9rem;
+    line-height: 1.2em;
+    color: $gray100;
+  }
+  &__phone {
+    color: $dark100;
+    &:hover,
+    &:focus {
+      color: $green;
+    }
+    &:disabled {
+      color: $gray100;
+    }
+  }
+}
+@media (max-width: 590px) {
+  .footer {
+    flex-direction: column;
+    flex-direction: column-reverse;
+    gap: 1em;
+    align-items: flex-end;
+    padding: 16px;
+    background: $dark100;
+  }
+  .footer__phone {
+    color: $green;
+  }
+  .footer__phone:focus {
+    color: $gray50;
+  }
+}
+@media (min-width: 1440px) {
+  .footer {
+    padding: 64px 64px 32px;
+  }
+}
