@@ -7,22 +7,22 @@ export const Burger = ({ isVisible, toggleVisible }) => {
       <img
         className={isVisible ? 'svg-1 open' : 'svg-1'}
         src={burgerLine}
-        alt="Открыть меню"
+        alt="Меню бургер"
       />
       <img
         className={isVisible ? 'svg-2 open' : 'svg-2'}
         src={burgerLine}
-        alt="Открыть меню"
+        alt="Меню бургер"
       />
       <img
         className={isVisible ? 'svg-3 open' : 'svg-3'}
         src={burgerLine}
-        alt="Открыть меню"
+        alt="Меню бургер"
       />
       <img
         className={isVisible ? 'svg-4 open' : 'svg-4'}
         src={burgerLine}
-        alt="Открыть меню"
+        alt="Меню бургер"
       />
     </div>
   )

@@ -5,7 +5,7 @@ import { MainPage } from './pages/MainPage/MainPage'
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<MainPage />}></Route>
+      <Route path="drive/" element={<MainPage />}></Route>
     </Routes>
   )
 }
