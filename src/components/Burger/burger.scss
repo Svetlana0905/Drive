@@ -1,0 +1,57 @@
+@import '../../style/app.scss';
+.burger {
+  position: relative;
+  align-self: flex-start;
+  padding-left: 12px;
+  width: 30px;
+  height: 20px;
+  z-index: 3;
+  cursor: pointer;
+}
+.svg-1,
+.svg-2,
+.svg-3,
+.svg-4 {
+  position: absolute;
+  width: 30px;
+  height: 2px;
+  background: $white;
+}
+.svg-1 {
+  top: 0;
+}
+.svg-4 {
+  bottom: 0;
+}
+.svg-2,
+.svg-3 {
+  top: 9px;
+}
+.svg-1.open,
+.svg-4.open {
+  display: none;
+}
+.svg-2.open {
+  transform: rotate(45deg);
+  transform-origin: center;
+}
+.svg-3.open {
+  transform: rotate(-45deg);
+  transform-origin: center;
+}
+@media (max-width: 590px) {
+  .svg-1,
+  .svg-2,
+  .svg-3,
+  .svg-4 {
+    stroke: $dark100;
+    fill: $dark100;
+    background: $dark100;
+  }
+  .svg-2.open,
+  .svg-3.open {
+    stroke: $white;
+    fill: $white;
+    background: $white;
+  }
+}

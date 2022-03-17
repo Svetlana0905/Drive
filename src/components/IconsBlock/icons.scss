@@ -1,0 +1,8 @@
+.icons__block {
+  display: flex;
+  gap: 2em;
+  &__item {
+    width: 2rem;
+    height: 2rem;
+  }
+}

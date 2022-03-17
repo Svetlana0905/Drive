@@ -18,10 +18,6 @@
     flex-direction: column;
     align-items: flex-end;
     gap: 1em;
-  }
-}
-@media (min-width: 1440px) {
-  .header {
-    padding: 32px 64px 0 64px;
+    padding: 32px 32px 0;
   }
 }

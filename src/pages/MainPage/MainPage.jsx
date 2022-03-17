@@ -5,8 +5,10 @@ import { Slider } from '../../components/Slider/Slider'
 export const MainPage = () => {
   return (
     <div className="body">
-      <SideBar></SideBar>
-      <StartScreen></StartScreen>
+      <main className="main">
+        <SideBar></SideBar>
+        <StartScreen></StartScreen>
+      </main>
       <Slider></Slider>
     </div>
   )

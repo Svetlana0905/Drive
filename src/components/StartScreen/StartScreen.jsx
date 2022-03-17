@@ -7,18 +7,18 @@ export const StartScreen = () => {
   return (
     <section className="start--screen">
       <Header />
-      <div className="start--screen__inner">
-        <div className="start--screen__content">
-          <h1 className="start--screen__title">
-            Каршеринг <br />
+      <div className="start--screen__content">
+        <h1 className="start--screen__title">
+          Каршеринг <br />
+          <nobr>
             <mark className="start--screen__mark">Need for drive</mark>
-          </h1>
-          <h2 className="start--screen__subtitle">
-            Поминутная аренда авто твоего города
-          </h2>
-        </div>
-        <LinkBtnBig text="Забронировать" link="/" />
+          </nobr>
+        </h1>
+        <h2 className="start--screen__subtitle">
+          Поминутная аренда авто твоего города
+        </h2>
       </div>
+      <LinkBtnBig text="Забронировать" link="/" />
       <Footer />
     </section>
   )

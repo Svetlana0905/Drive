@@ -1,11 +1,12 @@
 import './buttons.scss'
-export const LangButton = ({ text, clickHundler }) => {
+import { useToggle } from '../../hooks/useToggle'
+
+export const LangButton = () => {
+  const [lang, toggleLang] = useToggle(false)
   return (
-    <div className="language">
-      <button onClick={clickHundler} className="language__btn">
-        Eng
-      </button>
-    </div>
+    <button onClick={toggleLang} className="language--btn">
+      {lang ? 'RU' : 'EN'}
+    </button>
   )
 }
 export const ArrowButtonLeft = ({ handleClick }) => {
