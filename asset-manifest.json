@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/drive/static/css/main.99a16a71.css",
-    "main.js": "/drive/static/js/main.f6da7e08.js",
+    "main.css": "/drive/static/css/main.8c173f91.css",
+    "main.js": "/drive/static/js/main.d0cda1ac.js",
     "static/media/Roboto-Light.svg": "/drive/static/media/Roboto-Light.1363cafd43cabc417d70.svg",
     "static/media/Roboto-Bold.svg": "/drive/static/media/Roboto-Bold.8d27a0ed275c802bc4fc.svg",
     "static/media/Roboto-Medium.svg": "/drive/static/media/Roboto-Medium.8d5ff17749640d550b7f.svg",
@@ -38,11 +38,11 @@
     "static/media/arrow_left.svg": "/drive/static/media/arrow_left.dd0226d1ef40f8836d75.svg",
     "static/media/arrow_right.svg": "/drive/static/media/arrow_right.9d87137d3cdc657274dc.svg",
     "static/media/line_burger.svg": "/drive/static/media/line_burger.3faafe860024f3ca087340949be5bc04.svg",
-    "main.99a16a71.css.map": "/drive/static/css/main.99a16a71.css.map",
-    "main.f6da7e08.js.map": "/drive/static/js/main.f6da7e08.js.map"
+    "main.8c173f91.css.map": "/drive/static/css/main.8c173f91.css.map",
+    "main.d0cda1ac.js.map": "/drive/static/js/main.d0cda1ac.js.map"
   },
   "entrypoints": [
-    "static/css/main.99a16a71.css",
-    "static/js/main.f6da7e08.js"
+    "static/css/main.8c173f91.css",
+    "static/js/main.d0cda1ac.js"
   ]
 }
