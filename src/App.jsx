@@ -6,7 +6,7 @@ import { NotFoundPage } from './pages/NotFoundPage/NotFoundPage'
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<Layout />}>
+      <Route path="/drive" element={<Layout />}>
         <Route index element={<MainPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Route>

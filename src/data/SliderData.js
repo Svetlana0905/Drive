@@ -6,7 +6,7 @@ import slide4 from '../assets/slide4.jpg'
 export const SliderData = [
   {
     imgpath: slide1,
-    link: '/',
+    link: '#',
     bg: 'bg--green',
     title: 'Бесплатная парковка',
     subtitle:
@@ -14,21 +14,21 @@ export const SliderData = [
   },
   {
     imgpath: slide2,
-    link: '/',
+    link: '#',
     bg: 'bg--blue',
     title: 'Страховка',
     subtitle: 'Полная страховка. Cтраховка автомобиля'
   },
   {
     imgpath: slide3,
-    link: '/',
+    link: '#',
     bg: 'bg--red',
     title: 'Бензин',
     subtitle: 'Полный бак на любой заправке города за наш счёт'
   },
   {
     imgpath: slide4,
-    link: '/',
+    link: '#',
     bg: 'bg--purple',
     title: 'Обслуживание',
     subtitle: 'Автомобиль проходит еженедельное ТО'

@@ -54,12 +54,12 @@
     background: none;
   }
 }
-@media (max-width: 1024px) {
+@media (max-width: 1023px) {
   .start--screen {
     width: 100%;
   }
 }
-@media (min-width: 1024px) {
+@media (min-width: 1023px) {
   .sidebar.open {
     background: linear-gradient(90deg, rgb(0, 0, 0) 57%, rgba(0, 0, 0, 0.1) 57%),
       rgba(0, 0, 0, 0.4);
