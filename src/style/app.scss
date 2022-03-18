@@ -2,9 +2,25 @@
 @import './shared.scss';
 @import './fonts.scss';
 body {
+  position: relative;
   font-family: 'Roboto';
   color: $dark100;
 }
 #root {
   height: 100%;
+  width: 100%;
+}
+.body {
+  position: relative;
+}
+.main {
+  display: flex;
+  justify-content: space-between;
+  padding-left: 64px;
+  width: 100%;
+}
+@media (max-width: 590px) {
+  .main {
+    padding-left: 0;
+  }
 }

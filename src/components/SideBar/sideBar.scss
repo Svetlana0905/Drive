@@ -1,6 +1,6 @@
 @import '../../style/app.scss';
 .sidebar {
-  position: relative;
+  position: absolute;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -51,30 +51,23 @@
 }
 @media (max-width: 590px) {
   .sidebar {
-    position: absolute;
     background: none;
   }
 }
-@media (max-width: 1000px) {
+@media (max-width: 1024px) {
   .start--screen {
     width: 100%;
   }
 }
-@media (min-width: 1000px) {
+@media (min-width: 1024px) {
   .sidebar.open {
-    background: linear-gradient(
-      90deg,
-      rgb(0, 0, 0) 50%,
-      rgba(0, 0, 0, 0.5) 60%
-    );
+    background: linear-gradient(90deg, rgb(0, 0, 0) 57%, rgba(0, 0, 0, 0.1) 57%),
+      rgba(0, 0, 0, 0.4);
   }
 }
-@media (min-width: 1044px) {
+@media (min-width: 1440px) {
   .sidebar.open {
-    background: linear-gradient(
-      90deg,
-      rgb(0, 0, 0) 51%,
-      rgba(0, 0, 0, 0.5) 50%
-    );
+    background: linear-gradient(90deg, rgb(0, 0, 0) 53%, rgba(0, 0, 0, 0.1) 50%),
+      rgba(0, 0, 0, 0.4);
   }
 }

@@ -95,12 +95,12 @@
   }
 }
 
-@media (min-width: 1000px) {
+@media (min-width: 1024px) {
   .slider {
     flex: 0 1 50%;
   }
 }
-@media (max-width: 1000px) {
+@media (max-width: 1024px) {
   .slider {
     display: none;
   }
