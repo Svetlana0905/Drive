@@ -7,6 +7,12 @@
   align-items: flex-end;
   padding: 16px;
   background: $dark100;
+  @media (min-width: 590px) {
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0px 32px 32px 0;
+    background: transparent;
+  }
   &__copyright {
     font-size: 13px;
     line-height: 15px;
@@ -24,20 +30,12 @@
     &:disabled {
       color: $gray100;
     }
-  }
-}
-@media (min-width: 590px) {
-  .footer {
-    flex-direction: row;
-    justify-content: space-between;
-    padding: 0px 32px 32px 0;
-    background: transparent;
-  }
-  .footer__phone {
-    color: $dark100;
-  }
-  .footer__phone:focus,
-  .footer__phone:hover {
-    color: $green;
+    @media (min-width: 590px) {
+      color: $dark100;
+    }
+    &:focus,
+    &:hover {
+      color: $green;
+    }
   }
 }

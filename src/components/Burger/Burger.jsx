@@ -6,26 +6,14 @@ export const Burger = ({ isVisible, toggleVisible }) => {
     <div
       className={isVisible ? 'burger open' : 'burger'}
       onClick={toggleVisible}>
-      <img
-        className={isVisible ? 'svg-1 open' : 'svg-1'}
-        src={burgerLine}
-        alt="Меню бургер"
-      />
-      <img
-        className={isVisible ? 'svg-2 open' : 'svg-2'}
-        src={burgerLine}
-        alt="Меню бургер"
-      />
-      <img
-        className={isVisible ? 'svg-3 open' : 'svg-3'}
-        src={burgerLine}
-        alt="Меню бургер"
-      />
-      <img
-        className={isVisible ? 'svg-4 open' : 'svg-4'}
-        src={burgerLine}
-        alt="Меню бургер"
-      />
+      {Array.from({ length: 4 }).map((item, index) => (
+        <img
+          className={isVisible ? 'burger-line open' : 'burger-line'}
+          src={burgerLine}
+          alt="Меню бургер"
+          key={index}
+        />
+      ))}
     </div>
   )
 }

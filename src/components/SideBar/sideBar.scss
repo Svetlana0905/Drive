@@ -10,6 +10,14 @@
   width: 64px;
   transition: all 0.4s ease 0s;
   background: none;
+  @media (min-width: 590px) {
+    width: 86px;
+    padding: 34px 0 16px;
+    background: $bgsidebarclose;
+  }
+  @media (min-width: 1024px) {
+    width: 65px;
+  }
   &__content {
     position: absolute;
     display: flex;
@@ -19,6 +27,9 @@
     transform: translateY(-50%);
     padding-left: 32px;
     gap: 22px;
+    @media (min-width: 1440px) {
+      padding-left: 128px;
+    }
   }
   &__link {
     display: inline-block;
@@ -26,6 +37,10 @@
     text-transform: uppercase;
     font-size: 22px;
     line-height: 26px;
+    @media (min-width: 590px) {
+      font-size: 32px;
+      line-height: 38px;
+    }
   }
   &__link:focus,
   &__link:hover {
@@ -43,30 +58,7 @@
   padding-left: 16px;
   z-index: 200;
   background: $bgsidebarOpen;
-}
-@media (min-width: 590px) {
-  .sidebar {
-    width: 86px;
-    padding: 34px 0 16px;
-    background: $bgsidebarclose;
-  }
-  .sidebar__link {
-    font-size: 32px;
-    line-height: 38px;
-  }
-}
-@media (min-width: 1024px) {
-  .sidebar {
-    width: 65px;
-  }
-}
-@media (min-width: 1440px) {
-  .sidebar__content {
-    padding-left: 128px;
-  }
-}
-@media (min-width: 1023px) {
-  .sidebar.open {
+  @media (min-width: 1023px) {
     background: $bgSidebarOpacity
       linear-gradient(90deg, $bgsidebarOpen 55%, transparent 28%);
   }

@@ -29,8 +29,10 @@
   border: none;
   background: transparent;
   z-index: 10;
+  @media (max-width: 1440px) {
+    width: 32px;
+  }
 }
-
 .btn--slider.right {
   background: url(../../assets/icons/arrow_slider.svg) center no-repeat;
 }
@@ -50,9 +52,4 @@
   background: url(../../assets/icons/arrow_slider.svg) center no-repeat,
     $green20;
   transform: rotate(180deg);
-}
-@media (max-width: 1440px) {
-  .btn--slider {
-    width: 32px;
-  }
 }

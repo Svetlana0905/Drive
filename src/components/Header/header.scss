@@ -16,9 +16,7 @@
   align-items: flex-end;
   gap: 8px;
   padding: 16px 16px 0 0;
-}
-@media (min-width: 590px) {
-  .header {
+  @media (min-width: 590px) {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
@@ -26,12 +24,10 @@
     padding: 32px 32px 0 0;
     margin-bottom: 167px;
   }
+  @media (min-width: 1440px) {
+    padding: 32px 63px 0 0;
+  }
 }
 .choice--sity {
   cursor: pointer;
-}
-@media (min-width: 1440px) {
-  .header {
-    padding: 32px 63px 0 0;
-  }
 }
