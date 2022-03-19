@@ -32,21 +32,23 @@
 }
 
 .btn--slider.right {
-  background: url(../../assets/icons/arrow_left.svg) center no-repeat;
+  background: url(../../assets/icons/arrow_slider.svg) center no-repeat;
 }
 .btn--slider.right:hover,
 .btn--slider.right:focus {
-  background: url(../../assets/icons/arrow_left.svg) center no-repeat, $green20;
+  background: url(../../assets/icons/arrow_slider.svg) center no-repeat,
+    $green20;
 }
 .btn--slider.left {
   right: 0;
-  background: url(../../assets/icons/arrow_left.svg) center no-repeat;
+  background: url(../../assets/icons/arrow_slider.svg) center no-repeat;
   transform: rotate(180deg);
 }
 .btn--slider.left:hover,
 .btn--slider.left:focus {
   right: 0;
-  background: url(../../assets/icons/arrow_left.svg) center no-repeat, $green20;
+  background: url(../../assets/icons/arrow_slider.svg) center no-repeat,
+    $green20;
   transform: rotate(180deg);
 }
 @media (max-width: 1440px) {

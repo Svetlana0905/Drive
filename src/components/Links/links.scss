@@ -9,13 +9,13 @@
   font-family: 'Roboto';
   font-weight: 500;
   color: $white;
-  background: $btn;
+  background: $btngreen;
   background-blend-mode: darken;
   border-radius: 8px;
   margin-bottom: 226px;
   &:hover,
   &:focus {
-    background: $btnbright10;
+    background: $btngreen10;
   }
   &:active {
     background: $btnbright20;

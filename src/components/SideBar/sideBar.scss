@@ -42,13 +42,13 @@
   height: 100%;
   padding-left: 16px;
   z-index: 200;
-  background: $bgdark;
+  background: $bgsidebarOpen;
 }
 @media (min-width: 590px) {
   .sidebar {
     width: 86px;
     padding: 34px 0 16px;
-    background: $bgsidebar;
+    background: $bgsidebarclose;
   }
   .sidebar__link {
     font-size: 32px;
@@ -64,6 +64,6 @@
 @media (min-width: 1023px) {
   .sidebar.open {
     background: $bgSidebarOpacity
-      linear-gradient(90deg, $bgsidebar 55%, transparent 28%);
+      linear-gradient(90deg, $bgsidebarOpen 55%, transparent 28%);
   }
 }
