@@ -9,14 +9,13 @@
   flex-direction: column;
   align-items: flex-end;
   gap: 0.6em;
-  cursor: pointer;
 }
 .header {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 0.6em;
-  padding: 16px 16px 0 0;
+  display: flex; //111111
+  flex-direction: column; //111111
+  align-items: flex-end; //111111
+  gap: 0.6em; //111111111111
+  padding: 16px 16px 0 0; //////////
 }
 @media (min-width: 590px) {
   .header {
@@ -28,9 +27,18 @@
     margin-bottom: 167px;
   }
 }
-
-@media (min-width: 1440px) {
-  .header {
-    padding: 32px 64px 0 0;
-  }
-}
+// @media (min-width: 767px) {
+//   .header {
+//     padding: 32px 25px 0 0;
+//   }
+// }
+// @media (min-width: 1024px) {
+//   .header {
+//     padding: 32px 25px 0 0;
+//   }
+// }
+// @media (max-width: 1440px) {
+//   .header {
+//     padding: 32px 16px 0 0;
+//   }
+// }

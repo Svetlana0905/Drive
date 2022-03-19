@@ -41,11 +41,3 @@
     color: $green;
   }
 }
-@media (min-width: 1440px) {
-  .footer {
-    flex-direction: row;
-    justify-content: space-between;
-    padding: 0px 64px 32px 0;
-    background: transparent;
-  }
-}
