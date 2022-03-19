@@ -6,7 +6,7 @@ export const Burger = ({ isVisible, toggleVisible }) => {
     <div
       className={isVisible ? 'burger open' : 'burger'}
       onClick={toggleVisible}>
-      {Array.from({ length: 4 }).map((item, index) => (
+      {Array.from({ length: 4 }).map((_, index) => (
         <img
           className={isVisible ? 'burger-line open' : 'burger-line'}
           src={burgerLine}

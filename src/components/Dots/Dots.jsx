@@ -2,7 +2,7 @@ import './dots.scss'
 export const Dots = ({ moveDot, slideIndex, dataLenght }) => {
   return (
     <div className="dots">
-      {Array.from({ length: dataLenght }).map((item, index) => (
+      {Array.from({ length: dataLenght }).map((_, index) => (
         <div
           onClick={() => moveDot(index + 1)}
           key={index}
