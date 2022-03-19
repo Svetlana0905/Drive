@@ -4,8 +4,8 @@ import { Slider } from '../../components/Slider/Slider'
 export const MainPage = () => {
   return (
     <>
-      <StartScreen></StartScreen>
-      <Slider></Slider>
+      <StartScreen />
+      <Slider />
     </>
   )
 }

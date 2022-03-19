@@ -1,6 +1,6 @@
 import './slider.scss'
 import { SliderData } from '../../data/SliderData'
-import { Link } from 'react-router-dom'
+import { LinkBtnSlider } from '../Links/links'
 import { useState } from 'react'
 import { ArrowButtonSlider } from '../Buttons/Buttons'
 import { Dots } from '../Dots/Dots'
@@ -34,9 +34,11 @@ export const Slider = () => {
           <div className="slide__context">
             <h3 className="slide__title">{item.title}</h3>
             <p className="slide__subtitle">{item.subtitle}</p>
-            <Link to={item.link} className={`slide__link ${item.bg}`}>
-              Подробнее
-            </Link>
+            <LinkBtnSlider
+              link={item.link}
+              styleLink={item.bg}
+              text={'Подробнее'}
+            />
           </div>
           <div className="slide__bg">
             <img className="slide__img" src={item.imgpath} alt={item.title} />

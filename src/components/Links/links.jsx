@@ -7,3 +7,10 @@ export const LinkBtnBig = ({ text, link }) => {
     </Link>
   )
 }
+export const LinkBtnSlider = ({ link, styleLink, text }) => {
+  return (
+    <Link to={link} className={`slide__link ${styleLink}`}>
+      {text}
+    </Link>
+  )
+}
