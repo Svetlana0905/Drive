@@ -4,7 +4,7 @@ export const Header = () => {
   return (
     <header className="header">
       <p className="logo">Need for drive</p>
-      <p>
+      <p className="header__sity">
         <img src={map} alt="Выбрать город" />
       </p>
     </header>

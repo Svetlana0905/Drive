@@ -59,8 +59,15 @@
   .sidebar {
     width: 65px;
   }
+  .sidebar__content {
+    padding-left: 97px;
+  }
 }
-
+@media (min-width: 1440px) {
+  .sidebar__content {
+    padding-left: 128px;
+  }
+}
 @media (min-width: 1023px) {
   .sidebar.open {
     background: $bgSidebarOpacity
