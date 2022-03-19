@@ -5,44 +5,38 @@ import { useToggle } from '../../hooks/useToggle'
 import { Language } from '../Language/Language'
 import { Burger } from '../Burger/Burger'
 import { IconBlock } from '../IconsBlock/IconsBlock'
+import { LinksData } from '../../data/LinksData'
 
 export const SideBar = () => {
   const [isVisible, toggleVisible] = useToggle(false)
-  const openRef = useRef()
-  const openSidebar = () => {
-    const valueRef = openRef.current.value
-    console.log(valueRef)
+
+  const wrapperRef = useRef(null)
+  const openSidebar = (e) => {
+    const arr = Array.from(wrapperRef.current.children)
+    // if (!arr.current.contains('sidebar__links')) {
+    //   console.log('jjjj')
+    // } else console.log('no current')
+    console.log(arr)
     // toggleVisible()
   }
 
   return (
     <section
       className={isVisible ? 'sidebar open' : 'sidebar'}
-      ref={openRef}
+      ref={wrapperRef}
       onClick={openSidebar}>
       <Burger toggleVisible={toggleVisible} isVisible={isVisible} />
       {isVisible && (
         <div className="sidebar__content">
-          <div className="sidebar__links">
-            <Link to="#" className="sidebar__link">
-              ПАРКОВКА
+          {LinksData.map((item) => (
+            <Link to={item.link} className="sidebar__link" key={item.title}>
+              {item.title}
             </Link>
-            <Link to="#" className="sidebar__link">
-              СТРАХОВКА
-            </Link>
-            <Link to="#" className="sidebar__link">
-              БЕНЗИН
-            </Link>
-            <Link to="#" className="sidebar__link">
-              ОБСЛУЖИВАНИЕ
-            </Link>
-          </div>
+          ))}
           <IconBlock />
         </div>
       )}
-      <div className="sidebar__lang--btn">
-        <Language />
-      </div>
+      <Language isVisible={isVisible} />
     </section>
   )
 }

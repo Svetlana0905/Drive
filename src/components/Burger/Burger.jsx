@@ -3,7 +3,9 @@ import burgerLine from '../../assets/icons/line_burger.svg'
 
 export const Burger = ({ isVisible, toggleVisible }) => {
   return (
-    <div className="burger" onClick={toggleVisible}>
+    <div
+      className={isVisible ? 'burger open' : 'burger'}
+      onClick={toggleVisible}>
       <img
         className={isVisible ? 'svg-1 open' : 'svg-1'}
         src={burgerLine}

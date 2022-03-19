@@ -1,17 +1,18 @@
 @import '../../style/app.scss';
 .link--btn--big {
   display: inline-block;
-  margin-left: 32px;
   width: 250px;
+  padding: 14px 0 13px;
   text-align: center;
-  padding: 0.7em 0;
-  font-size: 1.1rem;
+  font-size: 18px;
+  line-height: 21px;
   font-family: 'Roboto';
   font-weight: 500;
   color: $white;
   background: $btn;
   background-blend-mode: darken;
   border-radius: 8px;
+  margin-bottom: 226px;
   &:hover,
   &:focus {
     background: $btnbright10;
@@ -20,10 +21,11 @@
     background: $btnbright20;
   }
 }
-@media (max-width: 425px) {
+@media (max-width: 590px) {
   .link--btn--big {
+    margin-bottom: 173px;
     margin-left: 0px;
-    padding: 0.9em 0;
+    padding: 18px 0 9px;
     width: 100%;
     border-radius: 0px;
   }

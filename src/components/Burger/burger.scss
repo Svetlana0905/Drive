@@ -1,12 +1,13 @@
 @import '../../style/app.scss';
 .burger {
   position: relative;
-  align-self: flex-start;
-  padding-left: 12px;
   width: 30px;
   height: 20px;
   z-index: 3;
   cursor: pointer;
+}
+.burger.open {
+  align-self: flex-start;
 }
 .svg-1,
 .svg-2,

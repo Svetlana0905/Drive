@@ -1,42 +1,43 @@
 @import '../../style/app.scss';
 .footer {
   display: flex;
-  justify-content: space-between;
-  padding: 32px;
+  flex-direction: column;
+  flex-direction: column-reverse;
+  gap: 14px;
+  align-items: flex-end;
+  padding: 16px;
+  background: $dark100;
   &__copyright {
-    font-size: 0.9rem;
-    line-height: 1.2em;
+    font-size: 13px;
+    line-height: 15px;
     color: $gray100;
   }
   &__phone {
-    color: $dark100;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 15px;
+    color: $green;
     &:hover,
     &:focus {
-      color: $green;
+      color: $white;
     }
     &:disabled {
       color: $gray100;
     }
   }
 }
-@media (max-width: 590px) {
+@media (min-width: 590px) {
   .footer {
-    flex-direction: column;
-    flex-direction: column-reverse;
-    gap: 1em;
-    align-items: flex-end;
-    padding: 16px;
-    background: $dark100;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0px 32px 32px 0;
+    background: transparent;
   }
   .footer__phone {
+    color: $dark100;
+  }
+  .footer__phone:focus,
+  .footer__phone:hover {
     color: $green;
-  }
-  .footer__phone:focus {
-    color: $gray50;
-  }
-}
-@media (min-width: 1440px) {
-  .footer {
-    padding: 64px 64px 32px;
   }
 }

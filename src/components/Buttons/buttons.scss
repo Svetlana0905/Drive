@@ -1,10 +1,10 @@
 @import '../../style/app.scss';
 .language--btn {
-  width: 3.4em;
-  height: 3.4em;
+  width: 48px;
+  height: 48px;
   font-family: 'Roboto';
   font-weight: 700;
-  font-size: 0.9em;
+  font-size: 13px;
   line-height: 1rem;
   color: $green;
   border: none;
@@ -22,24 +22,35 @@
     border-radius: 50%;
   }
 }
-.btn--left,
-.btn--right {
+.btn--slider {
   position: absolute;
   width: 64px;
   height: 100%;
   border: none;
+  background: transparent;
   z-index: 10;
 }
-.btn--left {
+
+.btn--slider.right {
+  background: url(../../assets/icons/arrow_left.svg) center no-repeat;
+}
+.btn--slider.right:hover,
+.btn--slider.right:focus {
   background: url(../../assets/icons/arrow_left.svg) center no-repeat, $green20;
 }
-.btn--right {
+.btn--slider.left {
   right: 0;
-  background: url(../../assets/icons/arrow_right.svg) center no-repeat, $green20;
+  background: url(../../assets/icons/arrow_left.svg) center no-repeat;
+  transform: rotate(180deg);
 }
-@media (max-width: 1024px) {
-  .btn--left,
-  .btn--right {
+.btn--slider.left:hover,
+.btn--slider.left:focus {
+  right: 0;
+  background: url(../../assets/icons/arrow_left.svg) center no-repeat, $green20;
+  transform: rotate(180deg);
+}
+@media (max-width: 1440px) {
+  .btn--slider {
     width: 32px;
   }
 }

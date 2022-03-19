@@ -4,7 +4,7 @@ import { SideBar } from '../SideBar/SideBar'
 export const Layout = () => {
   return (
     <div className="body">
-      <SideBar></SideBar>
+      <SideBar />
       <main className="main">
         <Outlet />
       </main>

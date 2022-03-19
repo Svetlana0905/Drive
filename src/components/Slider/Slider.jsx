@@ -2,7 +2,7 @@ import './slider.scss'
 import { SliderData } from '../../data/SliderData'
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
-import { ArrowButtonLeft, ArrowButtonRight } from '../Buttons/Buttons'
+import { ArrowButtonSlider } from '../Buttons/Buttons'
 import { Dots } from '../Dots/Dots'
 
 export const Slider = () => {
@@ -10,20 +10,17 @@ export const Slider = () => {
   const dataLenght = SliderData.length
 
   const nextSlide = () => {
-    if (slideIndex !== SliderData.length) {
-      setSlideIndex(slideIndex + 1)
-    } else if (slideIndex === SliderData.length) {
-      setSlideIndex(1)
-    }
+    slideIndex !== SliderData.length
+      ? setSlideIndex(slideIndex + 1)
+      : setSlideIndex(1)
   }
 
   const prevSlide = () => {
-    if (slideIndex !== 1) {
-      setSlideIndex(slideIndex - 1)
-    } else if (slideIndex === 1) {
-      setSlideIndex(SliderData.length)
-    }
+    slideIndex !== 1
+      ? setSlideIndex(slideIndex - 1)
+      : setSlideIndex(SliderData.length)
   }
+
   const moveDot = (index) => {
     setSlideIndex(index)
   }
@@ -36,7 +33,7 @@ export const Slider = () => {
           className={slideIndex === index + 1 ? 'slide active-anim' : 'slide'}>
           <div className="slide__context">
             <h3 className="slide__title">{item.title}</h3>
-            <h4 className="slide__subtitle">{item.subtitle}</h4>
+            <p className="slide__subtitle">{item.subtitle}</p>
             <Link to={item.link} className={`slide__link ${item.bg}`}>
               Подробнее
             </Link>
@@ -46,8 +43,14 @@ export const Slider = () => {
           </div>
         </div>
       ))}
-      <ArrowButtonLeft handleClick={prevSlide} />
-      <ArrowButtonRight handleClick={nextSlide} />
+      <ArrowButtonSlider
+        handleClick={prevSlide}
+        styleArr={'btn--slider right'}
+      />
+      <ArrowButtonSlider
+        handleClick={nextSlide}
+        styleArr={'btn--slider left'}
+      />
       <Dots moveDot={moveDot} slideIndex={slideIndex} dataLenght={dataLenght} />
     </section>
   )
