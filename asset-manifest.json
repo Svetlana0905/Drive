@@ -1,11 +1,11 @@
 {
   "files": {
-    "main.css": "/drive/static/css/main.753e49f3.css",
-    "main.js": "/drive/static/js/main.527e55d0.js",
-    "static/media/Roboto-Light.svg": "/drive/static/media/Roboto-Light.1363cafd43cabc417d70.svg",
-    "static/media/Roboto-Bold.svg": "/drive/static/media/Roboto-Bold.8d27a0ed275c802bc4fc.svg",
-    "static/media/Roboto-Medium.svg": "/drive/static/media/Roboto-Medium.8d5ff17749640d550b7f.svg",
-    "static/media/Roboto-Regular.svg": "/drive/static/media/Roboto-Regular.c90d467891a8250334f5.svg",
+    "main.css": "/drive/static/css/main.ad9d945e.css",
+    "main.js": "/drive/static/js/main.0483660e.js",
+    "static/media/Roboto-Light.svg": "/drive/static/media/Roboto-Light.58c77021f49abf3e39d0.svg",
+    "static/media/Roboto-Bold.svg": "/drive/static/media/Roboto-Bold.eb4c3d52f851aab1d9e8.svg",
+    "static/media/Roboto-Medium.svg": "/drive/static/media/Roboto-Medium.13acf805af7f6c91a57d.svg",
+    "static/media/Roboto-Regular.svg": "/drive/static/media/Roboto-Regular.8cac10089638cfa80cf9.svg",
     "static/media/Roboto-Light.eot": "/drive/static/media/Roboto-Light.1507921b0fac6fcd7634.eot",
     "static/media/Roboto-Light.ttf": "/drive/static/media/Roboto-Light.368aee5f4784ab912d2d.ttf",
     "static/media/Roboto-Regular.eot": "/drive/static/media/Roboto-Regular.4be1a2207d30e04db979.eot",
@@ -18,8 +18,8 @@
     "static/media/Roboto-Medium.woff": "/drive/static/media/Roboto-Medium.60f8549e4960a7911608.woff",
     "static/media/Roboto-Bold.woff": "/drive/static/media/Roboto-Bold.759b21219fe0787d60ba.woff",
     "static/media/Roboto-Regular.woff": "/drive/static/media/Roboto-Regular.cf2aaeeaa55590950e26.woff",
-    "static/media/HelveticaRegular.svg": "/drive/static/media/HelveticaRegular.dea5b4abc682cac9e0d3.svg",
-    "static/media/HelveticaBold.svg": "/drive/static/media/HelveticaBold.0ce749ea56ecd58b0821.svg",
+    "static/media/HelveticaRegular.svg": "/drive/static/media/HelveticaRegular.e5435902dce547348301.svg",
+    "static/media/HelveticaBold.svg": "/drive/static/media/HelveticaBold.ae8f0458d143f0b07258.svg",
     "static/media/slide4.jpg": "/drive/static/media/slide4.55e8f4beb709113705a4.jpg",
     "static/media/slide3.jpg": "/drive/static/media/slide3.db51fd701078858cfad7.jpg",
     "static/media/slide2.jpg": "/drive/static/media/slide2.b128247b1ab7ab38b7bb.jpg",
@@ -30,18 +30,18 @@
     "static/media/HelveticaRegular.ttf": "/drive/static/media/HelveticaRegular.31a272d75aa97b0dcb55.ttf",
     "static/media/HelveticaBold.eot": "/drive/static/media/HelveticaBold.906e9ff553e7a5909524.eot",
     "static/media/HelveticaBold.ttf": "/drive/static/media/HelveticaBold.d2d4622394c0e88a8c69.ttf",
-    "static/media/map.svg": "/drive/static/media/map.e91e807e79dc259da06f610ec05df614.svg",
-    "static/media/insta.svg": "/drive/static/media/insta.49e1648a421a6d510ce96390ad8663ed.svg",
-    "static/media/telegram.svg": "/drive/static/media/telegram.e8137bbee4b573f3f5a8ef5e337c2bec.svg",
+    "static/media/map.svg": "/drive/static/media/map.fbbe050fa4b9a416dcab53fc9a770e88.svg",
+    "static/media/insta.svg": "/drive/static/media/insta.740ce14deb3992175d72297013b03891.svg",
+    "static/media/telegram.svg": "/drive/static/media/telegram.09f73cfe1b599430658800e3f4daa961.svg",
     "index.html": "/drive/index.html",
-    "static/media/facebook.svg": "/drive/static/media/facebook.4af0cbb467867bf00d29962d07c05054.svg",
-    "static/media/arrow_slider.svg": "/drive/static/media/arrow_slider.dd0226d1ef40f8836d75.svg",
-    "static/media/line_burger.svg": "/drive/static/media/line_burger.3faafe860024f3ca087340949be5bc04.svg",
-    "main.753e49f3.css.map": "/drive/static/css/main.753e49f3.css.map",
-    "main.527e55d0.js.map": "/drive/static/js/main.527e55d0.js.map"
+    "static/media/facebook.svg": "/drive/static/media/facebook.4e8444192d0b93530381b8f4c1da5d18.svg",
+    "static/media/arrow_slider.svg": "/drive/static/media/arrow_slider.1752ae9160db5265a941.svg",
+    "static/media/line_burger.svg": "/drive/static/media/line_burger.1f4fe4bcde82cb02df31eaf80e271cd7.svg",
+    "main.ad9d945e.css.map": "/drive/static/css/main.ad9d945e.css.map",
+    "main.0483660e.js.map": "/drive/static/js/main.0483660e.js.map"
   },
   "entrypoints": [
-    "static/css/main.753e49f3.css",
-    "static/js/main.527e55d0.js"
+    "static/css/main.ad9d945e.css",
+    "static/js/main.0483660e.js"
   ]
 }
