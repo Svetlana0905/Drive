@@ -12,7 +12,6 @@
   background: $btngreen;
   background-blend-mode: darken;
   border-radius: 8px;
-  margin-bottom: 226px;
   &:hover,
   &:focus {
     background: $btngreen10;
@@ -21,7 +20,6 @@
     background: $btnbright20;
   }
   @media (max-width: 590px) {
-    margin-bottom: 173px;
     margin-left: 0px;
     padding: 18px 0 9px;
     width: 100%;
