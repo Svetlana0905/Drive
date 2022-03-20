@@ -1,0 +1,21 @@
+@import '../../style//app.scss';
+.nav {
+  display: flex;
+  gap: 16px;
+  &__nav-link {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 16px;
+    color: $gray100;
+    // &:visited {
+    //   color: $dark100;
+    // }
+    &:focus,
+    &:hover,
+    &.active {
+      color: $green;
+    }
+  }
+}

@@ -2,9 +2,12 @@
 .slider {
   position: relative;
   overflow: hidden;
-  flex: 1 0 45%;
+  flex: 1 0 40%;
   @media (max-width: 1023px) {
     display: none;
+  }
+  @media (min-width: 1440px) {
+    flex: 1 0 48%;
   }
 }
 .slide {
@@ -15,11 +18,11 @@
   transition: opacity ease-in-out 0.4s;
   &__context {
     position: absolute;
-    padding: 270px 64px;
+    padding: 277px 64px 0;
     color: $white;
     z-index: 150;
     @media (min-width: 1440px) {
-      padding: 238px 96px;
+      padding: 238px 96px 0;
     }
   }
   &__title {
@@ -36,11 +39,11 @@
     margin-bottom: 28px;
     font-weight: 300;
     font-size: 24px;
-    line-height: 100%;
+    line-height: 90%;
     color: $gray50;
     @media (min-width: 1440px) {
       font-size: 22px;
-      line-height: 90%;
+      line-height: 100%;
     }
   }
   &__bg {

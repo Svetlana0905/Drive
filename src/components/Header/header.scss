@@ -15,17 +15,16 @@
   flex-direction: column;
   align-items: flex-end;
   gap: 8px;
-  padding: 16px 16px 0 0;
+  padding: 16px 16px 16px 0;
   @media (min-width: 590px) {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    padding: 32px 32px 0 0;
-    // margin-bottom: 167px;
+    padding: 32px 32px 32px 0;
   }
   @media (min-width: 1440px) {
-    padding: 32px 63px 0 0;
+    padding: 32px 60px 32px 0;
   }
 }
 .choice--sity {

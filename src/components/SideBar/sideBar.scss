@@ -12,11 +12,14 @@
   background: none;
   @media (min-width: 590px) {
     width: 86px;
-    padding: 34px 0 16px;
+    padding: 35px 0 16px;
     background: $bgsidebarclose;
   }
   @media (min-width: 1024px) {
     width: 65px;
+  }
+  @media (min-width: 1024px) {
+    padding: 38px 0 16px;
   }
   &__content {
     position: absolute;
@@ -60,6 +63,10 @@
   background: $bgsidebarOpen;
   @media (min-width: 1023px) {
     background: $bgSidebarOpacity
-      linear-gradient(90deg, $bgsidebarOpen 55%, transparent 28%);
+      linear-gradient(90deg, $bgsidebarOpen 60%, transparent 28%);
+  }
+  @media (min-width: 1440px) {
+    background: $bgSidebarOpacity
+      linear-gradient(90deg, $bgsidebarOpen 52%, transparent 28%);
   }
 }
