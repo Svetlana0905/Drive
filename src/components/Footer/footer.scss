@@ -3,9 +3,9 @@
   display: flex;
   flex-direction: column;
   flex-direction: column-reverse;
-  gap: 14px;
+  gap: 9px;
   align-items: flex-end;
-  padding: 11px 16px 21px;
+  padding: 15px 16px 21px;
   background: $dark100;
   @media (min-width: 590px) {
     flex-direction: row;

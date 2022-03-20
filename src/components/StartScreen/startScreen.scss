@@ -30,8 +30,7 @@
       margin-bottom: 64px;
     }
     @media (min-width: 1024px) {
-      margin-bottom: 33px;
-      padding-right: 71px;
+      margin-bottom: 61px;
     }
     @media (min-width: 1440px) {
       margin-bottom: 62px;
@@ -39,12 +38,12 @@
   }
   &__title {
     font-size: 32px;
-    line-height: 115%;
-    margin-bottom: 12px;
+    line-height: 119%;
+    margin-bottom: 11px;
     font-weight: 700;
     @media (min-width: 590px) {
       font-size: 70px;
-      line-height: 69px;
+      line-height: 70px;
       margin-bottom: 25px;
     }
   }
@@ -59,7 +58,6 @@
     @media (min-width: 590px) {
       font-size: 26px;
       line-height: 30px;
-      margin-bottom: 20px;
     }
   }
 }
