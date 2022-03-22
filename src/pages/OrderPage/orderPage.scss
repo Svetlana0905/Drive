@@ -2,6 +2,15 @@
 .order-page {
   width: 100%;
   min-height: 100%;
-  padding-left: 128px;
-  background: $gray50;
+  padding-left: 15px;
+  @media (min-width: 1440px) {
+    padding-left: 64px;
+  }
+  &__header {
+    padding-left: 64px;
+    padding-right: 64px;
+  }
+}
+.container {
+  padding: 32px 0 0 64px;
 }
