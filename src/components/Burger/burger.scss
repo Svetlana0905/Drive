@@ -5,10 +5,13 @@
   height: 20px;
   z-index: 3;
   cursor: pointer;
+  &__open {
+    position: relative;
+    align-self: flex-start;
+    z-index: 3;
+  }
 }
-.burger.open {
-  align-self: flex-start;
-}
+
 .burger-line {
   position: absolute;
   width: 30px;
@@ -29,16 +32,26 @@
   &:nth-child(3) {
     top: 9px;
   }
-  &:nth-child(1).open,
-  &:nth-child(4).open {
+  &__open:nth-child(1),
+  &__open:nth-child(4) {
     display: none;
   }
-  &:nth-child(2).open {
+  &__open:nth-child(2) {
     transform: rotate(45deg);
     transform-origin: center;
   }
-  &:nth-child(3).open {
+  &__open:nth-child(3) {
     transform: rotate(-45deg);
     transform-origin: center;
+  }
+}
+.burger-line__open {
+  position: absolute;
+  width: 30px;
+  height: 2px;
+  background: $white;
+  cursor: pointer;
+  @media (max-width: 590px) {
+    background: $white;
   }
 }

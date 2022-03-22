@@ -1,0 +1,63 @@
+@import '../../style//app.scss';
+.select-address {
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+  max-width: 320px;
+  align-items: flex-end;
+  &__label-city,
+  &__label-address {
+    font-family: 'Roboto';
+    font-weight: 300;
+    display: flex;
+    font-size: 14px;
+    line-height: 16px;
+    color: $dark100;
+  }
+  &__label-city {
+    display: flex;
+    gap: 10px;
+  }
+  &__label-address {
+    gap: 6px;
+  }
+  &__label span {
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 16px;
+    color: $dark100;
+  }
+  &__item,
+  &__list,
+  & input {
+    width: 223px;
+    height: 18px;
+    padding-left: 7px;
+    border: none;
+    border-bottom: 1px solid $gray100;
+  }
+  &__input ::placeholder {
+    font-family: 'Roboto';
+    letter-spacing: -1px;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 16px;
+    color: $gray50;
+  }
+}
+.input__city::placeholder {
+  color: $gray100;
+}
+option {
+  position: relative;
+}
+option::after:hover {
+  position: absolute;
+  content: '';
+  display: block;
+  width: 224px;
+  height: 16px;
+  top: 0;
+  left: 0;
+  background: orange inset;
+}

@@ -6,7 +6,7 @@ import { LinkBtnBig } from '../Links/links'
 export const StartScreen = () => {
   return (
     <section className="start--screen">
-      <Header />
+      <Header homeStyle={'header'} />
       <div className="start--screen__content">
         <div className="start--screen__inner">
           <h1 className="start--screen__title">
