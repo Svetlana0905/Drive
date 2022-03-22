@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { useToggle } from '../../hooks/useToggle'
 import { Language } from '../Language/Language'
 import { Burger } from '../Burger/Burger'
-import { IconBlock } from '../IconsBlock/IconsBlock'
+import { IconsBlock } from '../IconsBlock/IconsBlock'
 import { LinksData } from '../../data/LinksData'
 
 export const SideBar = () => {
@@ -19,7 +19,7 @@ export const SideBar = () => {
               {item.title}
             </Link>
           ))}
-          <IconBlock />
+          <IconsBlock />
         </div>
       )}
       <Language isVisible={isVisible} />
