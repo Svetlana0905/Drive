@@ -7,7 +7,7 @@ export const SliderData = [
   {
     imgpath: slide1,
     link: '#',
-    bg: 'bg--green',
+    bg: 'green',
     title: 'Бесплатная парковка',
     subtitle:
       'Оставляйте машину на платных городских парковках и разрешенных местах, не нарушая ПДД, а также в аэропортах.'
@@ -15,21 +15,21 @@ export const SliderData = [
   {
     imgpath: slide2,
     link: '#',
-    bg: 'bg--blue',
+    bg: 'blue',
     title: 'Страховка',
     subtitle: 'Полная страховка. Cтраховка автомобиля'
   },
   {
     imgpath: slide3,
     link: '#',
-    bg: 'bg--red',
+    bg: 'red',
     title: 'Бензин',
     subtitle: 'Полный бак на любой заправке города за наш счёт'
   },
   {
     imgpath: slide4,
     link: '#',
-    bg: 'bg--purple',
+    bg: 'purple',
     title: 'Обслуживание',
     subtitle: 'Автомобиль проходит еженедельное ТО'
   }
