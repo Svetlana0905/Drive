@@ -12,13 +12,19 @@ body {
 }
 .body {
   position: relative;
-  min-height: 100vh;
 }
 .main {
   display: flex;
   justify-content: space-between;
   width: 100%;
-  min-height: 100vh;
+}
+.text {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 16px;
+  color: $dark100;
 }
 @media (max-width: 590px) {
   .main {

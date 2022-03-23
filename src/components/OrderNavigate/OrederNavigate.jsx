@@ -4,12 +4,12 @@ import { NavLinksData } from '../../data/NavLinksData'
 
 export const OrderNavigate = () => {
   return (
-    <section className="nav">
+    <nav className="nav">
       {NavLinksData.map((item, id) => (
         <NavLink to={item.link} key={id} className="nav__nav-link">
           {item.title}
         </NavLink>
       ))}
-    </section>
+    </nav>
   )
 }

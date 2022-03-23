@@ -3,10 +3,12 @@
   position: relative;
   width: 30px;
   height: 20px;
+  background: transparent;
+  border: none;
   z-index: 3;
   cursor: pointer;
-  &__open {
-    position: relative;
+  &.open {
+    position: absolute;
     align-self: flex-start;
     z-index: 3;
   }
@@ -16,6 +18,7 @@
   position: absolute;
   width: 30px;
   height: 2px;
+  left: 0;
   background: $white;
   @media (max-width: 590px) {
     stroke: $dark100;
@@ -32,23 +35,24 @@
   &:nth-child(3) {
     top: 9px;
   }
-  &__open:nth-child(1),
-  &__open:nth-child(4) {
+  &.open:nth-child(1),
+  &.open:nth-child(4) {
     display: none;
   }
-  &__open:nth-child(2) {
+  &.open:nth-child(2) {
+    top: 50%;
     transform: rotate(45deg);
-    transform-origin: center;
   }
-  &__open:nth-child(3) {
+  &.open:nth-child(3) {
+    top: 50%;
     transform: rotate(-45deg);
-    transform-origin: center;
   }
 }
-.burger-line__open {
+.burger-line.open {
+  top: 0;
   position: absolute;
-  width: 30px;
-  height: 2px;
+  width: 26px;
+  height: 3px;
   background: $white;
   cursor: pointer;
   @media (max-width: 590px) {

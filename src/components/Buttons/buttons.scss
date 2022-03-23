@@ -53,3 +53,12 @@
     $green20;
   transform: rotate(180deg);
 }
+.clear-input {
+  position: absolute;
+  right: 7px;
+  top: 3px;
+  width: 10px;
+  height: 10px;
+  border: none;
+  background: url(../../assets/icons/clear_input.svg) center $white;
+}
