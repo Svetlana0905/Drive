@@ -6,7 +6,7 @@ export const Dots = ({ moveDot, slideIndex, dataLenght }) => {
         <div
           onClick={() => moveDot(index + 1)}
           key={index}
-          className={slideIndex === index + 1 ? 'dot dot__active' : 'dot'}
+          className={slideIndex === index + 1 ? 'dot dot_active' : 'dot'}
         />
       ))}
     </div>

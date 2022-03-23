@@ -30,7 +30,9 @@ export const Slider = () => {
       {SliderData.map((item, index) => (
         <div
           key={item.title}
-          className={slideIndex === index + 1 ? 'slide active-anim' : 'slide'}>
+          className={
+            slideIndex === index + 1 ? 'slide slide__active-anim' : 'slide'
+          }>
           <div className="slide__context">
             <h3 className="slide__title">{item.title}</h3>
             <p className="slide__subtitle">{item.subtitle}</p>
@@ -47,11 +49,11 @@ export const Slider = () => {
       ))}
       <ArrowButtonSlider
         handleClick={prevSlide}
-        styleArr={'btn--slider right'}
+        styleArr={'btn_slider btn_slider__right'}
       />
       <ArrowButtonSlider
         handleClick={nextSlide}
-        styleArr={'btn--slider left'}
+        styleArr={'btn_slider btn_slider__left'}
       />
       <Dots moveDot={moveDot} slideIndex={slideIndex} dataLenght={dataLenght} />
     </section>

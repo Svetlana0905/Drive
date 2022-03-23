@@ -10,7 +10,7 @@ export const SideBar = () => {
   const [isVisible, toggleVisible] = useToggle(false)
 
   return (
-    <section className={isVisible ? 'sidebar open' : 'sidebar'}>
+    <section className={isVisible ? 'sidebar sidebar_open' : 'sidebar'}>
       <Burger toggleVisible={toggleVisible} isVisible={isVisible} />
       {isVisible && (
         <div className="sidebar__content">

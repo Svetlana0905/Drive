@@ -22,36 +22,37 @@
     border-radius: 50%;
   }
 }
-.btn--slider {
+.btn_slider {
   position: absolute;
   width: 64px;
   height: 100%;
   border: none;
   background: transparent;
   z-index: 10;
+  transition: all ease-in-out 0.3s;
   @media (max-width: 1439px) {
     width: 32px;
   }
-}
-.btn--slider.right {
-  background: url(../../assets/icons/arrow_slider.svg) center no-repeat;
-}
-.btn--slider.right:hover,
-.btn--slider.right:focus {
-  background: url(../../assets/icons/arrow_slider.svg) center no-repeat,
-    $green20;
-}
-.btn--slider.left {
-  right: 0;
-  background: url(../../assets/icons/arrow_slider.svg) center no-repeat;
-  transform: rotate(180deg);
-}
-.btn--slider.left:hover,
-.btn--slider.left:focus {
-  right: 0;
-  background: url(../../assets/icons/arrow_slider.svg) center no-repeat,
-    $green20;
-  transform: rotate(180deg);
+  &.btn_slider__right {
+    background: url(../../assets/icons/arrow_slider.svg) center no-repeat;
+  }
+  &.btn_slider__right:hover,
+  &.btn_slider__right:focus {
+    background: url(../../assets/icons/arrow_slider.svg) center no-repeat,
+      $green20;
+  }
+  &.btn_slider__left {
+    right: 0;
+    background: url(../../assets/icons/arrow_slider.svg) center no-repeat;
+    transform: rotate(180deg);
+  }
+  &.btn_slider__left:hover,
+  &.btn_slider__left:focus {
+    right: 0;
+    background: url(../../assets/icons/arrow_slider.svg) center no-repeat,
+      $green20;
+    transform: rotate(180deg);
+  }
 }
 .clear-input {
   position: absolute;

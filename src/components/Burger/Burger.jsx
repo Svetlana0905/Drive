@@ -5,15 +5,10 @@ export const Burger = ({ isVisible, toggleVisible }) => {
   return (
     <button
       type="button"
-      className={isVisible ? 'burger open' : 'burger'}
+      className={isVisible ? 'burger burger_open' : 'burger'}
       onClick={toggleVisible}>
       {Array.from({ length: 4 }).map((_, index) => (
-        <img
-          className={isVisible ? 'burger-line open' : 'burger-line'}
-          src={burgerLine}
-          alt="Меню бургер"
-          key={index}
-        />
+        <img src={burgerLine} alt="Меню бургер" key={index} />
       ))}
     </button>
   )

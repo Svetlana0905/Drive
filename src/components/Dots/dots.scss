@@ -14,7 +14,7 @@
   border-radius: 50%;
   background: #f1f1f1;
   cursor: pointer;
-  &__active {
+  &.dot_active {
     background: $green;
   }
 }
