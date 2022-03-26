@@ -1,0 +1,44 @@
+@import '../../style/app.scss';
+.footer {
+  display: flex;
+  flex-direction: column;
+  flex-direction: column-reverse;
+  gap: 9px;
+  align-items: flex-end;
+  padding: 15px 16px 21px;
+  background: $dark100;
+  @media (min-width: 590px) {
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0px 32px 32px 0;
+    background: transparent;
+  }
+  @media (min-width: 1440px) {
+    padding: 0px 60px 32px 0;
+  }
+  &__copyright {
+    font-size: 13px;
+    line-height: 15px;
+    color: $gray100;
+  }
+  &__phone {
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 15px;
+    color: $green;
+    &:hover,
+    &:focus {
+      color: $white;
+    }
+    &:disabled {
+      color: $gray100;
+    }
+    @media (min-width: 590px) {
+      color: $dark100;
+    }
+    &:focus,
+    &:hover {
+      color: $green;
+    }
+  }
+}

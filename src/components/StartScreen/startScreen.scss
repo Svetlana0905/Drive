@@ -1,0 +1,63 @@
+@import '../../style/app.scss';
+.start--screen {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding-left: 0px;
+  width: 100%;
+  @media (min-width: 590px) {
+    padding-left: 118px;
+  }
+  @media (min-width: 1024px) {
+    padding: 0 0 0 97px;
+  }
+  @media (min-width: 1440px) {
+    padding: 0 0 0 128px;
+  }
+  &__content {
+    flex: 0 1 100%;
+    padding: 16px 0 0;
+    @media (min-width: 590px) {
+      padding: 0;
+    }
+  }
+  &__inner {
+    margin-bottom: 32px;
+    padding-left: 15px;
+    @media (min-width: 590px) {
+      padding-left: 0;
+      padding-top: 134px;
+      margin-bottom: 64px;
+    }
+    @media (min-width: 1024px) {
+      margin-bottom: 61px;
+    }
+    @media (min-width: 1440px) {
+      margin-bottom: 62px;
+    }
+  }
+  &__title {
+    font-size: 32px;
+    line-height: 119%;
+    margin-bottom: 11px;
+    font-weight: 700;
+    @media (min-width: 590px) {
+      font-size: 70px;
+      line-height: 70px;
+      margin-bottom: 25px;
+    }
+  }
+  &__green {
+    color: $green;
+  }
+  &__subtitle {
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 21px;
+    color: $gray100;
+    @media (min-width: 590px) {
+      font-size: 26px;
+      line-height: 30px;
+    }
+  }
+}

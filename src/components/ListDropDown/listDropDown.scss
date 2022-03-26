@@ -1,0 +1,75 @@
+@import '../../style//app.scss';
+.form {
+  margin-bottom: 47px;
+}
+.address {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  max-width: 320px;
+  align-items: flex-end;
+  &__city,
+  &__street {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 16px;
+    color: $dark100;
+  }
+  &__street {
+    display: flex;
+    gap: 5px;
+  }
+}
+.city {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  &__inner {
+    position: relative;
+    display: flex;
+    gap: 9px;
+  }
+  &__input::after {
+    content: '';
+  }
+  &__list {
+    display: none;
+    position: absolute;
+    // display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 224px;
+    max-height: 120px;
+    top: 20px;
+    left: 47px;
+    padding: 9px 8px;
+    background: $white;
+    border: 1px solid $gray50;
+    border-top: none;
+    overflow: auto;
+  }
+  &__item {
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 16px;
+    color: $gray100;
+    &:hover,
+    &:focus {
+      color: $green;
+    }
+  }
+}
+.city__input,
+.street__input {
+  position: relative;
+  width: 224px;
+  font-family: 'Roboto';
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 16px;
+  border: none;
+  padding: 0 0 0px 8px;
+  border-bottom: 1px solid $gray100;
+}

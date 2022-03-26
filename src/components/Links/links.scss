@@ -1,0 +1,56 @@
+@import '../../style/app.scss';
+.link_btn_big {
+  display: inline-block;
+  width: 250px;
+  padding: 14px 0 13px;
+  text-align: center;
+  font-size: 18px;
+  line-height: 21px;
+  font-family: 'Roboto';
+  font-weight: 500;
+  color: $white;
+  background: $btngreen;
+  background-blend-mode: darken;
+  border-radius: 8px;
+  &:hover,
+  &:focus {
+    background: $btngreen10;
+  }
+  &:active {
+    background: $btnbright20;
+  }
+  @media (max-width: 590px) {
+    margin-left: 0px;
+    padding: 18px 0 9px;
+    width: 100%;
+    border-radius: 0px;
+  }
+}
+.slide_link {
+  color: $white;
+  text-decoration: none;
+  display: inline-block;
+  padding: 16px 36px;
+  font-size: 18px;
+  border-radius: 4px;
+  text-align: center;
+  &:hover,
+  &:hover {
+    filter: brightness(0.9);
+  }
+  &:active {
+    filter: brightness(0.8);
+  }
+  &.slide_link__green {
+    background: linear-gradient(90deg, #13493f 0%, #0c7b1b 100%);
+  }
+  &.slide_link__blue {
+    background: linear-gradient(90deg, #132949 0%, #0c7b67 100%);
+  }
+  &.slide_link__red {
+    background: linear-gradient(90deg, #493013 0%, #7b0c3b 100%);
+  }
+  &.slide_link__purple {
+    background: linear-gradient(90deg, #281349 0%, #720c7b 100%);
+  }
+}
