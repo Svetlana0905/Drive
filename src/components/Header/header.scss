@@ -1,0 +1,38 @@
+@import '../../style/app.scss';
+.logo {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 30px;
+  line-height: 35px;
+  color: $green;
+  flex-direction: column;
+  align-items: flex-end;
+  cursor: pointer;
+}
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+  padding: 16px 16px 16px 0;
+  @media (min-width: 590px) {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 32px 33px 32px 0;
+  }
+  @media (min-width: 1440px) {
+    padding: 32px 60px 32px 0;
+  }
+}
+.choice-sity {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  line-height: 16px;
+  color: $gray100;
+  cursor: pointer;
+}
