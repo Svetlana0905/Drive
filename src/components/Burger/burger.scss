@@ -14,7 +14,7 @@
     left: 0;
     background: $white;
     transition: all ease-in-out 0.3s;
-    @media (max-width: 590px) {
+    @media (max-width: 768px) {
       stroke: $dark100;
       fill: $dark100;
       background: $dark100;
@@ -44,7 +44,7 @@
   transform: rotate(-45deg);
 }
 .burger_open img {
-  @media (max-width: 590px) {
+  @media (max-width: 768px) {
     background: $white;
   }
 }

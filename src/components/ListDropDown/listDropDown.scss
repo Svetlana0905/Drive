@@ -34,7 +34,7 @@
     border: none;
     padding: 0 0 0px 8px;
     border-bottom: 1px solid $gray100;
-    @media (min-width: 590px) {
+    @media (min-width: 768px) {
       font-size: 14px;
       line-height: 16px;
     }
@@ -68,7 +68,7 @@
     font-size: 16px;
     line-height: 20px;
     color: $gray100;
-    @media (min-width: 590px) {
+    @media (min-width: 768px) {
       font-size: 14px;
       line-height: 16px;
     }

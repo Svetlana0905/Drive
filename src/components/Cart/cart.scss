@@ -2,13 +2,9 @@
 .total {
   display: flex;
   flex-direction: column;
-  width: 100%;
   padding: 32px 16px;
-  @media (min-width: 590px) {
-    padding: 32px 16px 32px 94px;
-  }
   @media (min-width: 1024px) {
-    width: 40%;
+    width: 336px;
     padding: 32px 32px 0 16px;
     border-left: 1px solid $gray50;
   }
