@@ -12,6 +12,6 @@ export const LangButton = () => {
 export const ArrowButtonSlider = ({ handleClick, styleArr }) => {
   return <button onClick={handleClick} className={styleArr} />
 }
-export const ClearInputButton = ({ handleClick }) => {
-  return <button onClick={handleClick} className="clear-input" />
+export const ClearInputButton = ({ clearInput }) => {
+  return <button onClick={clearInput} className="clear-input" />
 }

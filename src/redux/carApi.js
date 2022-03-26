@@ -17,8 +17,14 @@ export const carApi = createApi({
   endpoints: (build) => ({
     getCity: build.query({
       query: () => `/db/city`
+    }),
+    getPoint: build.query({
+      query: () => `/db/point`
+    }),
+    getCar: build.query({
+      query: () => `/db/car`
     })
   })
 })
 
-export const { useGetCityQuery } = carApi
+export const { useGetCityQuery, useGetPointQuery, useGetCarQuery } = carApi

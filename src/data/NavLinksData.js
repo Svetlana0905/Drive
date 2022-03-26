@@ -4,15 +4,15 @@ export const NavLinksData = [
     title: 'Местоположение'
   },
   {
-    link: 'car',
+    link: '#',
     title: 'Модель'
   },
   {
-    link: 'options',
+    link: '#',
     title: 'Дополнительно'
   },
   {
-    link: 'result',
+    link: '#',
     title: 'Итого'
   }
 ]

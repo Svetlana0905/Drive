@@ -2,7 +2,18 @@
 .map {
   display: flex;
   flex-direction: column;
+  @media (min-width: 1440px) {
+    padding-right: 192px;
+  }
+  @media (min-width: 1024px) {
+    padding-right: 32px;
+  }
   &__text {
-    margin-bottom: 46px;
+    margin-bottom: 16px;
+  }
+  &__frame {
+    object-fit: cover;
+    width: 100%;
+    display: block;
   }
 }
