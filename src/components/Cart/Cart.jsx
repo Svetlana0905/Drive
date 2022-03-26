@@ -1,7 +1,7 @@
 import './cart.scss'
 import { useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
-import { LinkBtnBig } from '../Links/links'
+import { LinkBtnPrice } from '../Links/links'
 import { Price } from '../Price/Price'
 
 export const Cart = () => {
@@ -25,7 +25,7 @@ export const Cart = () => {
         </div>
       </div>
       <Price />
-      <LinkBtnBig text={'Выбрать модель'} link="#" disabled={isDisubled} />
+      <LinkBtnPrice text={'Выбрать модель'} link="#" disabled={isDisubled} />
     </section>
   )
 }

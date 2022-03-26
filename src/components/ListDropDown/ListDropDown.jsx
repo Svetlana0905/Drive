@@ -23,7 +23,9 @@ export const ListDropDown = ({ label, addressArray, name }) => {
 
   return (
     <div className="address__wrapper">
-      <div className="address__inner" onClick={toggleVisible}>
+      <label
+        className={name === 'street' ? 'address__inner' : 'address__inner_city'}
+        onClick={toggleVisible}>
         <span>{label}</span>
         <input
           onChange={(e) => {
@@ -35,8 +37,9 @@ export const ListDropDown = ({ label, addressArray, name }) => {
           className="address__input"
           placeholder="Начните вводить пункт ..."
         />
+
         <ClearInputButton clearInput={clearInput} />
-      </div>
+      </label>
       <ul
         className={
           isVisible ? 'address__list address__list_open' : 'address__list'

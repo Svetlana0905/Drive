@@ -58,8 +58,12 @@
   position: absolute;
   right: 7px;
   top: 3px;
-  width: 11px;
-  height: 11px;
+  width: 30px;
+  height: 30px;
   border: none;
   background: url(../../assets/icons/clear_input.svg) center no-repeat;
+  @media (min-width: 400px) {
+    width: 11px;
+    height: 11px;
+  }
 }

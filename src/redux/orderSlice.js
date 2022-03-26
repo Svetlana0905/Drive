@@ -3,8 +3,8 @@ import { createSlice } from '@reduxjs/toolkit'
 export const orderSlise = createSlice({
   name: 'order',
   initialState: {
-    city: '',
-    street: ''
+    city: 'Ульяновск,',
+    street: 'Нариманова 42'
   },
   reducers: {
     addCity: (state, data) => {

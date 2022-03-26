@@ -1,20 +1,35 @@
 @import '../../style//app.scss';
 .nav {
   display: flex;
-  gap: 38px;
+  flex-direction: column;
+  gap: 25px;
   margin-top: -4px;
-  padding: 9px 0 7px 64px;
+  padding: 9px 0 7px 16px;
   border-top: 1px solid $gray50;
   border-bottom: 1px solid $gray50;
+  @media (min-width: 590px) {
+    flex-direction: row;
+    gap: 38px;
+    padding: 9px 0 7px 100px;
+  }
+  @media (min-width: 1024px) {
+    padding: 9px 0 7px 96px;
+  }
+  @media (min-width: 1440px) {
+    padding: 9px 0 7px 128px;
+  }
   &__nav-link {
     display: inline-block;
     position: relative;
     font-family: 'Roboto';
-    font-style: normal;
     font-weight: 500;
-    font-size: 14px;
+    font-size: 18px;
     line-height: 16px;
     color: $gray100;
+    @media (min-width: 590px) {
+      font-size: 14px;
+      line-height: 16px;
+    }
     &:visited {
       color: $dark100;
     }

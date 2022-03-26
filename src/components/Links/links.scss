@@ -1,5 +1,6 @@
 @import '../../style/app.scss';
-.link-btn-big {
+.link-btn-big,
+.link-btn-price {
   display: inline-block;
   width: 250px;
   padding: 14px 0 13px;
@@ -24,6 +25,13 @@
     padding: 18px 0 9px;
     width: 100%;
     border-radius: 0px;
+  }
+}
+.link-btn-price {
+  border-radius: 8px;
+  width: 250px;
+  @media (min-width: 1024px) {
+    width: 287px;
   }
 }
 .slide_link {
