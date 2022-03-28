@@ -2,13 +2,17 @@
 .nav {
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
   gap: 25px;
   margin-top: -4px;
   padding: 9px 0 7px 16px;
   border-top: 1px solid $gray50;
   border-bottom: 1px solid $gray50;
-  @media (min-width: 768px) {
+  @media (min-width: 500px) {
     flex-direction: row;
+    gap: 20px;
+  }
+  @media (min-width: 768px) {
     gap: 38px;
     padding: 9px 0 7px 100px;
   }
@@ -18,26 +22,20 @@
   @media (min-width: 1440px) {
     padding: 9px 0 7px 128px;
   }
-  &__nav-link {
-    display: inline-block;
-    position: relative;
-    font-family: 'Roboto';
-    font-weight: 500;
-    font-size: 18px;
+}
+.nav-link {
+  display: inline-block;
+  position: relative;
+  font-family: 'Roboto';
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 16px;
+  color: $gray100;
+  background: $white;
+  border: none;
+  @media (min-width: 768px) {
+    font-size: 14px;
     line-height: 16px;
-    color: $gray100;
-    @media (min-width: 768px) {
-      font-size: 14px;
-      line-height: 16px;
-    }
-    &:visited {
-      color: $dark100;
-    }
-    &:focus,
-    &:hover,
-    &.active {
-      color: $green;
-    }
     &:not(:last-child)::after {
       content: '';
       position: absolute;
@@ -48,5 +46,13 @@
       top: 3px;
       background: url(../../assets/icons/nav_arrow.svg) no-repeat;
     }
+  }
+  &__disabled {
+    color: $dark100;
+  }
+  &:focus,
+  &:hover,
+  &__active {
+    color: $green;
   }
 }

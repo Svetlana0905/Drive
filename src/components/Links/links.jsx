@@ -10,15 +10,7 @@ export const LinkBtnBig = ({ text, link, disabled }) => {
     </Link>
   )
 }
-export const LinkBtnPrice = ({ text, link, disabled }) => {
-  return (
-    <Link
-      to={link}
-      className={disabled ? 'link-btn-price disabled' : 'link-btn-price'}>
-      {text}
-    </Link>
-  )
-}
+
 export const LinkBtnSlider = ({ link, styleLink, text }) => {
   return (
     <Link to={link} className={`slide_link slide_link__${styleLink}`}>

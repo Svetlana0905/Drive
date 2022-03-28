@@ -1,14 +1,24 @@
 import './orderNavigate.scss'
-import { NavLink } from 'react-router-dom'
 import { NavLinksData } from '../../data/NavLinksData'
 
-export const OrderNavigate = () => {
+export const OrderNavigate = ({ onClick, pageId }) => {
+  const navName = 'nav-link'
+  const getClass = (id, linkId) => {
+    if (id < linkId) return `${navName} ${navName}__disabled`
+    else if (id === linkId) return `${navName} ${navName}__active`
+    else return `${navName}`
+  }
+
   return (
     <nav className="nav">
       {NavLinksData.map((item, id) => (
-        <NavLink to={item.link} key={id} className="nav__nav-link">
+        <button
+          type="button"
+          key={id}
+          className={getClass(id, pageId)}
+          onClick={onClick}>
           {item.title}
-        </NavLink>
+        </button>
       ))}
     </nav>
   )

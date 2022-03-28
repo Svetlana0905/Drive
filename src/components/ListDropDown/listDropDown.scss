@@ -22,7 +22,9 @@
     }
   }
   &__inner_city {
-    gap: 9px;
+    @media (min-width: 400px) {
+      gap: 9px;
+    }
   }
   &__input {
     position: relative;

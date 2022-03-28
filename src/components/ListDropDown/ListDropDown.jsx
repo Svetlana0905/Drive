@@ -37,7 +37,6 @@ export const ListDropDown = ({ label, addressArray, name }) => {
           className="address__input"
           placeholder="Начните вводить пункт ..."
         />
-
         <ClearInputButton clearInput={clearInput} />
       </label>
       <ul

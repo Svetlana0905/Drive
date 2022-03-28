@@ -1,5 +1,5 @@
 @import '../../style/app.scss';
-.language--btn {
+.language-btn {
   width: 48px;
   height: 48px;
   font-family: 'Roboto';
@@ -65,5 +65,38 @@
   @media (min-width: 400px) {
     width: 11px;
     height: 11px;
+  }
+}
+
+.btn-price {
+  display: inline-block;
+  width: 250px;
+  padding: 14px 0 13px;
+  text-align: center;
+  font-size: 18px;
+  line-height: 21px;
+  font-family: 'Roboto';
+  font-weight: 500;
+  color: $white;
+  background: $btngreen;
+  background-blend-mode: darken;
+  border: none;
+  border-radius: 8px;
+  &:hover,
+  &:focus {
+    background: $btngreen10;
+  }
+  &:active {
+    background: $btnbright20;
+  }
+  @media (min-width: 1024px) {
+    width: 287px;
+  }
+  &__disabled {
+    background: $gray50;
+    &:hover,
+    &:focus {
+      background: $gray50;
+    }
   }
 }

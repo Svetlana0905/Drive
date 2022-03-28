@@ -10,7 +10,7 @@ function App() {
     <Routes>
       <Route path="/drive" element={<Layout />}>
         <Route index element={<MainPage />} />
-        <Route path="order" element={<OrderPage />} />
+        <Route path="order/*" element={<OrderPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Route>
     </Routes>
