@@ -1,12 +1,11 @@
-import './form.scss'
-import { Point } from '../../components/Point/Point'
-import { City } from '../../components/City/City'
+import { Point } from '../../containers/Points'
+import { City } from '../../containers/City'
 import { Map } from '../../components/Map/Map'
 
-export const Form = () => {
+export const AddressPage = () => {
   return (
     <section className="order-page__order">
-      <div className="address">
+      <div className="order-page__body">
         <City />
         <Point />
       </div>

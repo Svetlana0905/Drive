@@ -46,6 +46,7 @@ export const ListDropDown = ({
               onClick={(e) => setCityFromBd(item.name)}
               className={`address__item`}>
               {item.name}
+              {console.log(item)}
             </li>
           ))}
       </ul>

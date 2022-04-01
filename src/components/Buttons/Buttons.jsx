@@ -16,12 +16,25 @@ export const ClearInputButton = ({ clearInput }) => {
   return <button onClick={clearInput} className="clear-input" />
 }
 export const ButtonPrice = ({ handleClick, disabled, text }) => {
+  const classess = disabled ? 'btn-price btn-price__disabled' : 'btn-price'
   return (
-    <button
-      onClick={handleClick}
-      disabled={disabled}
-      className={disabled ? 'btn-price btn-price__disabled' : 'btn-price'}>
+    <button onClick={handleClick} disabled={disabled} className={classess}>
       {text}
     </button>
+  )
+}
+export const RadioInput = ({ value, text, name, onClick }) => {
+  return (
+    <label className="radio">
+      <span className="radio__span text">{text}</span>
+      <input
+        className="radio__input"
+        type="radio"
+        onClick={onClick}
+        name={name}
+        value={value}
+      />
+      <span className="radio__box"></span>
+    </label>
   )
 }

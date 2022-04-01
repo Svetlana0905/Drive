@@ -1,5 +1,5 @@
-import { useGetCarQuery } from '../../redux'
-import { Preload } from '../Preload/Preload'
+import { useGetCarQuery } from '../redux'
+import { Preload } from '../components/Preload/Preload'
 
 export const Price = () => {
   let carData = []
@@ -27,10 +27,8 @@ export const Price = () => {
     minPrice = Math.min.apply(null, minPriceArray)
   }
   return (
-    <>
-      <div className="total__price">
-        Цена: от {minPrice} до {maxPrice} ₽
-      </div>
-    </>
+    <div className="total__price">
+      Цена: от {minPrice} до {maxPrice} ₽
+    </div>
   )
 }

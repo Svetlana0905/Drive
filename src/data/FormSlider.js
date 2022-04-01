@@ -1,18 +1,18 @@
-import { Form } from '../pages/FormPage/Form'
-import { Form2 } from '../pages/Form2/Form2'
+import { AddressPage } from '../pages/AddressPage/AddressPage'
+import { CarPage } from '../pages/CarPage/CarPage'
 import { Form3 } from '../pages/Form3/Form3'
 import { Form4 } from '../pages/Form4/Form4'
 import { Cart } from '../components/Cart/Cart'
-import { Price } from '../components/Price/Price'
+import { Price } from '../containers/Price'
 export const FormSlider = [
   {
-    page: <Form />,
+    page: <AddressPage />,
     cart: <Cart />,
     price: <Price />,
     btnText: 'Выбрать модель'
   },
   {
-    page: <Form2 />,
+    page: <CarPage />,
     cart: <Cart />,
     price: <Price />,
     btnText: 'Дополнительно'

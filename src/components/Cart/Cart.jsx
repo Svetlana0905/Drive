@@ -2,16 +2,25 @@ import './cart.scss'
 import { useSelector } from 'react-redux'
 
 export const Cart = () => {
-  const city = useSelector((state) => state.order.city)
-  const street = useSelector((state) => state.order.street)
+  const objOptions = useSelector((state) => state.order.options)
+  const entries = Object.entries(objOptions)
+
   return (
-    <div className="option">
-      <span className="option__name text">Пункт выдачи</span>
-      <span className="option__name-colon"></span>
-      <p className="option__value">
-        <span>{city}</span>
-        <span>{street}</span>
-      </p>
-    </div>
+    <>
+      {entries ? (
+        entries.map((item, id) => (
+          <div className="option" key={item.id}>
+            {console.log(item)}
+            <span className="option__name text">{item[0]}</span>
+            <span className="option__name-colon"></span>
+            <p className="option__value">
+              <span>{item[1]}</span>
+            </p>
+          </div>
+        ))
+      ) : (
+        <p></p>
+      )}
+    </>
   )
 }
