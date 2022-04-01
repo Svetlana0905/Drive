@@ -7,20 +7,15 @@ export const Cart = () => {
 
   return (
     <>
-      {entries ? (
-        entries.map((item, id) => (
-          <div className="option" key={item.id}>
-            {console.log(item)}
-            <span className="option__name text">{item[0]}</span>
-            <span className="option__name-colon"></span>
-            <p className="option__value">
-              <span>{item[1]}</span>
-            </p>
-          </div>
-        ))
-      ) : (
-        <p></p>
-      )}
+      {entries?.map((item, id) => (
+        <div className="option" key={id}>
+          <span className="option__name text">{item[0]}</span>
+          <span className="option__name-colon"></span>
+          <p className="option__value">
+            <span>{item[1]}</span>
+          </p>
+        </div>
+      ))}
     </>
   )
 }

@@ -1,34 +1,29 @@
 import { useGetCarQuery } from '../redux'
 import { Preload } from '../components/Preload/Preload'
+import { useSelector, useDispatch } from 'react-redux'
+import { getPrices } from '../redux/orderSlice'
+import { useEffect } from 'react'
 
 export const Price = () => {
-  let carData = []
-  let maxPriceArray = []
-  let minPriceArray = []
-  let maxPrice = 0
-  let minPrice = 0
+  const dispatch = useDispatch()
+  const minPrice = useSelector((state) => state.order.minPrice)
+  const maxPrice = useSelector((state) => state.order.maxPrice)
 
   const { data: car = [], isLoading, isSuccess } = useGetCarQuery()
+  useEffect(() => {
+    let priceData = []
+    if (isSuccess) {
+      console.log(priceData)
+      priceData = car.data
+      dispatch(getPrices(priceData))
+    }
+  }, [isSuccess, dispatch, car.data])
   if (isLoading) {
     return <Preload />
   }
-  if (isSuccess) {
-    carData = car.data
-    maxPriceArray = carData.reduce((accum, item) => {
-      accum.push(item.priceMax)
-      return accum
-    }, [])
-    maxPrice = Math.max.apply(null, maxPriceArray)
-
-    minPriceArray = carData.reduce((accum, item) => {
-      accum.push(item.priceMin)
-      return accum
-    }, [])
-    minPrice = Math.min.apply(null, minPriceArray)
-  }
   return (
     <div className="total__price">
-      Цена: от {minPrice} до {maxPrice} ₽
+      Цена: от {minPrice} до {maxPrice} ₽{console.log('rend222')}
     </div>
   )
 }

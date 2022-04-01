@@ -6,6 +6,8 @@ export const orderSlise = createSlice({
     city: '',
     street: '',
     fullLocation: '',
+    minPrice: 0,
+    maxPrice: 0,
     model: '',
     numberPage: 0,
     options: {},
@@ -15,8 +17,8 @@ export const orderSlise = createSlice({
     addCity: (state, data) => {
       const city = data.payload
       state.city = city
-      state.fullLocation = `${city} ${state.street}`
-      state.options['Пункт выдачи'] = `${state.fullLocation}`
+      state.fullLocation = `${city}`
+      if (city !== '') state.options['Пункт выдачи'] = `${state.fullLocation}`
     },
     addStreet: (state, data) => {
       const street = data.payload
@@ -40,8 +42,10 @@ export const orderSlise = createSlice({
     },
     getModel: (state, data) => {
       const modelCar = data.payload
-      state.model = modelCar
-      state.options['Модель'] = `${modelCar}`
+      state.model = modelCar.name
+      state.options['Модель'] = `${modelCar.name}`
+      state.minPrice = modelCar.priceMin
+      state.maxPrice = modelCar.priceMax
     },
     changeDisabledBtn: (state) => {
       if (state.city && state.street && state.numberPage === 0)
@@ -50,6 +54,19 @@ export const orderSlise = createSlice({
     },
     isDisubled: (state, data) => {
       state.disabledBtn = data.payload
+    },
+    getPrices: (state, data) => {
+      const minPriceArray = data.payload.reduce((accum, item) => {
+        accum.push(item.priceMin)
+        return accum
+      }, [])
+      const maxPriceArray = data.payload.reduce((accum, item) => {
+        accum.push(item.priceMax)
+        // console.log('rend')
+        return accum
+      }, [])
+      state.minPrice = Math.min.apply(null, minPriceArray)
+      state.maxPrice = Math.max.apply(null, maxPriceArray)
     }
   }
 })
@@ -61,6 +78,7 @@ export const {
   forwardStep,
   getModel,
   changeDisabledBtn,
-  isDisubled
+  isDisubled,
+  getPrices
 } = orderSlise.actions
 export default orderSlise.reducer
