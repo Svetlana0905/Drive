@@ -1,5 +1,7 @@
 import './listDropDown.scss'
 import { useState, useRef } from 'react'
+import { useDispatch } from 'react-redux'
+import { isDisubled } from '../../redux/orderSlice'
 import { ClearInputButton } from '../Buttons/Buttons'
 import { useOutClick } from '../../hooks/useOutClick'
 
@@ -7,16 +9,25 @@ export const ListDropDown = ({
   label,
   addressArray,
   name,
-  clearInput,
-  setCityFromBd,
-  cityFromBd
+  setInputText,
+  textInput
 }) => {
   const [isVisible, toggleVisible] = useState(false)
+  const dispatch = useDispatch()
   const wrapperRef = useRef(null)
   useOutClick(wrapperRef, toggleVisible)
+
+  const getText = (word) => {
+    setInputText(word)
+  }
+
+  const clearInput = () => {
+    dispatch(isDisubled(true))
+    setInputText('')
+  }
   const clssessInput =
     name === 'street' ? `address__inner` : `address__inner_city`
-  const classesLi = isVisible
+  const classesList = isVisible
     ? `address__list address__list_open`
     : `address__list`
 
@@ -26,24 +37,26 @@ export const ListDropDown = ({
         <span>{label}</span>
         <input
           onChange={(e) => {
-            setCityFromBd(e.target.value)
+            getText(e.target.value)
           }}
-          value={cityFromBd}
+          value={textInput}
           type="text"
           className={`address__input`}
           placeholder="Начните вводить пункт ..."
         />
-        <ClearInputButton clearInput={clearInput} />
+        {textInput && <ClearInputButton clearInput={clearInput} />}
       </label>
-      <ul className={classesLi} ref={wrapperRef}>
+      <ul className={classesList} ref={wrapperRef}>
         {addressArray
           .filter((item) =>
-            item.name.toLowerCase().includes(cityFromBd.toLowerCase())
+            item.name.toLowerCase().includes(textInput.toLowerCase())
           )
           .map((item, id) => (
             <li
               key={id}
-              onClick={(e) => setCityFromBd(item.name)}
+              onClick={(e) => {
+                setInputText(item.name)
+              }}
               className={`address__item`}>
               {item.name}
             </li>

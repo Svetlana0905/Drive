@@ -40,10 +40,7 @@
   align-items: flex-end;
   gap: 7px;
   &__value {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    max-width: 150px;
+    flex: 1 0 auto;
     font-weight: 300;
     font-size: 14px;
     line-height: 16px;
@@ -58,6 +55,7 @@
 
   &__name-colon {
     color: $gray100;
+    flex: 1 1 auto;
   }
   &__name-colon {
     position: relative;

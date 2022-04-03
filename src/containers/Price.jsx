@@ -13,7 +13,6 @@ export const Price = () => {
   useEffect(() => {
     let priceData = []
     if (isSuccess) {
-      console.log(priceData)
       priceData = car.data
       dispatch(getPrices(priceData))
     }
@@ -23,7 +22,7 @@ export const Price = () => {
   }
   return (
     <div className="total__price">
-      Цена: от {minPrice} до {maxPrice} ₽{console.log('rend222')}
+      Цена: от {minPrice} до {maxPrice} ₽
     </div>
   )
 }

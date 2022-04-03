@@ -1,6 +1,6 @@
 import { AddressPage } from '../pages/AddressPage/AddressPage'
 import { CarPage } from '../pages/CarPage/CarPage'
-import { Form3 } from '../pages/Form3/Form3'
+import { Options } from '../pages/Options/Options'
 import { Form4 } from '../pages/Form4/Form4'
 import { Cart } from '../components/Cart/Cart'
 import { Price } from '../containers/Price'
@@ -18,7 +18,7 @@ export const FormSlider = [
     btnText: 'Дополнительно'
   },
   {
-    page: <Form3 />,
+    page: <Options />,
     cart: <Cart />,
     price: <Price />,
     btnText: 'Итого'

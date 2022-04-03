@@ -1,4 +1,4 @@
-export const Form3 = () => {
+export const Options = () => {
   return (
     <>
       <h1>Третья страница заказ</h1>
