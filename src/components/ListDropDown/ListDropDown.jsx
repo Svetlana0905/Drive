@@ -1,52 +1,67 @@
 import './listDropDown.scss'
-// import { useSelector } from 'react-redux'
-import { useGetCityQuery } from '../../redux'
+import { useState, useRef } from 'react'
+import { useDispatch } from 'react-redux'
+import { isDisubled } from '../../redux/orderSlice'
 import { ClearInputButton } from '../Buttons/Buttons'
+import { useOutClick } from '../../hooks/useOutClick'
 
-export const ListDropDown = () => {
-  // const address = useSelector((state) => state.user)
-  let addressArray = []
-  // console.log(address)
-  const handleClick = () => {}
-  const { data: city = [], isLoading, isSuccess } = useGetCityQuery()
-  if (isLoading)
-    return (
-      <div>
-        <h1>Loading</h1>
-      </div>
-    )
-  if (isSuccess) {
-    addressArray = city.data
+export const ListDropDown = ({
+  label,
+  addressArray,
+  name,
+  setInputText,
+  textInput
+}) => {
+  const [isVisible, toggleVisible] = useState(false)
+  const dispatch = useDispatch()
+  const wrapperRef = useRef(null)
+  useOutClick(wrapperRef, toggleVisible)
+
+  const getText = (word) => {
+    setInputText(word)
   }
+
+  const clearInput = () => {
+    dispatch(isDisubled(true))
+    setInputText('')
+  }
+  const clssessInput =
+    name === 'street' ? `address__inner` : `address__inner_city`
+  const classesList = isVisible
+    ? `address__list address__list_open`
+    : `address__list`
+
   return (
-    <form method="post" className="form">
-      <section className="address">
-        <div className="address__city city">
-          <div className="city__inner">
-            <span>Город</span>
-            <input
-              type="text"
-              className="city__input"
-              placeholder="Ульяновск"
-            />
-            <ClearInputButton handleClick={handleClick} />
-          </div>
-          <ul className="city__list">
-            {addressArray.map((item, id) => (
-              <li key={id} value={item.name} className="city__item">
-                {item.name}
-              </li>
-            ))}
-          </ul>
-        </div>
-        <label className="address__street">
-          <span>Пункт выдачи</span>
-          <input
-            className="street__input"
-            placeholder="Начните вводить пункт ..."
-          />
-        </label>
-      </section>
-    </form>
+    <div className={`address__wrapper`}>
+      <label className={clssessInput} onClick={toggleVisible}>
+        <span>{label}</span>
+        <input
+          onChange={(e) => {
+            getText(e.target.value)
+          }}
+          value={textInput}
+          type="text"
+          className={`address__input`}
+          placeholder="Начните вводить пункт ..."
+        />
+        {textInput && <ClearInputButton clearInput={clearInput} />}
+      </label>
+      <ul className={classesList} ref={wrapperRef}>
+        {addressArray
+          .filter((item) =>
+            item.name.toLowerCase().includes(textInput.toLowerCase())
+          )
+          .map((item, id) => (
+            <li
+              key={id}
+              onClick={(e) => {
+                setInputText(item.name)
+              }}
+              className={`address__item`}>
+              {item.name}
+            </li>
+          ))}
+      </ul>
+    </div>
   )
 }

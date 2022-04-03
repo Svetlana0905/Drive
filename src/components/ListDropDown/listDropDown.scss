@@ -1,75 +1,87 @@
 @import '../../style//app.scss';
-.form {
-  margin-bottom: 47px;
-}
 .address {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  max-width: 320px;
-  align-items: flex-end;
-  &__city,
-  &__street {
-    font-family: 'Roboto';
-    font-style: normal;
+  &__wrapper {
+    position: relative;
+    display: flex;
+    flex-direction: column;
     font-weight: 300;
     font-size: 14px;
     line-height: 16px;
     color: $dark100;
   }
-  &__street {
+  &__inner,
+  &__inner_city {
     display: flex;
-    gap: 5px;
-  }
-}
-.city {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  &__inner {
+    flex-direction: column;
     position: relative;
     display: flex;
-    gap: 9px;
+    gap: 15px;
+    @media (min-width: 400px) {
+      flex-direction: row;
+      gap: 5px;
+    }
   }
-  &__input::after {
-    content: '';
+  &__inner_city {
+    @media (min-width: 400px) {
+      gap: 9px;
+    }
+  }
+  &__input {
+    position: relative;
+    width: 224px;
+    font-family: 'Roboto';
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 16px;
+    border: none;
+    padding: 0 0 0px 8px;
+    border-bottom: 1px solid $gray100;
+    @media (min-width: 768px) {
+      font-size: 14px;
+      line-height: 16px;
+    }
   }
   &__list {
     display: none;
     position: absolute;
-    // display: flex;
     flex-direction: column;
     gap: 8px;
     width: 224px;
     max-height: 120px;
     top: 20px;
-    left: 47px;
+    right: 0;
     padding: 9px 8px;
+    margin-top: 32px;
     background: $white;
     border: 1px solid $gray50;
     border-top: none;
     overflow: auto;
+    z-index: 5;
+    @media (min-width: 400px) {
+      padding: 9px 8px;
+      margin-top: 0;
+    }
+  }
+  &__list_open {
+    display: flex;
   }
   &__item {
     font-weight: 300;
-    font-size: 14px;
-    line-height: 16px;
+    font-size: 16px;
+    line-height: 20px;
     color: $gray100;
+    @media (min-width: 768px) {
+      font-size: 14px;
+      line-height: 16px;
+    }
     &:hover,
     &:focus {
       color: $green;
     }
   }
-}
-.city__input,
-.street__input {
-  position: relative;
-  width: 224px;
-  font-family: 'Roboto';
-  font-weight: 300;
-  font-size: 14px;
-  line-height: 16px;
-  border: none;
-  padding: 0 0 0px 8px;
-  border-bottom: 1px solid $gray100;
+  &__error {
+    height: 50px;
+    width: 100%;
+    color: red;
+  }
 }

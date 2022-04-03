@@ -2,28 +2,83 @@
 .order-page {
   width: 100%;
   min-height: 100%;
-  padding-left: 15px;
-  @media (min-width: 1440px) {
-    padding-left: 64px;
-  }
+  position: relative;
+
   &__header {
     padding-left: 64px;
-    padding-right: 64px;
+    padding-right: 16px;
+    @media (min-width: 768px) {
+      padding-left: 100px;
+      padding-right: 16px;
+    }
+    @media (min-width: 1024px) {
+      padding-left: 96px;
+      padding-right: 34px;
+    }
+    @media (min-width: 1440px) {
+      padding-left: 128px;
+      padding-right: 64px;
+    }
   }
-  &__wrapper {
-    display: flex;
-    justify-content: space-between;
-  }
-  &__order {
+
+  &__body {
     display: flex;
     flex-direction: column;
-    padding: 32px 0 0 64px;
-  }
-  &__total {
-    border-left: 1px solid $gray50;
-    @media (min-width: 1440px) {
-      width: 28%;
-      padding: 35px 30px;
+    gap: 20px;
+    max-width: 320px;
+    align-items: flex-start;
+    margin-bottom: 47px;
+    @media (min-width: 400px) {
+      gap: 15px;
+      align-items: flex-end;
     }
+  }
+  &__order {
+    height: 100%;
+    width: 100%;
+    padding: 32px 16px;
+    order: 2;
+    @media (min-width: 768px) {
+      order: 1;
+      padding: 32px 0 0 102px;
+    }
+    @media (min-width: 1024px) {
+      padding: 32px 0 0 96px;
+    }
+    @media (min-width: 1440px) {
+      padding: 32px 0 0 128px;
+    }
+  }
+  &__slider {
+    position: relative;
+    display: flex;
+    width: 100%;
+    overflow: hidden;
+    height: calc(100vh - 120px);
+    max-height: calc(100vh - 120px);
+    & * {
+      max-height: inherit;
+    }
+    @media (min-width: 768px) {
+      height: calc(100vh - 150px);
+      max-height: calc(100vh - 150px);
+    }
+  }
+}
+.form-slide {
+  width: 100%;
+  position: absolute;
+  opacity: 0;
+  transition: opacity ease-in-out 0.4s;
+  display: flex;
+  flex-direction: column;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  &__active-anim {
+    opacity: 1;
+    z-index: 9;
   }
 }
