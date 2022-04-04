@@ -1,6 +1,6 @@
 import { AddressPage } from '../pages/AddressPage/AddressPage'
 import { CarPage } from '../pages/CarPage/CarPage'
-import { Options } from '../pages/Options/Options'
+import { Options } from '../containers/Options'
 import { Form4 } from '../pages/Form4/Form4'
 import { Cart } from '../components/Cart/Cart'
 import { Price } from '../containers/Price'

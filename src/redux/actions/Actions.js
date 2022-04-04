@@ -1,36 +1,22 @@
-import {
-  useGetCtegoryQuery,
-  useGetCityQuery,
-  useGetPointQuery
-} from '../../redux'
-import { Preload } from '../../components/Preload/Preload'
+import { useGetCtegoryQuery, useGetCarQuery } from '../../redux'
 
 export const Categories = () => {
   let categoryArray = []
-  const { data: cities = [], isLoading, isSuccess } = useGetCtegoryQuery()
-  if (isLoading) {
-    return <Preload />
-  }
+  const { data: cities = [], isSuccess } = useGetCtegoryQuery()
+
   if (isSuccess) {
     categoryArray = cities.data
   }
   return categoryArray
 }
 
-export const Cities = () => {
-  let cityArray = []
-  const { data: cities = [], isSuccess } = useGetCityQuery()
-  if (isSuccess) {
-    cityArray = cities.data
-  }
-  return cityArray
-}
+export const CarData = () => {
+  let carData = []
 
-export const Points = () => {
-  let pointArray = []
-  const { data: points = [], isSuccess } = useGetPointQuery()
+  const { data: car = [], isSuccess } = useGetCarQuery()
+
   if (isSuccess) {
-    pointArray = points.data
+    carData = car.data
   }
-  return pointArray
+  return carData
 }

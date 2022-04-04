@@ -9,8 +9,12 @@ export const orderSlise = createSlice({
     minPrice: 0,
     maxPrice: 0,
     model: '',
+    colorCar: '',
+    tariffCar: '',
+    carArray: [],
     numberPage: 0,
     options: {},
+    sliderLength: 0,
     disabledBtn: true,
     wasChange: false
   },
@@ -20,20 +24,30 @@ export const orderSlise = createSlice({
       state.city = city
       state.fullLocation = `${city}`
       if (city) state.options['Пункт выдачи'] = `${state.fullLocation}`
+      delete state.options['Модель']
+      delete state.options['Цвет']
+      delete state.options['Тариф']
+      state.model = ''
+      state.colorCar = ''
+      state.tariffCar = ''
+      state.wasChange = true
     },
     addStreet: (state, data) => {
       const point = data.payload
       state.point = point
-      state.fullLocation = `${point} ${state.city}`
+      state.fullLocation = ` ${state.city} ${point}`
       state.options['Пункт выдачи'] = `${state.fullLocation}`
+      state.model = ''
+      state.colorCar = ''
+      state.tariffCar = ''
     },
     forwardStep: (state, data) => {
       const lenght = data.payload.sliderLenght
-      data.payload.index < lenght
+      state.sliderLength = lenght
+      data.payload.index < state.sliderLength
         ? state.numberPage++
         : (state.numberPage = lenght)
       state.wasChange ? (state.disabledBtn = true) : (state.disabledBtn = false)
-      console.log(state.wasChange + ' forw')
     },
     backStep: (state, data) => {
       data.payload < state.numberPage
@@ -43,22 +57,28 @@ export const orderSlise = createSlice({
       state.disabledBtn = false
     },
 
-    firstStep: (state, data) => {
-      state.model = ''
-      delete state.options['Модель']
-      state.wasChange = true
-      console.log(state.wasChange + ' 1 step')
-    },
     isDisubled: (state, data) => {
       state.disabledBtn = data.payload
     },
     getModel: (state, data) => {
       const modelCar = data.payload
       state.model = modelCar.name
+      state.carArray = modelCar
       state.options['Модель'] = `${modelCar.name}`
       state.minPrice = modelCar.priceMin
       state.maxPrice = modelCar.priceMax
+      state.colorCar = ''
+      state.tariffCar = ''
     },
+    getColorCar: (state, data) => {
+      const color = data.payload.carColor
+      const tariff = data.payload.carTariff
+      state.colorCar = color
+      state.carTariff = tariff
+      if (color) state.options['Цвет'] = `${color}`
+      if (color) state.options['Тариф'] = `${tariff}`
+    },
+
     getPrices: (state, data) => {
       const minPriceArray = data.payload.reduce((accum, item) => {
         accum.push(item.priceMin)
@@ -83,7 +103,6 @@ export const {
   getModel,
   isDisubled,
   getPrices,
-  // getChange,
-  firstStep
+  getColorCar
 } = orderSlise.actions
 export default orderSlise.reducer

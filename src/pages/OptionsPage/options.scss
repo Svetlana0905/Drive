@@ -1,0 +1,23 @@
+@import '../../style//app.scss';
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  &__radio-block {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 37px;
+    padding-left: 19px;
+  }
+  &__inner {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  &__inner-data {
+    width: 250px;
+  }
+  &__tariff {
+    padding-left: 25px;
+  }
+}

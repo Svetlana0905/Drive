@@ -1,4 +1,5 @@
 import { City } from '../../containers/City'
+import { Point } from '../../containers/Point'
 import { Map } from '../../components/Map/Map'
 
 export const AddressPage = () => {
@@ -6,6 +7,7 @@ export const AddressPage = () => {
     <section className="order-page__order">
       <div className="order-page__body">
         <City />
+        <Point />
       </div>
       <Map />
     </section>

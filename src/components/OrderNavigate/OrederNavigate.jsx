@@ -13,16 +13,20 @@ export const OrderNavigate = () => {
     else if (id === linkId) return `${navName} ${navName}__active`
     else return navName
   }
-
+  // const stepForward = (id, linkId) => {
+  //   if (id === linkId + 1) dispatch(forwardStepLink(id))
+  // }
   return (
     <nav className="nav">
-      {NavLinksData.map((item, id) => (
+      {NavLinksData.map((item, index) => (
         <button
           type="button"
-          key={id}
-          className={getClass(id, page)}
+          key={index}
+          className={getClass(index, page)}
+          disabled={index > page + 1}
           onClick={(e) => {
-            dispatch(backStep(id))
+            dispatch(backStep(index))
+            // stepForward({ index, page })
           }}>
           {item.title}
         </button>
