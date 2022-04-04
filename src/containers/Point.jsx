@@ -22,7 +22,7 @@ export const Point = () => {
   }, [setFilterPoint, city, pointArray])
 
   useEffect(() => {
-    dispatch(addStreet(point))
+    city ? dispatch(addStreet(point)) : setPoint('')
     if (point && city) dispatch(isDisubled(false))
   }, [point, dispatch, city])
 

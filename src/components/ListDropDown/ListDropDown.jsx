@@ -36,6 +36,7 @@ export const ListDropDown = ({
       <label className={clssessInput} onClick={toggleVisible}>
         <span>{label}</span>
         <input
+          disabled={name === 'street' && addressArray.length === 0}
           onChange={(e) => {
             getText(e.target.value)
           }}

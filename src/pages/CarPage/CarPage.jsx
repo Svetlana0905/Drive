@@ -1,16 +1,19 @@
 import './car-page.scss'
+import { useGetCarQuery } from '../../redux'
 import { RadioInput } from '../../components/Buttons/Buttons'
-import { Categories, CarData } from '../../redux/actions/Actions'
+import { Categories } from '../../redux/actions/Actions'
 import { useEffect, useState } from 'react'
 import { getModel, isDisubled } from '../../redux/orderSlice'
 import { useDispatch } from 'react-redux'
 
 export const CarPage = () => {
+  const dispatch = useDispatch()
   const [filter, setFilter] = useState('')
   const [carModel, setCarModel] = useState('')
   const categories = Categories()
-  const carData = CarData()
-  const dispatch = useDispatch()
+  let carData = []
+
+  const { data: car = [], isSuccess } = useGetCarQuery()
 
   const clearFilter = () => {
     setFilter('')
@@ -20,6 +23,9 @@ export const CarPage = () => {
     if (carModel) dispatch(isDisubled(false))
   }, [setCarModel, carModel, dispatch])
 
+  if (isSuccess) {
+    carData = car.data
+  }
   return (
     <section className="order-page__order">
       <div className="car-page ">

@@ -23,23 +23,17 @@ export const orderSlise = createSlice({
       const city = data.payload
       state.city = city
       state.fullLocation = `${city}`
-      if (city) state.options['Пункт выдачи'] = `${state.fullLocation}`
+      state.options['Пункт выдачи'] = `${state.fullLocation}`
       delete state.options['Модель']
       delete state.options['Цвет']
       delete state.options['Тариф']
-      state.model = ''
-      state.colorCar = ''
-      state.tariffCar = ''
       state.wasChange = true
     },
     addStreet: (state, data) => {
       const point = data.payload
       state.point = point
-      state.fullLocation = ` ${state.city} ${point}`
+      state.fullLocation = `${state.city}, ${point}`
       state.options['Пункт выдачи'] = `${state.fullLocation}`
-      state.model = ''
-      state.colorCar = ''
-      state.tariffCar = ''
     },
     forwardStep: (state, data) => {
       const lenght = data.payload.sliderLenght
@@ -50,11 +44,11 @@ export const orderSlise = createSlice({
       state.wasChange ? (state.disabledBtn = true) : (state.disabledBtn = false)
     },
     backStep: (state, data) => {
-      data.payload < state.numberPage
-        ? (state.numberPage = data.payload)
-        : (state.numberPage = 0)
-      state.wasChange = state.disabledBtn
-      state.disabledBtn = false
+      if (data.payload < state.numberPage) {
+        state.numberPage = data.payload
+        state.wasChange = state.disabledBtn
+        state.disabledBtn = false
+      } else state.numberPage = 0
     },
 
     isDisubled: (state, data) => {
@@ -67,8 +61,8 @@ export const orderSlise = createSlice({
       state.options['Модель'] = `${modelCar.name}`
       state.minPrice = modelCar.priceMin
       state.maxPrice = modelCar.priceMax
-      state.colorCar = ''
-      state.tariffCar = ''
+      delete state.options['Цвет']
+      delete state.options['Тариф']
     },
     getColorCar: (state, data) => {
       const color = data.payload.carColor
@@ -76,7 +70,7 @@ export const orderSlise = createSlice({
       state.colorCar = color
       state.carTariff = tariff
       if (color) state.options['Цвет'] = `${color}`
-      if (color) state.options['Тариф'] = `${tariff}`
+      if (tariff) state.options['Тариф'] = `${tariff}`
     },
 
     getPrices: (state, data) => {

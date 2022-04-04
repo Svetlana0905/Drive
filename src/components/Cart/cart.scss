@@ -42,6 +42,7 @@
   gap: 7px;
   &__value {
     flex: 1 0 auto;
+    max-width: 115px;
     font-weight: 300;
     font-size: 14px;
     line-height: 16px;
@@ -49,6 +50,7 @@
   }
   &__value span {
     display: block;
+    text-align: end;
   }
   &__name {
     flex: 0 0 auto;
