@@ -3,7 +3,7 @@ import { RadioInput } from '../../components/Buttons/Buttons'
 import { InputText } from '../../components/Inputs/Inputs'
 import { useSelector, useDispatch } from 'react-redux'
 import { useEffect, useState } from 'react'
-import { getColorCar, isDisubled } from '../../redux/orderSlice'
+import { getOptions, isDisubled } from '../../redux/orderSlice'
 
 export const OptionsPage = () => {
   const dispatch = useDispatch()
@@ -13,17 +13,12 @@ export const OptionsPage = () => {
   const [dataTo, setDateTo] = useState('')
   const carArray = useSelector((state) => state.order.carArray)
 
-  // const getText = (word) => {
-  //   setInputText(word)
-  // }
-
   const clearInput = () => {
     dispatch(isDisubled(true))
-    // setInputText('')
   }
 
   useEffect(() => {
-    dispatch(getColorCar({ carColor, carTariff }))
+    dispatch(getOptions({ carColor, carTariff }))
     if (carColor) dispatch(isDisubled(false))
   }, [carColor, dispatch, carTariff])
 
@@ -66,14 +61,14 @@ export const OptionsPage = () => {
           <RadioInput
             text="Поминутно, 7₽/мин"
             onClick={(e) => setCarTariff(e.target.value)}
-            value="Поминутно, 7₽/мин"
+            value="Поминутно"
             name={'tariff'}
           />
           <RadioInput
             text="На сутки, 1999 ₽/сутки"
             onClick={(e) => setCarTariff(e.target.value)}
             name={'tariff'}
-            value="Поминутно, 7₽/мин"
+            value="На сутки"
           />
         </div>
         <div className="options__inner">

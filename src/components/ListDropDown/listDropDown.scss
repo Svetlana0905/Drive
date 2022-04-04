@@ -4,10 +4,14 @@
     position: relative;
     display: flex;
     flex-direction: column;
+    width: 100%;
     font-weight: 300;
     font-size: 14px;
     line-height: 16px;
     color: $dark100;
+    @media (min-width: 768px) {
+      width: auto;
+    }
   }
   &__inner,
   &__inner_city {
@@ -17,7 +21,9 @@
     display: flex;
     gap: 15px;
     @media (min-width: 400px) {
+      align-items: flex-end;
       flex-direction: row;
+      justify-content: space-between;
       gap: 5px;
     }
   }
@@ -28,15 +34,15 @@
   }
   &__input {
     position: relative;
-    width: 224px;
     font-family: 'Roboto';
     font-weight: 300;
-    font-size: 16px;
+    font-size: 18px;
     line-height: 16px;
     border: none;
     padding: 0 0 0px 8px;
     border-bottom: 1px solid $gray100;
     @media (min-width: 768px) {
+      width: 224px;
       font-size: 14px;
       line-height: 16px;
     }
@@ -45,9 +51,9 @@
     display: none;
     position: absolute;
     gap: 8px;
-    width: 224px;
+    width: 100%;
     max-height: 120px;
-    top: 20px;
+    top: 24px;
     right: 0;
     padding: 0;
     margin-top: 32px;
@@ -58,7 +64,12 @@
     z-index: 5;
     cursor: pointer;
     @media (min-width: 400px) {
-      margin-top: 0;
+      width: 231px;
+      top: 0px;
+    }
+    @media (min-width: 768px) {
+      width: 224px;
+      top: -15px;
     }
   }
   &__list_open {

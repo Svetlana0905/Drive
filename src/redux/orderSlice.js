@@ -64,15 +64,14 @@ export const orderSlise = createSlice({
       delete state.options['Цвет']
       delete state.options['Тариф']
     },
-    getColorCar: (state, data) => {
+    getOptions: (state, data) => {
       const color = data.payload.carColor
-      const tariff = data.payload.carTariff
       state.colorCar = color
-      state.carTariff = tariff
       if (color) state.options['Цвет'] = `${color}`
+      const tariff = data.payload.carTariff
+      state.carTariff = tariff
       if (tariff) state.options['Тариф'] = `${tariff}`
     },
-
     getPrices: (state, data) => {
       const minPriceArray = data.payload.reduce((accum, item) => {
         accum.push(item.priceMin)
@@ -97,6 +96,6 @@ export const {
   getModel,
   isDisubled,
   getPrices,
-  getColorCar
+  getOptions
 } = orderSlise.actions
 export default orderSlise.reducer

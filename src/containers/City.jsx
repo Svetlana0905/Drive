@@ -1,17 +1,19 @@
 import { useGetCityQuery } from '../redux/'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useState, useEffect, useMemo } from 'react'
-import { addCity } from '../redux/orderSlice'
+import { addCity, isDisubled } from '../redux/orderSlice'
 import { ListDropDown } from '../components/ListDropDown/ListDropDown'
 
 export const City = () => {
   const dispatch = useDispatch()
-  const [city, setCity] = useState('Уфа')
+  const [city, setCity] = useState('')
+  const point = useSelector((state) => state.order.city)
   let citiesData = useMemo(() => [], [])
 
   useEffect(() => {
     dispatch(addCity(city))
-  }, [city, dispatch])
+    point && city ? dispatch(isDisubled(false)) : dispatch(isDisubled(true))
+  }, [city, dispatch, point])
 
   const { data: cities = [], isSuccess } = useGetCityQuery()
   if (isSuccess) {

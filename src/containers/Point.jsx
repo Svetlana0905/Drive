@@ -13,6 +13,7 @@ export const Point = () => {
 
   useEffect(() => {
     if (city && pointArray) {
+      console.log(city)
       setFilterPoint(
         pointArray.filter((item) => item.cityId && item.cityId.name === city)
       )
@@ -23,7 +24,7 @@ export const Point = () => {
 
   useEffect(() => {
     city ? dispatch(addStreet(point)) : setPoint('')
-    if (point && city) dispatch(isDisubled(false))
+    point && city ? dispatch(isDisubled(false)) : dispatch(isDisubled(true))
   }, [point, dispatch, city])
 
   const { data: points = [], isSuccess } = useGetPointQuery()

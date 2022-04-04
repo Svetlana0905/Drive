@@ -24,7 +24,7 @@
   &__body {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 26px;
     max-width: 320px;
     align-items: flex-start;
     margin-bottom: 47px;
@@ -60,8 +60,8 @@
       max-height: inherit;
     }
     @media (min-width: 768px) {
-      height: calc(100vh - 150px);
-      max-height: calc(100vh - 150px);
+      height: calc(100vh - 120px);
+      max-height: calc(100vh - 120px);
     }
   }
 }
