@@ -38,19 +38,17 @@ export const RadioInput = ({ value, text, name, onClick }) => {
     </label>
   )
 }
-export const Checkbox = ({ label, textInput, getText, clearInput }) => {
+export const Checkbox = ({ label, value, onClick, name }) => {
   return (
-    <label className="input-text__inner">
+    <label className="check">
       <span>{label}</span>
       <input
-        onChange={(e) => {
-          getText(e.target.value)
-        }}
-        value={textInput}
-        type="checkbox"
         className="input-text"
+        value={value}
+        onClick={onClick}
+        name={name}
+        type="checkbox"
       />
-      {textInput && <ClearInputButton clearInput={clearInput} />}
     </label>
   )
 }

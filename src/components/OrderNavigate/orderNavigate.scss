@@ -1,28 +1,35 @@
 @import '../../style//app.scss';
 .nav {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 25px;
-  margin-top: -4px;
-  padding: 9px 0 7px 16px;
+  width: 100%;
   border-top: 1px solid $gray50;
   border-bottom: 1px solid $gray50;
-  @media (min-width: 500px) {
-    flex-direction: row;
-    gap: 20px;
-  }
-  @media (min-width: 768px) {
-    gap: 38px;
-    padding: 9px 0 7px 100px;
-  }
-  @media (min-width: 1024px) {
-    padding: 9px 0 7px 96px;
-  }
-  @media (min-width: 1440px) {
-    padding: 9px 0 7px 128px;
+  &__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 25px;
+    margin-top: -4px;
+    padding: 9px 0 7px 16px;
+
+    @media (min-width: 500px) {
+      flex-direction: row;
+      gap: 20px;
+    }
+    @media (min-width: 768px) {
+      gap: 38px;
+      padding: 9px 0 7px 100px;
+    }
+    @media (min-width: 1024px) {
+      padding: 9px 0 7px 96px;
+    }
+    @media (min-width: 1440px) {
+      padding: 9px 0 7px 128px;
+      max-width: 1440px;
+      margin: 0 auto;
+    }
   }
 }
+
 .nav-link {
   display: inline-block;
   position: relative;

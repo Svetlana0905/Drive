@@ -72,6 +72,7 @@
       top: -15px;
     }
   }
+  &__list:hover,
   &__list_open {
     display: flex;
     flex-direction: column;
@@ -91,9 +92,20 @@
       color: $green;
     }
   }
-  &__error {
-    height: 50px;
-    width: 100%;
-    color: red;
-  }
+}
+::-webkit-scrollbar {
+  width: 6px;
+  height: 100%;
+  border: 1px solid $gray50;
+}
+
+::-webkit-scrollbar-thumb {
+  height: 20px;
+  border: 2px solid $gray50;
+  background-clip: padding-box;
+  border-radius: 9999px;
+  background-color: $gray100;
+}
+::-webkit-scrollbar-track {
+  margin: 0 30px;
 }

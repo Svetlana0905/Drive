@@ -1,4 +1,5 @@
 import './car-page.scss'
+import { Preload } from '../../components/Preload/Preload'
 import { useGetCarQuery } from '../../redux'
 import { RadioInput } from '../../components/Buttons/Buttons'
 import { Categories } from '../../redux/actions/Actions'
@@ -10,10 +11,12 @@ export const CarPage = () => {
   const dispatch = useDispatch()
   const [filter, setFilter] = useState('')
   const [carModel, setCarModel] = useState('')
+  const [idCar, setIdCar] = useState(null)
+
   const categories = Categories()
   let carData = []
 
-  const { data: car = [], isSuccess } = useGetCarQuery()
+  const { data: car = [], isSuccess, isLoading } = useGetCarQuery()
 
   const clearFilter = () => {
     setFilter('')
@@ -22,7 +25,7 @@ export const CarPage = () => {
     if (carModel) dispatch(getModel(carModel))
     if (carModel) dispatch(isDisubled(false))
   }, [setCarModel, carModel, dispatch])
-
+  if (isLoading) return <Preload />
   if (isSuccess) {
     carData = car.data
   }
@@ -55,11 +58,19 @@ export const CarPage = () => {
           {carData
             .filter((item) => item.categoryId.name.includes(filter))
             .map((item, id) => (
-              <div key={id} className="car" onClick={(e) => setCarModel(item)}>
-                <p className="car__name subtitle">{item.name}</p>
-                <p className="car__price text">
-                  {item.priceMax} - {item.priceMin}
-                </p>
+              <div
+                key={id}
+                className={id === idCar ? 'car car__active' : 'car'}
+                onClick={(e) => {
+                  setCarModel(item)
+                  setIdCar(id)
+                }}>
+                <div>
+                  <p className="subtitle">{item.name}</p>
+                  <p className="text">
+                    {item.priceMax} - {item.priceMin}
+                  </p>
+                </div>
                 <img
                   className="car__pic"
                   src={item.thumbnail.path}

@@ -65,6 +65,7 @@ export const orderSlise = createSlice({
       delete state.options['Тариф']
     },
     getOptions: (state, data) => {
+      console.log(data.payload)
       const color = data.payload.carColor
       state.colorCar = color
       if (color) state.options['Цвет'] = `${color}`

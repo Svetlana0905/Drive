@@ -1,5 +1,5 @@
 import './options.scss'
-import { RadioInput } from '../../components/Buttons/Buttons'
+import { RadioInput, Checkbox } from '../../components/Buttons/Buttons'
 import { InputText } from '../../components/Inputs/Inputs'
 import { useSelector, useDispatch } from 'react-redux'
 import { useEffect, useState } from 'react'
@@ -11,16 +11,18 @@ export const OptionsPage = () => {
   const [carTariff, setCarTariff] = useState('')
   const [dataFrom, setDateFrom] = useState('')
   const [dataTo, setDateTo] = useState('')
+  const [extraOptions, setExtraOptions] = useState([])
   const carArray = useSelector((state) => state.order.carArray)
+  // console.log(extraOptions)
 
   const clearInput = () => {
     dispatch(isDisubled(true))
   }
 
   useEffect(() => {
-    dispatch(getOptions({ carColor, carTariff }))
-    if (carColor) dispatch(isDisubled(false))
-  }, [carColor, dispatch, carTariff])
+    dispatch(getOptions({ carColor, carTariff, extraOptions }))
+    if (carColor && carTariff && extraOptions) dispatch(isDisubled(false))
+  }, [carColor, dispatch, carTariff, extraOptions])
 
   return (
     <section className="order-page__order">
@@ -73,6 +75,18 @@ export const OptionsPage = () => {
         </div>
         <div className="options__inner">
           <p className="text">Доп услуги</p>
+          <Checkbox
+            label={'lvvv'}
+            value={extraOptions}
+            onClick={(e) => setExtraOptions(e.target.value)}
+            name={'extra'}
+          />
+          <Checkbox
+            label={'aaaaa'}
+            value={extraOptions}
+            onClick={(e) => setExtraOptions(e.target.value)}
+            name={'extra'}
+          />
         </div>
       </div>
     </section>

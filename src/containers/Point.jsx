@@ -11,9 +11,12 @@ export const Point = () => {
   const city = useSelector((state) => state.order.city)
   let pointArray = useMemo(() => [], [])
 
+  const getText = (word) => {
+    setPoint(word)
+  }
+
   useEffect(() => {
     if (city && pointArray) {
-      console.log(city)
       setFilterPoint(
         pointArray.filter((item) => item.cityId && item.cityId.name === city)
       )
@@ -34,6 +37,7 @@ export const Point = () => {
   return (
     <ListDropDown
       label={'Пункт выдачи'}
+      getText={getText}
       setInputText={setPoint}
       textInput={point}
       addressArray={filterPoint}
