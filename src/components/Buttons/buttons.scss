@@ -108,31 +108,74 @@
 }
 .radio {
   display: flex;
-  gap: 8px;
+  gap: 2px;
   &__input {
-    position: absolute;
-    width: 1px;
-    height: 1px;
+    width: 0px;
+    height: 0px;
     overflow: hidden;
     clip: rect(0 0 0 0);
+    &::before {
+      content: '';
+      position: absolute;
+      margin-top: 2px;
+      margin-left: -19px;
+      width: 12px;
+      height: 12px;
+      overflow: hidden;
+      border: 1px solid $gray100;
+      border-radius: 50%;
+      background-color: white;
+      background-repeat: no-repeat;
+      background-position: 50% 50%;
+    }
+    &:checked::before {
+      border: 3px solid $green;
+    }
+    &:checked + .radio__span {
+      color: $dark100;
+    }
   }
-  &__box {
-    position: absolute;
-    margin-top: 2px;
-    margin-left: -19px;
-    width: 12px;
-    height: 12px;
+  &__span {
+    color: $gray100;
+  }
+}
+.checkbox {
+  display: flex;
+  &__input {
+    width: 0px;
+    height: 0px;
     overflow: hidden;
-    border: 1px solid $gray100;
-    border-radius: 50%;
-    background-color: white;
-    background-repeat: no-repeat;
-    background-position: 50% 50%;
+    clip: rect(0 0 0 0);
+    &::before {
+      content: '';
+      position: absolute;
+      margin-top: 2px;
+      margin-left: -19px;
+      width: 12px;
+      height: 12px;
+      overflow: hidden;
+      border: 1px solid $gray100;
+      background-color: white;
+      background-repeat: no-repeat;
+      background-position: 50% 50%;
+    }
+    &:checked::before {
+      border: 1px solid $green;
+    }
+    &:checked + .radio__span {
+      color: $dark100;
+    }
+    &:checked::after {
+      content: '';
+      position: absolute;
+      margin-top: 2px;
+      margin-left: -19px;
+      width: 16px;
+      height: 12px;
+      background: url(../../assets/icons/checkbox.svg) 2px 0px no-repeat;
+    }
   }
-  &__input:checked + .radio__box {
-    border: 3px solid $green;
-  }
-  &__input:disabled + .radio__box {
-    border: 3px solid $gray50;
+  &__span {
+    color: $gray100;
   }
 }

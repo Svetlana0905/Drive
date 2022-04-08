@@ -10,7 +10,6 @@ const baseQuery = fetchBaseQuery({
     return headers
   }
 })
-
 export const carApi = createApi({
   reducerPath: 'carApi',
   baseQuery,

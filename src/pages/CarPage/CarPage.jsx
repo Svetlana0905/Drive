@@ -34,7 +34,6 @@ export const CarPage = () => {
       <div className="car-page ">
         <div className="car-page__radio-block">
           <label className="radio">
-            <span className="radio__span text">Все</span>
             <input
               className="radio__input"
               type="radio"
@@ -42,7 +41,7 @@ export const CarPage = () => {
               // checked
               onClick={clearFilter}
             />
-            <span className="radio__box"></span>
+            <span className="radio__span text">Все</span>
           </label>
           {categories.map((item, id) => (
             <RadioInput

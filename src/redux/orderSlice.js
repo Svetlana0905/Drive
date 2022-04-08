@@ -5,7 +5,6 @@ export const orderSlise = createSlice({
   initialState: {
     city: '',
     point: '',
-    fullLocation: '',
     minPrice: 0,
     maxPrice: 0,
     model: '',
@@ -21,20 +20,18 @@ export const orderSlise = createSlice({
   reducers: {
     addCity: (state, data) => {
       const city = data.payload
-      state.city = city
-      state.fullLocation = `${city}`
-      state.options['Пункт выдачи'] = `${state.fullLocation}`
+      // console.log(city)
+      state.options['Пункт выдачи'] = `${city.city}, ${city.point}`
+      state.disabledBtn = false
       delete state.options['Модель']
       delete state.options['Цвет']
       delete state.options['Тариф']
       state.wasChange = true
     },
-    addStreet: (state, data) => {
-      const point = data.payload
-      state.point = point
-      state.fullLocation = `${state.city}, ${point}`
-      state.options['Пункт выдачи'] = `${state.fullLocation}`
+    getCityData: (state, data) => {
+      // console.log(data.payload)
     },
+
     forwardStep: (state, data) => {
       const lenght = data.payload.sliderLenght
       state.sliderLength = lenght
@@ -91,12 +88,12 @@ export const orderSlise = createSlice({
 
 export const {
   addCity,
-  addStreet,
   backStep,
   forwardStep,
   getModel,
   isDisubled,
   getPrices,
-  getOptions
+  getOptions,
+  getCityData
 } = orderSlise.actions
 export default orderSlise.reducer

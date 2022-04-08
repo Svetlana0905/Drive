@@ -26,7 +26,6 @@ export const ButtonPrice = ({ handleClick, disabled, text }) => {
 export const RadioInput = ({ value, text, name, onClick }) => {
   return (
     <label className="radio">
-      <span className="radio__span text">{text}</span>
       <input
         className="radio__input"
         type="radio"
@@ -34,21 +33,21 @@ export const RadioInput = ({ value, text, name, onClick }) => {
         name={name}
         value={value}
       />
-      <span className="radio__box"></span>
+      <span className="radio__span text">{text}</span>
     </label>
   )
 }
-export const Checkbox = ({ label, value, onClick, name }) => {
+export const Checkbox = ({ text, value, onClick, name }) => {
   return (
-    <label className="check">
-      <span>{label}</span>
+    <label className="checkbox">
       <input
-        className="input-text"
+        className="checkbox__input"
         value={value}
         onClick={onClick}
         name={name}
         type="checkbox"
       />
+      <span className="radio__span text">{text}</span>
     </label>
   )
 }
