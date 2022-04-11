@@ -18,32 +18,17 @@ export const orderSlise = createSlice({
     endDate: '',
     carArray: [],
     options: [],
+    options2: [],
     orderData: {},
     sliderLength: 0,
     disabledBtn: false,
     wasChange: false
   },
   reducers: {
-    addDataAddress: (state, data) => {
-      const dataAddress = data.payload
-      state.city = dataAddress.city
-      state.point = dataAddress.point
-      state.options.length = 0
-      if (dataAddress.city && dataAddress.point)
-        state.options.push([
-          ['Пункт выдачи', `${dataAddress.city}, ${dataAddress.point}`]
-        ])
-      state.orderData.cityId = `${dataAddress.cityId}`
-      state.orderData.pointId = `${dataAddress.pointId}`
-      state.city && state.point
-        ? (state.disabledBtn = false)
-        : (state.disabledBtn = true)
-      state.wasChange = true
-    },
-
     forwardStep: (state, data) => {
       const sliderLength = data.payload.sliderLength
       const currentPage = data.payload.numberPage
+      // console.log(sliderLength, currentPage)
       if (currentPage < sliderLength - 1) {
         state.numberPage = currentPage + 1
       } else {
@@ -64,6 +49,20 @@ export const orderSlise = createSlice({
     changeDisubledBtn: (state, data) => {
       state.disabledBtn = data.payload
     },
+    addDataAddress: (state, data) => {
+      const dataAddress = data.payload
+      const obj = dataAddress.objAddress
+      console.log(obj)
+      if (obj) state.options = [...[obj]]
+
+      // console.log(`${state.options[0]['Пункт выдачи']} nmnmnm,nn`)
+      state.orderData.cityId = `${dataAddress.cityId}`
+      state.orderData.pointId = `${dataAddress.pointId}`
+      state.city && state.point
+        ? (state.disabledBtn = false)
+        : (state.disabledBtn = true)
+      state.wasChange = true
+    },
     getModel: (state, data) => {
       const modelCar = data.payload
       state.model = modelCar.name
@@ -76,23 +75,12 @@ export const orderSlise = createSlice({
     },
     getOptions: (state, data) => {
       const optionsData = data.payload
+      const obj = data.payload.objOptions
+      console.log(data.payload.objOptions)
       if (optionsData) state.options.splice(state.numberPage)
-      state.colorCar = optionsData.carColor
-      state.tariffCar = optionsData.carTariff
-      state.chair = optionsData.childChair
-      state.tank = optionsData.tank
-      state.rightWheel = optionsData.rightWheel
-
-      // const currentTime = optionsData.dateEnd - optionsData.dateStart
-      // const days = Math.floor(currentTime / 1000 / 60 / 60 / 24)
-      // const hours = Math.floor(currentTime / 1000 / 60 / 60) % 24
-      // console.log(days, hours)
-
-      // state.options.push([
-      //   ['Цвет', `${state.colorCar}`],
-      //   ['Тариф', `${state.tariffCar}`]
-      // ])
-
+      console.log(obj)
+      if (obj) state.options = [[obj]]
+      console.log(state.options)
       state.disabledBtn = false
     },
 

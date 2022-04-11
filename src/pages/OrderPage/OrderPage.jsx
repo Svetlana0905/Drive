@@ -9,6 +9,7 @@ import { forwardStep } from '../../redux/orderSlice'
 import { useEffect, useState } from 'react'
 import { FormSlider } from '../../data/FormSlider'
 import { ConfirmPage } from '../ConfirmPage/ConfirmPage'
+
 export const OrderPage = () => {
   const dispatch = useDispatch()
   const [visiblePage, setVisiblePage] = useState(false)
@@ -49,9 +50,9 @@ export const OrderPage = () => {
           <Price />
           <ButtonPrice
             handleClick={(e) => {
-              currentPage.orderStatus
-                ? setVisiblePage(!visiblePage)
-                : dispatch(forwardStep({ numberPage, sliderLength }))
+              // currentPage.orderStatus
+              //   ? setVisiblePage(!visiblePage)
+              dispatch(forwardStep({ numberPage, sliderLength }))
             }}
             text={currentPage.btnText}
             styleClass={currentPage.orderStatus}

@@ -28,8 +28,27 @@ export const OptionsPage = () => {
   const [rightWheel, setRightWheel] = useState(wheel)
   const [startDate, setStartDate] = useState(new Date())
   const [endDate, setEndDate] = useState(null)
+  const [objOptions, setObjOptions] = useState({})
+
+  // const currentTime = optionsData.dateEnd - optionsData.dateStart
+  // const days = Math.floor(currentTime / 1000 / 60 / 60 / 24)
+  // const hours = Math.floor(currentTime / 1000 / 60 / 60) % 24
+  // console.log(days, hours)
 
   const carArray = useSelector((state) => state.order.carArray)
+
+  useEffect(() => {
+    const set = new Set()
+    const color = ['Цвет', `${carColor}`]
+    const tariff = ['Тариф', `${carTariff}`]
+    const wheel = ['Детское кресло', `${rightWheel}`]
+    const fullTank = ['Полный бак', `${tank}`]
+    if (carColor) set.add(color)
+    if (carTariff) set.add(tariff)
+    if (rightWheel) set.add(wheel)
+    if (tank) set.add(fullTank)
+    setObjOptions(Array.from(set))
+  }, [carColor, carTariff, rightWheel, tank])
 
   const clearStartDate = () => {
     setStartDate(new Date())
@@ -38,12 +57,7 @@ export const OptionsPage = () => {
   const clearEndDate = () => {
     setEndDate(null)
   }
-  // useEffect(() => {
-  //   const arr = []
-  //   if (carColor) arr.push(['Цвет', `${carColor}`])
-  //   if (carTariff) arr.push(['Тариф', `${carTariff}`])
-  //   dispatch(getOptArr(arr))
-  // }, [carColor, carTariff, dispatch])
+
   const startDateHandler = (item) => {
     setStartDate(item)
     setEndDate(null)
@@ -53,30 +67,8 @@ export const OptionsPage = () => {
   }
 
   useEffect(() => {
-    const dateStart = Date.parse(startDate)
-    const dateEnd = Date.parse(endDate)
-
-    dispatch(
-      getOptions({
-        carColor,
-        carTariff,
-        dateStart,
-        dateEnd,
-        tank,
-        childChair,
-        rightWheel
-      })
-    )
-  }, [
-    carColor,
-    dispatch,
-    carTariff,
-    startDate,
-    endDate,
-    tank,
-    childChair,
-    rightWheel
-  ])
+    dispatch(getOptions({ objOptions }))
+  }, [objOptions, dispatch])
 
   return (
     <section className="order-page__order">
