@@ -1,7 +1,7 @@
 @import '../../style//app.scss';
 .order-page {
   width: 100%;
-  min-height: 100%;
+  // height: 100%;
   &__header {
     padding-left: 64px;
     padding-right: 16px;
@@ -24,7 +24,6 @@
     display: flex;
     flex-direction: column;
     max-width: 1440px;
-    height: 100%;
     margin: 0 auto;
     @media (min-width: 768px) {
       flex-direction: row;

@@ -27,7 +27,7 @@ export const CarPage = () => {
     carData = car.data
   }
   return (
-    <section className="order-page__order">
+    <section className="order-page__order order-page__car-wrapper">
       <div className="car-page ">
         <div className="car-page__radio-block">
           <label className="radio">
