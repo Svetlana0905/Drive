@@ -1,0 +1,41 @@
+@import '../../style//app.scss';
+.add-order {
+  display: flex;
+  gap: 40px;
+  flex-direction: column;
+  @media (min-width: 1024px) {
+    flex-direction: row;
+    gap: 160px;
+  }
+  @media (min-width: 1440px) {
+    gap: 218px;
+  }
+  &__data {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+  }
+  &__row {
+    display: flex;
+    gap: 5px;
+  }
+  &__reg-number {
+    width: 96px;
+    padding: 3px 8px;
+    border: 1px solid #999999;
+    box-sizing: border-box;
+    border-radius: 4px;
+  }
+  &__pic {
+    display: block;
+    max-width: 256px;
+    height: 160px;
+    object-fit: contain;
+  }
+}
+.bold-text {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+}

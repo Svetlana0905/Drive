@@ -88,8 +88,7 @@
   background-blend-mode: darken;
   border: none;
   border-radius: 8px;
-  &:hover,
-  &:focus {
+  &:hover {
     background: $btngreen10;
   }
   &:active {
@@ -104,6 +103,9 @@
     &:focus {
       background: $gray50;
     }
+  }
+  &.btn-price__override {
+    background: linear-gradient(90deg, #493013 0%, #7b0c3b 100%);
   }
 }
 .radio {

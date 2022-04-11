@@ -4,7 +4,7 @@ import { useGetCarQuery } from '../../redux'
 import { RadioInput } from '../../components/Buttons/Buttons'
 import { Categories } from '../../redux/actions/Actions'
 import { useEffect, useState } from 'react'
-import { getModel, isDisubled } from '../../redux/orderSlice'
+import { getModel } from '../../redux/orderSlice'
 import { useDispatch } from 'react-redux'
 
 export const CarPage = () => {
@@ -15,17 +15,14 @@ export const CarPage = () => {
 
   const categories = Categories()
   let carData = []
-
   const { data: car = [], isSuccess, isLoading } = useGetCarQuery()
-
   const clearFilter = () => {
     setFilter('')
   }
   useEffect(() => {
     if (carModel) dispatch(getModel(carModel))
-    if (carModel) dispatch(isDisubled(false))
   }, [setCarModel, carModel, dispatch])
-  if (isLoading) return <Preload />
+  if (isLoading) return <Preload size={'big'} />
   if (isSuccess) {
     carData = car.data
   }
@@ -38,7 +35,6 @@ export const CarPage = () => {
               className="radio__input"
               type="radio"
               name={'car'}
-              // checked
               onClick={clearFilter}
             />
             <span className="radio__span text">Все</span>

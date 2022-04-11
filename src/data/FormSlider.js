@@ -1,32 +1,35 @@
 import { AddressPage } from '../pages/AddressPage/AddressPage'
 import { CarPage } from '../pages/CarPage/CarPage'
-import { Options } from '../containers/Options'
-import { Form4 } from '../pages/Form4/Form4'
-import { Cart } from '../components/Cart/Cart'
-import { Price } from '../containers/Price'
+import { OptionsPage } from '../pages/OptionsPage/OptionsPage'
+import { AddOrder } from '../pages/AddOrder/AddOrder'
+import { TotalPage } from '../pages/TotalPage/TotalPage'
+import { NumberOrder } from '../components/NumberOrder'
+
 export const FormSlider = [
   {
     page: <AddressPage />,
-    cart: <Cart />,
-    price: <Price />,
-    btnText: 'Выбрать модель'
+    btnText: 'Выбрать модель',
+    orderStatus: false
   },
   {
     page: <CarPage />,
-    cart: <Cart />,
-    price: <Price />,
-    btnText: 'Дополнительно'
+    btnText: 'Дополнительно',
+    orderStatus: false
   },
   {
-    page: <Options />,
-    cart: <Cart />,
-    price: <Price />,
-    btnText: 'Итого'
+    page: <OptionsPage />,
+    btnText: 'Итого',
+    orderStatus: false
   },
   {
-    page: <Form4 />,
-    cart: <Cart />,
-    price: <Price />,
-    btnText: 'Заказать'
+    page: <AddOrder />,
+    btnText: 'Заказать',
+    orderStatus: true
+  },
+  {
+    page: <TotalPage />,
+    btnText: 'Отменить',
+    mavText: <NumberOrder />,
+    orderStatus: false
   }
 ]

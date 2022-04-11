@@ -15,21 +15,19 @@ export const OrderNavigate = () => {
   }
 
   return (
-    <nav className="nav">
-      <div className="nav__inner">
-        {NavLinksData.map((item, index) => (
-          <button
-            type="button"
-            key={index}
-            className={getClass(index, page)}
-            disabled={index > page + 1}
-            onClick={(e) => {
-              dispatch(backStep(index))
-            }}>
-            {item.title}
-          </button>
-        ))}
-      </div>
-    </nav>
+    <>
+      {NavLinksData.map((item, index) => (
+        <button
+          type="button"
+          key={index}
+          className={getClass(index, page)}
+          disabled={index > page + 1}
+          onClick={(e) => {
+            dispatch(backStep(index))
+          }}>
+          {item.title}
+        </button>
+      ))}
+    </>
   )
 }

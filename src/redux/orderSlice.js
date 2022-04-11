@@ -3,6 +3,7 @@ import { createSlice } from '@reduxjs/toolkit'
 export const orderSlise = createSlice({
   name: 'order',
   initialState: {
+    numberPage: 0,
     city: '',
     point: '',
     minPrice: 0,
@@ -10,34 +11,46 @@ export const orderSlise = createSlice({
     model: '',
     colorCar: '',
     tariffCar: '',
+    chair: false,
+    tank: false,
+    rightWheel: false,
+    startDate: '',
+    endDate: '',
     carArray: [],
-    numberPage: 0,
-    options: {},
+    options: [],
+    orderData: {},
     sliderLength: 0,
-    disabledBtn: true,
+    disabledBtn: false,
     wasChange: false
   },
   reducers: {
-    addCity: (state, data) => {
-      const city = data.payload
-      // console.log(city)
-      state.options['Пункт выдачи'] = `${city.city}, ${city.point}`
-      state.disabledBtn = false
-      delete state.options['Модель']
-      delete state.options['Цвет']
-      delete state.options['Тариф']
+    addDataAddress: (state, data) => {
+      const dataAddress = data.payload
+      state.city = dataAddress.city
+      state.point = dataAddress.point
+      state.options.length = 0
+      if (dataAddress.city && dataAddress.point)
+        state.options.push([
+          ['Пункт выдачи', `${dataAddress.city}, ${dataAddress.point}`]
+        ])
+      state.orderData.cityId = `${dataAddress.cityId}`
+      state.orderData.pointId = `${dataAddress.pointId}`
+      state.city && state.point
+        ? (state.disabledBtn = false)
+        : (state.disabledBtn = true)
       state.wasChange = true
-    },
-    getCityData: (state, data) => {
-      // console.log(data.payload)
     },
 
     forwardStep: (state, data) => {
-      const lenght = data.payload.sliderLenght
-      state.sliderLength = lenght
-      data.payload.index < state.sliderLength
-        ? state.numberPage++
-        : (state.numberPage = lenght)
+      const sliderLength = data.payload.sliderLength
+      const currentPage = data.payload.numberPage
+      if (currentPage < sliderLength - 1) {
+        state.numberPage = currentPage + 1
+      } else {
+        console.log('здесь функция на удаление данных из options')
+        state.numberPage = 0
+      }
+
       state.wasChange ? (state.disabledBtn = true) : (state.disabledBtn = false)
     },
     backStep: (state, data) => {
@@ -48,28 +61,41 @@ export const orderSlise = createSlice({
       } else state.numberPage = 0
     },
 
-    isDisubled: (state, data) => {
+    changeDisubledBtn: (state, data) => {
       state.disabledBtn = data.payload
     },
     getModel: (state, data) => {
       const modelCar = data.payload
       state.model = modelCar.name
       state.carArray = modelCar
-      state.options['Модель'] = `${modelCar.name}`
+      if (modelCar.name) state.options.splice(state.numberPage)
+      state.options.push([['Модель', `${state.model}`]])
       state.minPrice = modelCar.priceMin
       state.maxPrice = modelCar.priceMax
-      delete state.options['Цвет']
-      delete state.options['Тариф']
+      state.disabledBtn = false
     },
     getOptions: (state, data) => {
-      console.log(data.payload)
-      const color = data.payload.carColor
-      state.colorCar = color
-      if (color) state.options['Цвет'] = `${color}`
-      const tariff = data.payload.carTariff
-      state.carTariff = tariff
-      if (tariff) state.options['Тариф'] = `${tariff}`
+      const optionsData = data.payload
+      if (optionsData) state.options.splice(state.numberPage)
+      state.colorCar = optionsData.carColor
+      state.tariffCar = optionsData.carTariff
+      state.chair = optionsData.childChair
+      state.tank = optionsData.tank
+      state.rightWheel = optionsData.rightWheel
+
+      // const currentTime = optionsData.dateEnd - optionsData.dateStart
+      // const days = Math.floor(currentTime / 1000 / 60 / 60 / 24)
+      // const hours = Math.floor(currentTime / 1000 / 60 / 60) % 24
+      // console.log(days, hours)
+
+      // state.options.push([
+      //   ['Цвет', `${state.colorCar}`],
+      //   ['Тариф', `${state.tariffCar}`]
+      // ])
+
+      state.disabledBtn = false
     },
+
     getPrices: (state, data) => {
       const minPriceArray = data.payload.reduce((accum, item) => {
         accum.push(item.priceMin)
@@ -87,13 +113,13 @@ export const orderSlise = createSlice({
 })
 
 export const {
-  addCity,
+  addDataAddress,
   backStep,
   forwardStep,
   getModel,
-  isDisubled,
+  changeDisubledBtn,
   getPrices,
   getOptions,
-  getCityData
+  getOptArr
 } = orderSlise.actions
 export default orderSlise.reducer

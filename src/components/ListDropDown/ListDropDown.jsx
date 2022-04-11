@@ -7,6 +7,8 @@ export const ListDropDown = ({
   addressArray,
   name,
   setInputText,
+  getId,
+  currentId,
   textInput,
   clearInput
 }) => {
@@ -47,6 +49,7 @@ export const ListDropDown = ({
                   key={id}
                   onClick={(e) => {
                     setInputText(name === 'street' ? item.address : item.name)
+                    getId(item.id)
                   }}
                   className={`address__item`}>
                   {name === 'street' ? item.address : item.name}

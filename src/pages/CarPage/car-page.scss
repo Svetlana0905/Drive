@@ -4,6 +4,8 @@
   flex-direction: column;
   position: relative;
   width: 100%;
+  overflow: hidden;
+  max-height: 100vh;
   &__radio-block {
     display: flex;
     flex-wrap: wrap;

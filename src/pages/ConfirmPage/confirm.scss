@@ -1,0 +1,26 @@
+.confirm-page {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.9);
+  z-index: 100;
+  opacity: 1;
+  top: 0;
+  left: 0;
+  transition: all ease-in-out 0.5s;
+  &.confirm-page__hidden {
+    top: 0;
+    left: -150%;
+    opacity: 0;
+    z-index: -1;
+  }
+  &__bittons {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    margin: 0 auto;
+  }
+}

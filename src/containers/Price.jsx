@@ -18,7 +18,7 @@ export const Price = () => {
     }
   }, [isSuccess, dispatch, car.data])
   if (isLoading) {
-    return <Preload />
+    return <Preload size={'small'} />
   }
   return (
     <div className="total__price">

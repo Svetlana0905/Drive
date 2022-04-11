@@ -15,14 +15,16 @@ export const ArrowButtonSlider = ({ handleClick, styleArr }) => {
 export const ClearInputButton = ({ clearInput }) => {
   return <button onClick={clearInput} className="clear-input" />
 }
-export const ButtonPrice = ({ handleClick, disabled, text }) => {
-  const classess = disabled ? 'btn-price btn-price__disabled' : 'btn-price'
+export const ButtonPrice = ({ handleClick, disabled, text, styleClass }) => {
+  // const classess = styleClass ? 'btn-price btn-price__override' : 'btn-price'
+  const classess = 'btn-price'
   return (
     <button onClick={handleClick} disabled={disabled} className={classess}>
       {text}
     </button>
   )
 }
+
 export const RadioInput = ({ value, text, name, onClick }) => {
   return (
     <label className="radio">
@@ -42,8 +44,8 @@ export const Checkbox = ({ text, value, onClick, name }) => {
     <label className="checkbox">
       <input
         className="checkbox__input"
-        value={value}
-        onClick={onClick}
+        checked={value}
+        onChange={onClick}
         name={name}
         type="checkbox"
       />

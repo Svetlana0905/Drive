@@ -6,19 +6,29 @@ import {
 } from '../../components/Buttons/Buttons'
 import 'react-datepicker/dist/react-datepicker.css'
 import setHours from 'date-fns/setHours'
+import ru from 'date-fns/locale/ru'
 import setMinutes from 'date-fns/setMinutes'
 import DatePicker from 'react-datepicker'
 import { useSelector, useDispatch } from 'react-redux'
 import { useEffect, useState } from 'react'
-import { getOptions, isDisubled } from '../../redux/orderSlice'
+import { getOptions } from '../../redux/orderSlice'
 
 export const OptionsPage = () => {
   const dispatch = useDispatch()
-  const [carColor, setCarColor] = useState('')
-  const [carTariff, setCarTariff] = useState('')
+  const colorCar = useSelector((state) => state.order.colorCar)
+  const tariffCar = useSelector((state) => state.order.tariffCar)
+  const tankCar = useSelector((state) => state.order.tank)
+  const chair = useSelector((state) => state.order.chair)
+  const wheel = useSelector((state) => state.order.rightWheel)
+
+  const [carColor, setCarColor] = useState(colorCar)
+  const [carTariff, setCarTariff] = useState(tariffCar)
+  const [tank, setTank] = useState(tankCar)
+  const [childChair, setChildChair] = useState(chair)
+  const [rightWheel, setRightWheel] = useState(wheel)
   const [startDate, setStartDate] = useState(new Date())
   const [endDate, setEndDate] = useState(null)
-  const [extraOptions, setExtraOptions] = useState([])
+
   const carArray = useSelector((state) => state.order.carArray)
 
   const clearStartDate = () => {
@@ -28,6 +38,12 @@ export const OptionsPage = () => {
   const clearEndDate = () => {
     setEndDate(null)
   }
+  // useEffect(() => {
+  //   const arr = []
+  //   if (carColor) arr.push(['Цвет', `${carColor}`])
+  //   if (carTariff) arr.push(['Тариф', `${carTariff}`])
+  //   dispatch(getOptArr(arr))
+  // }, [carColor, carTariff, dispatch])
   const startDateHandler = (item) => {
     setStartDate(item)
     setEndDate(null)
@@ -35,10 +51,32 @@ export const OptionsPage = () => {
   const endDateHandler = (item) => {
     setEndDate(item)
   }
+
   useEffect(() => {
-    dispatch(getOptions({ carColor, carTariff, extraOptions }))
-    if (carColor && carTariff && extraOptions) dispatch(isDisubled(false))
-  }, [carColor, dispatch, carTariff, extraOptions])
+    const dateStart = Date.parse(startDate)
+    const dateEnd = Date.parse(endDate)
+
+    dispatch(
+      getOptions({
+        carColor,
+        carTariff,
+        dateStart,
+        dateEnd,
+        tank,
+        childChair,
+        rightWheel
+      })
+    )
+  }, [
+    carColor,
+    dispatch,
+    carTariff,
+    startDate,
+    endDate,
+    tank,
+    childChair,
+    rightWheel
+  ])
 
   return (
     <section className="order-page__order">
@@ -77,6 +115,7 @@ export const OptionsPage = () => {
               dateFormat="dd.MM.yyyy HH:mm"
               timeFormat="HH:mm"
               showTimeInput
+              locale={ru}
             />
             {startDate && <ClearInputButton clearInput={clearStartDate} />}
           </label>
@@ -94,6 +133,7 @@ export const OptionsPage = () => {
               timeFormat="HH:mm"
               dateFormat="dd.MM.yyyy HH:mm"
               showTimeInput
+              locale={ru}
             />
             {endDate && <ClearInputButton clearInput={clearEndDate} />}
           </label>
@@ -120,20 +160,20 @@ export const OptionsPage = () => {
           <div className="options__inner options__inner-buttons">
             <Checkbox
               text={'Полный бак, 500р'}
-              value={extraOptions}
-              onClick={(e) => setExtraOptions(e.target.value)}
+              value={tank}
+              onClick={(e) => setTank(!tank)}
               name={'extra'}
             />
             <Checkbox
               text={'Детское кресло, 200р'}
-              value={extraOptions}
-              onClick={(e) => setExtraOptions(e.target.value)}
+              value={childChair}
+              onClick={(e) => setChildChair(!childChair)}
               name={'extra'}
             />
             <Checkbox
               text={'Правый руль, 1600р'}
-              value={extraOptions}
-              onClick={(e) => setExtraOptions(e.target.value)}
+              value={rightWheel}
+              onClick={(e) => setRightWheel(!rightWheel)}
               name={'extra'}
             />
           </div>
