@@ -25,6 +25,7 @@
     flex-direction: column;
     max-width: 1440px;
     margin: 0 auto;
+    height: 100%;
     @media (min-width: 768px) {
       flex-direction: row;
       justify-content: space-between;

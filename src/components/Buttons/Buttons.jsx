@@ -15,11 +15,9 @@ export const ArrowButtonSlider = ({ handleClick, styleArr }) => {
 export const ClearInputButton = ({ clearInput }) => {
   return <button onClick={clearInput} className="clear-input" />
 }
-export const ButtonPrice = ({ handleClick, disabled, text, styleClass }) => {
-  // const classess = styleClass ? 'btn-price btn-price__override' : 'btn-price'
-  const classess = 'btn-price'
+export const BigButton = ({ onClick, text, className, disabled }) => {
   return (
-    <button onClick={handleClick} disabled={disabled} className={classess}>
+    <button onClick={onClick} className={className} disabled={disabled}>
       {text}
     </button>
   )

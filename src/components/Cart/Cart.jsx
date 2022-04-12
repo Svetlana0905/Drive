@@ -1,14 +1,14 @@
 import './cart.scss'
-// import { useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 
 export const Cart = () => {
-  // const objOptions = useSelector((state) => state.order.options).flat()
-  // // const entries = Object.entries(objOptions)
-  // console.log(objOptions)
+  const objOptions = useSelector((state) => state.order.options).flat()
+  // const entries = Object.entries(objOptions)
+  console.log(objOptions)
 
   return (
     <>
-      {/* {objOptions.length > 0
+      {objOptions.length > 0
         ? objOptions.map((item, id) => (
             <div className="option" key={id}>
               <span className="option__name text">{item[0]}</span>
@@ -18,7 +18,7 @@ export const Cart = () => {
               </p>
             </div>
           ))
-        : ''} */}
+        : ''}
     </>
   )
 }

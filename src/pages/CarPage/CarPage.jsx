@@ -30,15 +30,12 @@ export const CarPage = () => {
     <section className="order-page__order order-page__car-wrapper">
       <div className="car-page ">
         <div className="car-page__radio-block">
-          <label className="radio">
-            <input
-              className="radio__input"
-              type="radio"
-              name={'car'}
-              onClick={clearFilter}
-            />
-            <span className="radio__span text">Все</span>
-          </label>
+          <RadioInput
+            text={'Все'}
+            onClick={clearFilter}
+            name={'car'}
+            value={'Все'}
+          />
           {categories.map((item, id) => (
             <RadioInput
               text={item.name}
@@ -61,9 +58,9 @@ export const CarPage = () => {
                   setIdCar(id)
                 }}>
                 <div>
-                  <p className="subtitle">{item.name}</p>
-                  <p className="text">
-                    {item.priceMax} - {item.priceMin}
+                  <p className="car__car-name">{item.name}</p>
+                  <p className="car__text text">
+                    {item.priceMax} - {item.priceMin} &#8381;
                   </p>
                 </div>
                 <img

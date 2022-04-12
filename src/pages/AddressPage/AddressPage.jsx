@@ -15,7 +15,6 @@ export const AddressPage = () => {
   const [cityId, setCityId] = useState('')
   const [pointId, setPointId] = useState('')
   const [filterPoint, setFilterPoint] = useState([])
-  const [objAddress, setObjAddress] = useState({})
 
   let pointsArray = useMemo(() => [], [])
   const { data: citiesArr = [] } = useGetCityQuery()
@@ -32,17 +31,12 @@ export const AddressPage = () => {
     setPoint('')
     setCity('')
   }
+
   useEffect(() => {
-    const set = new Set()
-    const data = ['Пункт выдачи', `${city}, ${point}`]
-    if (point && city) set.add(data)
-    setObjAddress(Array.from(set))
-  }, [city, point])
-  useEffect(() => {
-    if ((cityId && pointId, objAddress)) {
-      dispatch(addDataAddress({ cityId, pointId, objAddress }))
+    if (cityId && pointId && city && point) {
+      dispatch(addDataAddress({ cityId, pointId, city, point }))
     }
-  }, [cityId, pointId, dispatch, objAddress])
+  }, [cityId, pointId, dispatch, city, point])
 
   useEffect(() => {
     if (city && pointsArray) {

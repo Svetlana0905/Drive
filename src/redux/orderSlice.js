@@ -18,25 +18,16 @@ export const orderSlise = createSlice({
     endDate: '',
     carArray: [],
     options: [],
-    options2: [],
     orderData: {},
     sliderLength: 0,
-    disabledBtn: false,
+    disabledBtn: true,
     wasChange: false
   },
   reducers: {
     forwardStep: (state, data) => {
-      const sliderLength = data.payload.sliderLength
-      const currentPage = data.payload.numberPage
-      // console.log(sliderLength, currentPage)
-      if (currentPage < sliderLength - 1) {
-        state.numberPage = currentPage + 1
-      } else {
-        console.log('здесь функция на удаление данных из options')
-        state.numberPage = 0
-      }
-
-      state.wasChange ? (state.disabledBtn = true) : (state.disabledBtn = false)
+      const currentPage = data.payload.id
+      state.numberPage = currentPage + 1
+      // state.disabledBtn = false
     },
     backStep: (state, data) => {
       if (data.payload < state.numberPage) {
@@ -46,22 +37,16 @@ export const orderSlise = createSlice({
       } else state.numberPage = 0
     },
 
-    changeDisubledBtn: (state, data) => {
-      state.disabledBtn = data.payload
-    },
     addDataAddress: (state, data) => {
-      const dataAddress = data.payload
-      const obj = dataAddress.objAddress
-      console.log(obj)
-      if (obj) state.options = [...[obj]]
-
-      // console.log(`${state.options[0]['Пункт выдачи']} nmnmnm,nn`)
-      state.orderData.cityId = `${dataAddress.cityId}`
-      state.orderData.pointId = `${dataAddress.pointId}`
-      state.city && state.point
-        ? (state.disabledBtn = false)
-        : (state.disabledBtn = true)
-      state.wasChange = true
+      const addressData = data.payload
+      // console.log(addressData)
+      state.city = addressData.city
+      state.point = addressData.point
+      if (state.city) state.options.length = 0
+      if (addressData.city && addressData.point) {
+        state.options.push([['Пункт выдачи', `${state.city}, ${state.point}`]])
+        state.disabledBtn = false
+      } else state.disabledBtn = true
     },
     getModel: (state, data) => {
       const modelCar = data.payload

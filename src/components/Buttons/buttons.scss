@@ -76,7 +76,7 @@
 
 .btn-price {
   display: inline-block;
-  width: 250px;
+  width: 100%;
   padding: 14px 0 13px;
   text-align: center;
   font-size: 18px;
@@ -94,20 +94,24 @@
   &:active {
     background: $btnbright20;
   }
-  @media (min-width: 1024px) {
+  @media (min-width: 768px) {
     width: 287px;
-  }
-  &__disabled {
-    background: $gray50;
-    &:hover,
-    &:focus {
-      background: $gray50;
-    }
   }
   &.btn-price__override {
     background: linear-gradient(90deg, #493013 0%, #7b0c3b 100%);
   }
+  &.btn-price__hidden {
+    display: none;
+  }
 }
+.btn-price[disabled] {
+  background: $gray50;
+  &:hover,
+  &:focus {
+    background: $gray50;
+  }
+}
+
 .radio {
   display: flex;
   gap: 2px;

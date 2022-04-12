@@ -22,7 +22,7 @@ export const Price = () => {
   }
   return (
     <div className="total__price">
-      Цена: от {minPrice} до {maxPrice} ₽
+      <span className="text-bold">Цена:</span> от {minPrice} до {maxPrice} ₽
     </div>
   )
 }
