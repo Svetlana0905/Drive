@@ -9,7 +9,7 @@ export const TotalPage = () => {
         <div className="add-order">
           <div className="add-order__data">
             <h3>Ваш заказ подтверждён</h3>
-            <p className="subtitle">{dataCar.name}</p>
+            <p className="text-name">{dataCar.name}</p>
             <p className="add-order__reg-number">{dataCar.number}</p>
             <p className="add-order__row bold-text">
               Топливо

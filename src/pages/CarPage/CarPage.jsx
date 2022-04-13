@@ -59,7 +59,7 @@ export const CarPage = () => {
                   setIdCar(id)
                 }}>
                 <div>
-                  <p className="car__car-name">{item.name}</p>
+                  <p className="text-name">{item.name}</p>
                   <p className="car__text text">
                     {item.priceMax} - {item.priceMin} &#8381;
                   </p>

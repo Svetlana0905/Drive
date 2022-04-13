@@ -59,13 +59,13 @@ export const orderSlise = createSlice({
       state.disabledBtn = false
     },
     getOptions: (state, data) => {
-      const optionsData = data.payload
-      const obj = data.payload.objOptions
-      console.log(data.payload.objOptions)
-      if (optionsData) state.options.splice(state.numberPage)
-      console.log(obj)
-      if (obj) state.options = [[obj]]
-      console.log(state.options)
+      // const optionsData = data.payload
+      // const obj = data.payload.objOptions
+      // console.log(data.payload.objOptions)
+      // if (optionsData) state.options.splice(state.numberPage)
+      // console.log(obj)
+      // if (obj) state.options = [[obj]]
+      // console.log(state.options)
       state.disabledBtn = false
     },
 
