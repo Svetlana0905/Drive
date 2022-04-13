@@ -6,6 +6,7 @@ import { Categories } from '../../redux/actions/Actions'
 import { useEffect, useState } from 'react'
 import { getModel } from '../../redux/orderSlice'
 import { useDispatch } from 'react-redux'
+// import stub from '../../assets/stub.jpg'
 
 export const CarPage = () => {
   const dispatch = useDispatch()
@@ -68,6 +69,10 @@ export const CarPage = () => {
                   src={item.thumbnail.path}
                   alt={item.name}
                 />
+                {/* <picture className="car__pic">
+                  <source srcSet={item.thumbnail.path} type="image/jpg" />
+                  <img src={stub} className="car__pic" alt={item.name} />
+                </picture> */}
               </div>
             ))}
         </div>
