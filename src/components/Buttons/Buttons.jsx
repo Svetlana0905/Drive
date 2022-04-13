@@ -12,12 +12,22 @@ export const LangButton = () => {
 export const ArrowButtonSlider = ({ handleClick, styleArr }) => {
   return <button onClick={handleClick} className={styleArr} />
 }
-export const ClearInputButton = ({ clearInput }) => {
-  return <button onClick={clearInput} className="clear-input" />
-}
-export const BigButton = ({ onClick, text, className, disabled }) => {
+export const ClearInputButton = ({ clearInput, name }) => {
   return (
-    <button onClick={onClick} className={className} disabled={disabled}>
+    <button
+      onClick={clearInput}
+      className={
+        name === 'calendar'
+          ? 'clear-input clear-input__calendar'
+          : 'clear-input'
+      }
+    />
+  )
+}
+
+export const BigButton = ({ onClick, text, id, page, disabled }) => {
+  return (
+    <button onClick={onClick} className={'btn-price'} disabled={disabled}>
       {text}
     </button>
   )

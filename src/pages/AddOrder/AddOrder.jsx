@@ -14,7 +14,7 @@ export const AddOrder = () => {
         <div className="add-order">
           <div className="add-order__data">
             <p className="text-name">{dataCar.name}</p>
-            <p className="add-order__reg-number">{numberCar()}</p>
+            <span className="add-order__reg-number">{numberCar()}</span>
             <p className="add-order__row bold-text">
               Топливо
               <span className="text">100%</span>

@@ -25,8 +25,9 @@ export const orderSlise = createSlice({
   },
   reducers: {
     forwardStep: (state, data) => {
-      const currentPage = data.payload.id
-      state.numberPage = currentPage + 1
+      const currentPage = data.payload
+      state.numberPage = currentPage
+      console.log(currentPage)
       // state.disabledBtn = false
     },
     backStep: (state, data) => {
@@ -36,10 +37,11 @@ export const orderSlise = createSlice({
         state.disabledBtn = false
       } else state.numberPage = 0
     },
-
+    changeDisabledBtn: (state, data) => {
+      state.disabledBtn = data.payload
+    },
     addDataAddress: (state, data) => {
       const addressData = data.payload
-      // console.log(addressData)
       state.city = addressData.city
       state.point = addressData.point
       if (state.city) state.options.length = 0
@@ -90,7 +92,7 @@ export const {
   backStep,
   forwardStep,
   getModel,
-  changeDisubledBtn,
+  changeDisabledBtn,
   getPrices,
   getOptions,
   getOptArr

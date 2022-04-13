@@ -3,63 +3,86 @@ import { CarPage } from '../pages/CarPage/CarPage'
 import { OptionsPage } from '../pages/OptionsPage/OptionsPage'
 import { AddOrder } from '../pages/AddOrder/AddOrder'
 import { useDispatch, useSelector } from 'react-redux'
-import { forwardStep, backStep } from '../redux/orderSlice'
-import { BigButton } from '../components/Buttons/Buttons'
+import { backStep, forwardStep } from '../redux/orderSlice'
+
 import '../style/navigate.scss'
 
 export const FormSlider = [
   {
+    id: 0,
     page: <AddressPage />,
     btnText: 'Выбрать модель',
     isDone: false,
-    title: 'Местоположение'
+    title: 'Местоположение',
+    dataId: { cityId: null, pointId: null },
+    onClick: (dataId) => {
+      return (dispatch) => {
+        dispatch(forwardStep(dataId))
+      }
+    }
   },
   {
+    id: 1,
     page: <CarPage />,
     btnText: 'Дополнительно',
     isDone: false,
-    title: 'Модель'
+    title: 'Модель',
+    dataId: { carId: null, category: '' },
+    onClick: (dataId) => {
+      return (dispatch) => {
+        dispatch(forwardStep(dataId))
+      }
+    }
   },
   {
+    id: 2,
     page: <OptionsPage />,
     btnText: 'Итого',
     isDone: false,
-    title: 'Дополнительно'
+    title: 'Дополнительно',
+    dataId: {
+      color: 'Любой',
+      dateFrom: 0,
+      dateTo: 0,
+      rateId: null,
+      isFullTank: false,
+      isNeedChildChair: false,
+      isRightWheel: false,
+      price: 0
+    },
+    onClick: (dataId) => {
+      return (dispatch) => {
+        dispatch(forwardStep(dataId))
+      }
+    }
   },
   {
+    id: 3,
     page: <AddOrder />,
     btnText: 'Заказать',
     isDone: false,
-    title: 'Итого'
+    title: 'Итого',
+    data: {
+      orderStatusId: { id: '5e26a191099b810b946c5d89', name: 'new' },
+      cityId: null,
+      pointId: null,
+      carId: null,
+      color: 'Любой',
+      dateFrom: 0,
+      dateTo: 0,
+      rateId: null,
+      isFullTank: false,
+      isNeedChildChair: false,
+      isRightWheel: false,
+      price: 0
+    },
+    onClick: (dataId) => {
+      return (dispatch) => {
+        dispatch(forwardStep(dataId))
+      }
+    }
   }
 ]
-
-export const ButtonBtn = () => {
-  const dispatch = useDispatch()
-  const page = useSelector((state) => state.order.numberPage)
-  const isDisabled = useSelector((state) => state.order.disabledBtn)
-
-  const getClass = (index, num) => {
-    if (index === num) return 'btn-price'
-    else if (index !== num) return 'btn-price btn-price__hidden'
-  }
-  return (
-    <>
-      {FormSlider.map((item, id) => (
-        <BigButton
-          key={id}
-          type="button"
-          className={getClass(id, page)}
-          text={item.btnText}
-          disabled={isDisabled}
-          onClick={(e) => {
-            if (id === page) dispatch(forwardStep({ id }))
-          }}
-        />
-      ))}
-    </>
-  )
-}
 
 export const Navigate = () => {
   const page = useSelector((state) => state.order.numberPage)

@@ -8,7 +8,7 @@
     gap: 160px;
   }
   @media (min-width: 1440px) {
-    gap: 218px;
+    gap: 300px;
   }
   &__data {
     display: flex;
@@ -20,7 +20,7 @@
     gap: 3px;
   }
   &__reg-number {
-    width: 94px;
+    width: fit-content;
     padding: 3px 8px;
     border: 1px solid #999999;
     box-sizing: border-box;

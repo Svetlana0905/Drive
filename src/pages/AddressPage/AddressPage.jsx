@@ -1,7 +1,7 @@
 import { useGetCityQuery, useGetPointQuery } from '../../redux/'
 import { useDispatch, useSelector } from 'react-redux'
 import { useState, useEffect, useMemo } from 'react'
-import { addDataAddress } from '../../redux/orderSlice'
+import { addDataAddress, changeDisabledBtn } from '../../redux/orderSlice'
 import { Preload } from '../../components/Preload/Preload'
 import { ListDropDown } from '../../components/ListDropDown/ListDropDown'
 import { MapBlock } from '../../components/Map/MapBlock'
@@ -25,11 +25,13 @@ export const AddressPage = () => {
   }
   const clearPoint = () => {
     setPoint('')
+    dispatch(changeDisabledBtn(true))
   }
 
   const clearCity = () => {
     setPoint('')
     setCity('')
+    dispatch(changeDisabledBtn(true))
   }
 
   useEffect(() => {

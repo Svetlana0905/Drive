@@ -72,6 +72,10 @@
     width: 11px;
     height: 11px;
   }
+  &__calendar {
+    right: 7px;
+    top: -15px;
+  }
 }
 
 .btn-price {
@@ -99,9 +103,6 @@
   }
   &.btn-price__override {
     background: linear-gradient(90deg, #493013 0%, #7b0c3b 100%);
-  }
-  &.btn-price__hidden {
-    display: none;
   }
 }
 .btn-price[disabled] {

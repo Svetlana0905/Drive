@@ -6,7 +6,7 @@ import { Categories } from '../../redux/actions/Actions'
 import { useEffect, useState } from 'react'
 import { getModel } from '../../redux/orderSlice'
 import { useDispatch } from 'react-redux'
-// import stub from '../../assets/stub.jpg'
+import stub from '../../assets/stub.jpg'
 
 export const CarPage = () => {
   const dispatch = useDispatch()
@@ -28,7 +28,7 @@ export const CarPage = () => {
     carData = car.data
   }
   return (
-    <section className="order-page__order order-page__car-wrapper">
+    <section className="order-page__order">
       <div className="car-page ">
         <div className="car-page__radio-block">
           <RadioInput
@@ -64,15 +64,15 @@ export const CarPage = () => {
                     {item.priceMax} - {item.priceMin} &#8381;
                   </p>
                 </div>
-                <img
+                {/* <img
                   className="car__pic"
                   src={item.thumbnail.path}
                   alt={item.name}
-                />
-                {/* <picture className="car__pic">
+                /> */}
+                <picture className="car__pic">
                   <source srcSet={item.thumbnail.path} type="image/jpg" />
                   <img src={stub} className="car__pic" alt={item.name} />
-                </picture> */}
+                </picture>
               </div>
             ))}
         </div>

@@ -1,12 +1,15 @@
 import './orderPage.scss'
 import { Header } from '../../components/Header/Header'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { Cart } from '../../components/Cart/Cart'
 import { Price } from '../../containers/Price'
-import { FormSlider, ButtonBtn, Navigate } from '../../data/FormSlider'
+import { FormSlider, Navigate } from '../../data/FormSlider'
+import { BigButton } from '../../components/Buttons/Buttons'
 
 export const OrderPage = () => {
   const numberPage = useSelector((state) => state.order.numberPage)
+  const isDisabled = useSelector((state) => state.order.disabledBtn)
+  const dispatch = useDispatch()
 
   return (
     <section className="order-page">
@@ -23,7 +26,13 @@ export const OrderPage = () => {
             <Cart />
           </div>
           <Price />
-          {<ButtonBtn />}
+          <BigButton
+            text={FormSlider[numberPage].btnText}
+            disabled={isDisabled}
+            onClick={() =>
+              dispatch(FormSlider[numberPage].onClick(numberPage + 1))
+            }
+          />
         </section>
       </div>
     </section>

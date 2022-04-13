@@ -76,6 +76,13 @@ export const OptionsPage = () => {
         <div className="options__inner">
           <p className="text">Цвет</p>
           <div className="options__radio-block">
+            <RadioInput
+              text={'Любой'}
+              onClick={(e) => setCarColor(e.target.value)}
+              name={'options'}
+              value={'Любой'}
+              cheked={carColor}
+            />
             {carArray.colors?.map((item, id) => (
               <RadioInput
                 text={item}
@@ -109,7 +116,9 @@ export const OptionsPage = () => {
               showTimeInput
               locale={ru}
             />
-            {startDate && <ClearInputButton clearInput={clearStartDate} />}
+            {startDate && (
+              <ClearInputButton clearInput={clearStartDate} name={'calendar'} />
+            )}
           </label>
           <label className="input-text__inner">
             <span>По</span>
@@ -127,7 +136,9 @@ export const OptionsPage = () => {
               showTimeInput
               locale={ru}
             />
-            {endDate && <ClearInputButton clearInput={clearEndDate} />}
+            {endDate && (
+              <ClearInputButton clearInput={clearEndDate} name={'calendar'} />
+            )}
           </label>
         </div>
         <div className="options__inner">
@@ -138,6 +149,7 @@ export const OptionsPage = () => {
               onClick={(e) => setCarTariff(e.target.value)}
               value="Поминутно"
               name={'tariff'}
+              cheked
             />
             <RadioInput
               text="На сутки, 1999 ₽/сутки"
