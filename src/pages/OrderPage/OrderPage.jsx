@@ -29,9 +29,9 @@ export const OrderPage = () => {
           <BigButton
             text={FormSlider[numberPage].btnText}
             disabled={isDisabled}
-            onClick={() =>
+            onClick={() => {
               dispatch(FormSlider[numberPage].onClick(numberPage + 1))
-            }
+            }}
           />
         </section>
       </div>

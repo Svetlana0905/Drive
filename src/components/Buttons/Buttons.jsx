@@ -1,5 +1,6 @@
 import './buttons.scss'
 import { useToggle } from '../../hooks/useToggle'
+import { useEffect, useState } from 'react'
 
 export const LangButton = () => {
   const [lang, toggleLang] = useToggle(false)
@@ -33,27 +34,45 @@ export const BigButton = ({ onClick, text, id, page, disabled }) => {
   )
 }
 
-export const RadioInput = ({ value, text, name, onClick }) => {
+export const RadioInput = ({
+  value,
+  text,
+  name,
+  onChange,
+  tarifvalue,
+  colorvalue
+}) => {
+  const [color, setColor] = useState(colorvalue)
+  const [tariff, setTariff] = useState(tarifvalue)
+  // console.log(tariff)
+
+  useEffect(() => {
+    setColor(colorvalue)
+    setTariff(tarifvalue)
+  }, [setColor, colorvalue, color, tariff, tarifvalue])
+
   return (
     <label className="radio">
       <input
         className="radio__input"
         type="radio"
-        onClick={onClick}
+        onChange={onChange}
         name={name}
         value={value}
+        checked={name === 'color' ? value === color : value === tariff}
       />
       <span className="radio__span text">{text}</span>
     </label>
   )
 }
-export const Checkbox = ({ text, value, onClick, name }) => {
+export const Checkbox = ({ text, value, name, checked, onChange }) => {
   return (
     <label className="checkbox">
       <input
         className="checkbox__input"
-        checked={value}
-        onChange={onClick}
+        checked={checked}
+        onChange={onChange}
+        value={value}
         name={name}
         type="checkbox"
       />

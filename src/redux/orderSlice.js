@@ -4,6 +4,7 @@ export const orderSlise = createSlice({
   name: 'order',
   initialState: {
     numberPage: 0,
+    biggerPage: 0,
     city: '',
     point: '',
     minPrice: 0,
@@ -18,8 +19,7 @@ export const orderSlise = createSlice({
     endDate: '',
     carArray: [],
     options: [],
-    orderData: {},
-    sliderLength: 0,
+    dataId: {},
     disabledBtn: true,
     wasChange: false
   },
@@ -27,8 +27,6 @@ export const orderSlise = createSlice({
     forwardStep: (state, data) => {
       const currentPage = data.payload
       state.numberPage = currentPage
-      console.log(currentPage)
-      // state.disabledBtn = false
     },
     backStep: (state, data) => {
       if (data.payload < state.numberPage) {
@@ -45,6 +43,7 @@ export const orderSlise = createSlice({
       state.city = addressData.city
       state.point = addressData.point
       if (state.city) state.options.length = 0
+      if (state.city) state.biggerPage = state.numberPage
       if (addressData.city && addressData.point) {
         state.options.push([['Пункт выдачи', `${state.city}, ${state.point}`]])
         state.disabledBtn = false
@@ -52,22 +51,30 @@ export const orderSlise = createSlice({
     },
     getModel: (state, data) => {
       const modelCar = data.payload
-      state.model = modelCar.name
-      state.carArray = modelCar
-      if (modelCar.name) state.options.splice(state.numberPage)
+      state.model = modelCar.carModel.name
+      state.carArray = modelCar.carModel
+      if (modelCar.carModel.name) state.options.splice(state.numberPage)
       state.options.push([['Модель', `${state.model}`]])
-      state.minPrice = modelCar.priceMin
-      state.maxPrice = modelCar.priceMax
+      if (modelCar.carModel.name) state.biggerPage = state.numberPage
+      state.minPrice = modelCar.carModel.priceMin
+      state.maxPrice = modelCar.carModel.priceMax
       state.disabledBtn = false
     },
     getOptions: (state, data) => {
-      // const optionsData = data.payload
-      // const obj = data.payload.objOptions
-      // console.log(data.payload.objOptions)
-      // if (optionsData) state.options.splice(state.numberPage)
-      // console.log(obj)
-      // if (obj) state.options = [[obj]]
-      // console.log(state.options)
+      data.payload.carColor
+        ? (state.colorCar = data.payload.carColor)
+        : (state.colorCar = 'Любой')
+      data.payload.carTariff
+        ? (state.tariffCar = data.payload.carTariff)
+        : (state.tariffCar = 'На сутки')
+      data.payload.tank ? (state.tank = true) : (state.tank = false)
+      data.payload.childChair ? (state.chair = true) : (state.chair = false)
+      data.payload.rightWheel
+        ? (state.rightWheel = true)
+        : (state.rightWheel = false)
+      if (data.payload.objOptions) state.options.splice(state.numberPage)
+      state.options.push(data.payload.objOptions)
+      if (data.payload.objOptions) state.biggerPage = state.numberPage
       state.disabledBtn = false
     },
 

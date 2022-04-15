@@ -8,7 +8,6 @@ export const ListDropDown = ({
   name,
   setInputText,
   getId,
-  currentId,
   textInput,
   clearInput
 }) => {

@@ -6,36 +6,34 @@ import { useDispatch, useSelector } from 'react-redux'
 import { backStep, forwardStep } from '../redux/orderSlice'
 
 import '../style/navigate.scss'
+// import { useEffect, useState } from 'react'
 
 export const FormSlider = [
   {
-    id: 0,
     page: <AddressPage />,
     btnText: 'Выбрать модель',
     isDone: false,
     title: 'Местоположение',
     dataId: { cityId: null, pointId: null },
-    onClick: (dataId) => {
+    onClick: (page) => {
       return (dispatch) => {
-        dispatch(forwardStep(dataId))
+        dispatch(forwardStep(page))
       }
     }
   },
   {
-    id: 1,
     page: <CarPage />,
     btnText: 'Дополнительно',
     isDone: false,
     title: 'Модель',
     dataId: { carId: null, category: '' },
-    onClick: (dataId) => {
+    onClick: (page) => {
       return (dispatch) => {
-        dispatch(forwardStep(dataId))
+        dispatch(forwardStep(page))
       }
     }
   },
   {
-    id: 2,
     page: <OptionsPage />,
     btnText: 'Итого',
     isDone: false,
@@ -50,14 +48,13 @@ export const FormSlider = [
       isRightWheel: false,
       price: 0
     },
-    onClick: (dataId) => {
+    onClick: (page) => {
       return (dispatch) => {
-        dispatch(forwardStep(dataId))
+        dispatch(forwardStep(page))
       }
     }
   },
   {
-    id: 3,
     page: <AddOrder />,
     btnText: 'Заказать',
     isDone: false,
@@ -76,9 +73,9 @@ export const FormSlider = [
       isRightWheel: false,
       price: 0
     },
-    onClick: (dataId) => {
+    onClick: (page) => {
       return (dispatch) => {
-        dispatch(forwardStep(dataId))
+        dispatch(forwardStep(page))
       }
     }
   }
@@ -86,6 +83,8 @@ export const FormSlider = [
 
 export const Navigate = () => {
   const page = useSelector((state) => state.order.numberPage)
+  const biggerPage = useSelector((state) => state.order.biggerPage)
+  // console.log(biggerPage + ' bigger')
   const dispatch = useDispatch()
 
   const navName = 'nav-link'
@@ -95,6 +94,9 @@ export const Navigate = () => {
     else return navName
   }
 
+  const click = (id) => {
+    console.log(id + ' index')
+  }
   return (
     <>
       {FormSlider.map((item, index) => (
@@ -102,9 +104,12 @@ export const Navigate = () => {
           type="button"
           key={index}
           className={getClass(index, page)}
-          disabled={index > page + 1}
+          // disabled={index > page + 1}
           onClick={(e) => {
-            dispatch(backStep(index))
+            if (index === page + 1 || index <= biggerPage + 1)
+              dispatch(forwardStep(index))
+            else if (index < page) dispatch(backStep(index))
+            click(index)
           }}>
           {item.title}
         </button>

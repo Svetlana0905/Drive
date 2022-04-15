@@ -10,19 +10,19 @@ import stub from '../../assets/stub.jpg'
 
 export const CarPage = () => {
   const dispatch = useDispatch()
+
   const [filter, setFilter] = useState('')
   const [carModel, setCarModel] = useState('')
   const [idCar, setIdCar] = useState(null)
-
   const categories = Categories()
+
   let carData = []
   const { data: car = [], isSuccess, isLoading } = useGetCarQuery()
-  const clearFilter = () => {
-    setFilter('')
-  }
+
   useEffect(() => {
-    if (carModel) dispatch(getModel(carModel))
+    if (carModel) dispatch(getModel({ carModel }))
   }, [setCarModel, carModel, dispatch])
+
   if (isLoading) return <Preload size={'big'} />
   if (isSuccess) {
     carData = car.data
@@ -33,14 +33,18 @@ export const CarPage = () => {
         <div className="car-page__radio-block">
           <RadioInput
             text={'Все'}
-            onClick={clearFilter}
+            onChange={(e) => {
+              setFilter('')
+            }}
             name={'car'}
             value={'Все'}
           />
           {categories.map((item, id) => (
             <RadioInput
               text={item.name}
-              onClick={(e) => setFilter(e.target.value)}
+              onChange={(e) => {
+                setFilter(e.target.value)
+              }}
               key={id}
               name={'car'}
               value={item.name}
@@ -64,11 +68,6 @@ export const CarPage = () => {
                     {item.priceMax} - {item.priceMin} &#8381;
                   </p>
                 </div>
-                {/* <img
-                  className="car__pic"
-                  src={item.thumbnail.path}
-                  alt={item.name}
-                /> */}
                 <picture className="car__pic">
                   <source srcSet={item.thumbnail.path} type="image/jpg" />
                   <img src={stub} className="car__pic" alt={item.name} />

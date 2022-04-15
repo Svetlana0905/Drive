@@ -15,40 +15,57 @@ import { getOptions } from '../../redux/orderSlice'
 
 export const OptionsPage = () => {
   const dispatch = useDispatch()
-  const colorCar = useSelector((state) => state.order.colorCar)
-  const tariffCar = useSelector((state) => state.order.tariffCar)
-  const tankCar = useSelector((state) => state.order.tank)
-  const chair = useSelector((state) => state.order.chair)
-  const wheel = useSelector((state) => state.order.rightWheel)
+  const [carColor, setCarColor] = useState(
+    useSelector((state) => state.order.colorCar)
+  )
+  const [carTariff, setCarTariff] = useState(
+    useSelector((state) => state.order.tariffCar)
+  )
+  console.log(carTariff + ' tarif stor')
+  const [tank, setTank] = useState(useSelector((state) => state.order.tank))
+  const [childChair, setChildChair] = useState(
+    useSelector((state) => state.order.chair)
+  )
+  const [rightWheel, setRightWheel] = useState(
+    useSelector((state) => state.order.rightWheel)
+  )
 
-  const [carColor, setCarColor] = useState(colorCar)
-  const [carTariff, setCarTariff] = useState(tariffCar)
-  const [tank, setTank] = useState(tankCar)
-  const [childChair, setChildChair] = useState(chair)
-  const [rightWheel, setRightWheel] = useState(wheel)
   const [startDate, setStartDate] = useState(new Date())
   const [endDate, setEndDate] = useState(null)
   const [objOptions, setObjOptions] = useState({})
 
-  // const currentTime = optionsData.dateEnd - optionsData.dateStart
-  // const days = Math.floor(currentTime / 1000 / 60 / 60 / 24)
-  // const hours = Math.floor(currentTime / 1000 / 60 / 60) % 24
-  // console.log(days, hours)
-
+  const currentTime = endDate > startDate ? endDate - startDate : 0
+  const days = Math.floor(currentTime / 1000 / 60 / 60 / 24)
+  const hours = Math.floor(currentTime / 1000 / 60 / 60) % 24
   const carArray = useSelector((state) => state.order.carArray)
+
+  const [valTank, setValTank] = useState('')
+  const [valChair, setValChair] = useState('')
+  const [valWheel, setValWheel] = useState('')
+
+  useEffect(() => {
+    setValTank(tank ? 'Да' : '')
+    setValChair(childChair ? 'Да' : '')
+    setValWheel(rightWheel ? 'Да' : '')
+  }, [tank, childChair, rightWheel])
 
   useEffect(() => {
     const set = new Set()
     const color = ['Цвет', `${carColor}`]
     const tariff = ['Тариф', `${carTariff}`]
-    const wheel = ['Детское кресло', `${rightWheel}`]
-    const fullTank = ['Полный бак', `${tank}`]
+    const wheel = ['Правый руль', `${valWheel}`]
+    const tank = ['Полный бак', `${valTank}`]
+    const chair = ['Детское кресло', `${valChair}`]
+    const rent = ['Длительность аренды', `${days}д ${hours}ч`]
+
     if (carColor) set.add(color)
     if (carTariff) set.add(tariff)
-    if (rightWheel) set.add(wheel)
-    if (tank) set.add(fullTank)
+    if (valWheel) set.add(wheel)
+    if (valTank) set.add(tank)
+    if (valChair) set.add(chair)
+    if (hours && days) set.add(rent)
     setObjOptions(Array.from(set))
-  }, [carColor, carTariff, rightWheel, tank])
+  }, [carColor, carTariff, valWheel, valChair, valTank, days, hours])
 
   const clearStartDate = () => {
     setStartDate(new Date())
@@ -67,8 +84,17 @@ export const OptionsPage = () => {
   }
 
   useEffect(() => {
-    dispatch(getOptions({ objOptions }))
-  }, [objOptions, dispatch])
+    dispatch(
+      getOptions({
+        objOptions,
+        carColor,
+        tank,
+        childChair,
+        rightWheel,
+        carTariff
+      })
+    )
+  }, [objOptions, dispatch, carColor, tank, childChair, rightWheel, carTariff])
 
   return (
     <section className="order-page__order">
@@ -78,18 +104,19 @@ export const OptionsPage = () => {
           <div className="options__radio-block">
             <RadioInput
               text={'Любой'}
-              onClick={(e) => setCarColor(e.target.value)}
-              name={'options'}
+              name={'color'}
               value={'Любой'}
-              cheked={carColor}
+              onChange={(e) => setCarColor(e.target.value)}
+              colorvalue={carColor}
             />
             {carArray.colors?.map((item, id) => (
               <RadioInput
                 text={item}
-                onClick={(e) => setCarColor(e.target.value)}
                 key={id}
-                name={'options'}
+                name={'color'}
                 value={item}
+                onChange={(e) => setCarColor(e.target.value)}
+                colorvalue={carColor}
               />
             ))}
           </div>
@@ -146,16 +173,17 @@ export const OptionsPage = () => {
           <div className="options__inner options__inner-buttons">
             <RadioInput
               text="Поминутно, 7₽/мин"
-              onClick={(e) => setCarTariff(e.target.value)}
-              value="Поминутно"
+              onChange={(e) => setCarTariff(e.target.value)}
+              value={'Поминутно'}
               name={'tariff'}
-              cheked
+              tarifvalue={carTariff}
             />
             <RadioInput
               text="На сутки, 1999 ₽/сутки"
-              onClick={(e) => setCarTariff(e.target.value)}
+              onChange={(e) => setCarTariff(e.target.value)}
               name={'tariff'}
-              value="На сутки"
+              value={'На сутки'}
+              tarifvalue={carTariff}
             />
           </div>
         </div>
@@ -164,20 +192,24 @@ export const OptionsPage = () => {
           <div className="options__inner options__inner-buttons">
             <Checkbox
               text={'Полный бак, 500р'}
-              value={tank}
-              onClick={(e) => setTank(!tank)}
+              checked={tank}
+              onChange={(e) => {
+                setTank(!tank)
+              }}
               name={'extra'}
             />
             <Checkbox
               text={'Детское кресло, 200р'}
-              value={childChair}
-              onClick={(e) => setChildChair(!childChair)}
+              checked={childChair}
+              onChange={(e) => setChildChair(!childChair)}
               name={'extra'}
             />
             <Checkbox
               text={'Правый руль, 1600р'}
-              value={rightWheel}
-              onClick={(e) => setRightWheel(!rightWheel)}
+              checked={rightWheel}
+              onChange={(e) => {
+                setRightWheel(!rightWheel)
+              }}
               name={'extra'}
             />
           </div>

@@ -3,8 +3,6 @@ import { useSelector } from 'react-redux'
 
 export const Cart = () => {
   const objOptions = useSelector((state) => state.order.options).flat()
-  // const entries = Object.entries(objOptions)
-  console.log(objOptions)
 
   return (
     <>

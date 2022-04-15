@@ -75,6 +75,11 @@
   &__calendar {
     right: 7px;
     top: -15px;
+    @media (min-width: 768px) {
+      top: 3px;
+      width: 11px;
+      height: 11px;
+    }
   }
 }
 
