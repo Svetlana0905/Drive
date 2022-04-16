@@ -4,6 +4,7 @@ import {
   Checkbox,
   ClearInputButton
 } from '../../components/Buttons/Buttons'
+
 import 'react-datepicker/dist/react-datepicker.css'
 import setHours from 'date-fns/setHours'
 import ru from 'date-fns/locale/ru'
@@ -12,6 +13,7 @@ import DatePicker from 'react-datepicker'
 import { useSelector, useDispatch } from 'react-redux'
 import { useEffect, useState } from 'react'
 import { getOptions } from '../../redux/orderSlice'
+import { Rate } from '../../components/Rate/Rate'
 
 export const OptionsPage = () => {
   const dispatch = useDispatch()
@@ -21,7 +23,8 @@ export const OptionsPage = () => {
   const [carTariff, setCarTariff] = useState(
     useSelector((state) => state.order.tariffCar)
   )
-  console.log(carTariff + ' tarif stor')
+  const [carTariffВData, setCarTariffData] = useState([])
+
   const [tank, setTank] = useState(useSelector((state) => state.order.tank))
   const [childChair, setChildChair] = useState(
     useSelector((state) => state.order.chair)
@@ -91,10 +94,20 @@ export const OptionsPage = () => {
         tank,
         childChair,
         rightWheel,
-        carTariff
+        carTariff,
+        carTariffВData
       })
     )
-  }, [objOptions, dispatch, carColor, tank, childChair, rightWheel, carTariff])
+  }, [
+    objOptions,
+    carTariffВData,
+    dispatch,
+    carColor,
+    tank,
+    childChair,
+    rightWheel,
+    carTariff
+  ])
 
   return (
     <section className="order-page__order">
@@ -107,7 +120,7 @@ export const OptionsPage = () => {
               name={'color'}
               value={'Любой'}
               onChange={(e) => setCarColor(e.target.value)}
-              colorvalue={carColor}
+              defaultVal={carColor}
             />
             {carArray.colors?.map((item, id) => (
               <RadioInput
@@ -116,7 +129,7 @@ export const OptionsPage = () => {
                 name={'color'}
                 value={item}
                 onChange={(e) => setCarColor(e.target.value)}
-                colorvalue={carColor}
+                defaultVal={carColor}
               />
             ))}
           </div>
@@ -171,19 +184,10 @@ export const OptionsPage = () => {
         <div className="options__inner">
           <p className="text">Тариф</p>
           <div className="options__inner options__inner-buttons">
-            <RadioInput
-              text="Поминутно, 7₽/мин"
-              onChange={(e) => setCarTariff(e.target.value)}
-              value={'Поминутно'}
-              name={'tariff'}
-              tarifvalue={carTariff}
-            />
-            <RadioInput
-              text="На сутки, 1999 ₽/сутки"
-              onChange={(e) => setCarTariff(e.target.value)}
-              name={'tariff'}
-              value={'На сутки'}
-              tarifvalue={carTariff}
+            <Rate
+              setCarTariff={setCarTariff}
+              carTariff={carTariff}
+              setCarTariffData={setCarTariffData}
             />
           </div>
         </div>

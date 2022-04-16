@@ -13,7 +13,7 @@ export const CarPage = () => {
 
   const [filter, setFilter] = useState('')
   const [carModel, setCarModel] = useState('')
-  const [idCar, setIdCar] = useState(null)
+  const [idCar, setIdCar] = useState('')
   const categories = Categories()
 
   let carData = []
@@ -38,6 +38,7 @@ export const CarPage = () => {
             }}
             name={'car'}
             value={'Все'}
+            // defaultVal={'Все'}
           />
           {categories.map((item, id) => (
             <RadioInput
@@ -48,6 +49,7 @@ export const CarPage = () => {
               key={id}
               name={'car'}
               value={item.name}
+              defaultVal={filter}
             />
           ))}
         </div>

@@ -26,7 +26,7 @@ export const ClearInputButton = ({ clearInput, name }) => {
   )
 }
 
-export const BigButton = ({ onClick, text, id, page, disabled }) => {
+export const BigButton = ({ onClick, text, disabled }) => {
   return (
     <button onClick={onClick} className={'btn-price'} disabled={disabled}>
       {text}
@@ -34,22 +34,12 @@ export const BigButton = ({ onClick, text, id, page, disabled }) => {
   )
 }
 
-export const RadioInput = ({
-  value,
-  text,
-  name,
-  onChange,
-  tarifvalue,
-  colorvalue
-}) => {
-  const [color, setColor] = useState(colorvalue)
-  const [tariff, setTariff] = useState(tarifvalue)
-  // console.log(tariff)
+export const RadioInput = ({ value, text, name, onChange, defaultVal }) => {
+  const [currentVal, setCurrentVal] = useState(defaultVal)
 
   useEffect(() => {
-    setColor(colorvalue)
-    setTariff(tarifvalue)
-  }, [setColor, colorvalue, color, tariff, tarifvalue])
+    setCurrentVal(defaultVal)
+  }, [setCurrentVal, defaultVal, currentVal])
 
   return (
     <label className="radio">
@@ -59,7 +49,7 @@ export const RadioInput = ({
         onChange={onChange}
         name={name}
         value={value}
-        checked={name === 'color' ? value === color : value === tariff}
+        checked={value === currentVal}
       />
       <span className="radio__span text">{text}</span>
     </label>

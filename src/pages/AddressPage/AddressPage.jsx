@@ -1,17 +1,15 @@
 import { useGetCityQuery, useGetPointQuery } from '../../redux/'
 import { useDispatch, useSelector } from 'react-redux'
 import { useState, useEffect, useMemo } from 'react'
-import { addDataAddress, changeDisabledBtn } from '../../redux/orderSlice'
+import { addDataAddress } from '../../redux/orderSlice'
 import { Preload } from '../../components/Preload/Preload'
 import { ListDropDown } from '../../components/ListDropDown/ListDropDown'
 import { MapBlock } from '../../components/Map/MapBlock'
 
 export const AddressPage = () => {
   const dispatch = useDispatch()
-  const cityFromState = useSelector((state) => state.order.city)
-  const pointFromState = useSelector((state) => state.order.point)
-  const [city, setCity] = useState(cityFromState)
-  const [point, setPoint] = useState(pointFromState)
+  const [city, setCity] = useState(useSelector((state) => state.order.city))
+  const [point, setPoint] = useState(useSelector((state) => state.order.point))
   const [cityId, setCityId] = useState('')
   const [pointId, setPointId] = useState('')
   const [filterPoint, setFilterPoint] = useState([])
@@ -23,15 +21,16 @@ export const AddressPage = () => {
   if (isPointsSuccess) {
     pointsArray = points.data
   }
+
   const clearPoint = () => {
     setPoint('')
-    dispatch(changeDisabledBtn(true))
+    // dispatch(changeDisabledBtn(true))
   }
 
   const clearCity = () => {
     setPoint('')
     setCity('')
-    dispatch(changeDisabledBtn(true))
+    // dispatch(changeDisabledBtn(true))
   }
 
   useEffect(() => {

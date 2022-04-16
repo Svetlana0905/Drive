@@ -3,7 +3,7 @@ import { CarPage } from '../pages/CarPage/CarPage'
 import { OptionsPage } from '../pages/OptionsPage/OptionsPage'
 import { AddOrder } from '../pages/AddOrder/AddOrder'
 import { useDispatch, useSelector } from 'react-redux'
-import { backStep, forwardStep } from '../redux/orderSlice'
+import { forwardStep } from '../redux/orderSlice'
 
 import '../style/navigate.scss'
 // import { useEffect, useState } from 'react'
@@ -14,7 +14,7 @@ export const FormSlider = [
     btnText: 'Выбрать модель',
     isDone: false,
     title: 'Местоположение',
-    dataId: { cityId: null, pointId: null },
+    arr: ['cityId', 'pointId'],
     onClick: (page) => {
       return (dispatch) => {
         dispatch(forwardStep(page))
@@ -26,7 +26,7 @@ export const FormSlider = [
     btnText: 'Дополнительно',
     isDone: false,
     title: 'Модель',
-    dataId: { carId: null, category: '' },
+    arr: ['cityId', 'pointId', 'carId'],
     onClick: (page) => {
       return (dispatch) => {
         dispatch(forwardStep(page))
@@ -38,16 +38,18 @@ export const FormSlider = [
     btnText: 'Итого',
     isDone: false,
     title: 'Дополнительно',
-    dataId: {
-      color: 'Любой',
-      dateFrom: 0,
-      dateTo: 0,
-      rateId: null,
-      isFullTank: false,
-      isNeedChildChair: false,
-      isRightWheel: false,
-      price: 0
-    },
+    arr: [
+      'cityId',
+      'pointId',
+      'carId',
+      'color',
+      'isFullTank',
+      'isNeedChildChair',
+      'isRightWheel',
+      'price',
+      'rateId'
+    ],
+
     onClick: (page) => {
       return (dispatch) => {
         dispatch(forwardStep(page))
@@ -72,12 +74,12 @@ export const FormSlider = [
       isNeedChildChair: false,
       isRightWheel: false,
       price: 0
-    },
-    onClick: (page) => {
-      return (dispatch) => {
-        dispatch(forwardStep(page))
-      }
     }
+    // onClick: (style) => {
+    //   return (dispatch) => {
+    //     dispatch(forwardStep(!style))
+    //   }
+    // }
   }
 ]
 
@@ -108,7 +110,7 @@ export const Navigate = () => {
           onClick={(e) => {
             if (index === page + 1 || index <= biggerPage + 1)
               dispatch(forwardStep(index))
-            else if (index < page) dispatch(backStep(index))
+            else if (index < page) dispatch(forwardStep(index))
             click(index)
           }}>
           {item.title}
