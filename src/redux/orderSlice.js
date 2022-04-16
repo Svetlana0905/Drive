@@ -61,7 +61,7 @@ export const orderSlise = createSlice({
       state.maxPrice = modelCar.carModel.priceMax
     },
     getOptions: (state, data) => {
-      console.log(data.payload)
+      // console.log(data.payload)
       if (data.payload.carColor) {
         state.colorCar = `${data.payload.carColor}`
         state.dataId.color = `${data.payload.carColor}`
@@ -94,7 +94,10 @@ export const orderSlise = createSlice({
         state.dataId.isRightWhell = false
         state.rightWheel = false
       }
-
+      if (data.payload.startDateId && data.payload.endDateId) {
+        state.dataId.dateFrom = data.payload.startDateId
+        state.dataId.dateTo = data.payload.endDateId
+      }
       if (data.payload.objOptions) {
         state.options.splice(state.numberPage)
         state.options.push(data.payload.objOptions)

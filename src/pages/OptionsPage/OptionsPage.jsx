@@ -4,7 +4,6 @@ import {
   Checkbox,
   ClearInputButton
 } from '../../components/Buttons/Buttons'
-
 import 'react-datepicker/dist/react-datepicker.css'
 import setHours from 'date-fns/setHours'
 import ru from 'date-fns/locale/ru'
@@ -34,7 +33,10 @@ export const OptionsPage = () => {
   )
 
   const [startDate, setStartDate] = useState(new Date())
-  const [endDate, setEndDate] = useState(null)
+  const [startDateId, setStartDateId] = useState('')
+  const [endDate, setEndDate] = useState()
+  const [endDateId, setEndDateId] = useState('')
+
   const [objOptions, setObjOptions] = useState({})
 
   const currentTime = endDate > startDate ? endDate - startDate : 0
@@ -80,11 +82,16 @@ export const OptionsPage = () => {
 
   const startDateHandler = (item) => {
     setStartDate(item)
+
     setEndDate(null)
   }
   const endDateHandler = (item) => {
     setEndDate(item)
   }
+  useEffect(() => {
+    setStartDateId(new Date(startDate).getTime())
+    setEndDateId(new Date(endDate).getTime())
+  }, [startDate, endDate])
 
   useEffect(() => {
     dispatch(
@@ -95,7 +102,9 @@ export const OptionsPage = () => {
         childChair,
         rightWheel,
         carTariff,
-        carTariffВData
+        carTariffВData,
+        startDateId,
+        endDateId
       })
     )
   }, [
@@ -106,7 +115,9 @@ export const OptionsPage = () => {
     tank,
     childChair,
     rightWheel,
-    carTariff
+    carTariff,
+    startDateId,
+    endDateId
   ])
 
   return (
