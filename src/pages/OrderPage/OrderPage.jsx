@@ -12,21 +12,29 @@ export const OrderPage = () => {
   const dispatch = useDispatch()
   // const isDisabled = useSelector((state) => state.order.disabledBtn)
   const numberPage = useSelector((state) => state.order.numberPage)
-  const dataState = useSelector((state) => state.order.dataId)
   const [isDisabledBtn, setDisabledBtn] = useState(true)
-
   const [data, setData] = useState([])
+  const [titleState, setTitleState] = useState([])
+
+  const objOptions = useSelector((state) => state.order.options).flat()
+
+  console.log(objOptions)
 
   useEffect(() => {
     setData(FormSlider[numberPage].arr)
+    setTitleState()
+    objOptions.map((item) => {
+      console.log(item)
+      return setTitleState(item[0])
+    })
 
-    Object.keys(dataState).length >= data.length
+    objOptions.length >= data.length
       ? setDisabledBtn(false)
       : setDisabledBtn(true)
-    // console.log(isDisabledBtn)
+
     console.log(data)
-    console.log(dataState)
-  }, [setData, data, numberPage, dataState, isDisabledBtn])
+    console.log(titleState)
+  }, [setData, data, numberPage, titleState, isDisabledBtn, objOptions])
 
   // const [visiblePage, setVisiblePage] = useState(false)
 

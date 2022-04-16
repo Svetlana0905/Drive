@@ -3,10 +3,9 @@ import { useSelector } from 'react-redux'
 
 export const Cart = () => {
   const objOptions = useSelector((state) => state.order.options).flat()
-
   return (
     <>
-      {objOptions.length > 0
+      {objOptions
         ? objOptions.map((item, id) => (
             <div className="option" key={id}>
               <span className="option__name text">{item[0]}</span>

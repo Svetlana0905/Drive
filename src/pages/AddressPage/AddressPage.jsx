@@ -24,12 +24,15 @@ export const AddressPage = () => {
 
   const clearPoint = () => {
     setPoint('')
+    console.log(city)
+    dispatch(addDataAddress({ city, point }))
     // dispatch(changeDisabledBtn(true))
   }
 
   const clearCity = () => {
     setPoint('')
     setCity('')
+    dispatch(addDataAddress({ city }))
     // dispatch(changeDisabledBtn(true))
   }
 

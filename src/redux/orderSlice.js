@@ -35,7 +35,7 @@ export const orderSlise = createSlice({
       const addressData = data.payload
       state.city = addressData.city
       state.point = addressData.point
-      if (state.city) state.options.length = 0
+      state.options.length = 0
       if (state.city) state.biggerPage = state.numberPage
       if (addressData.city && addressData.point) {
         state.options.push([['Пункт выдачи', `${state.city}, ${state.point}`]])

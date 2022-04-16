@@ -14,7 +14,7 @@ export const FormSlider = [
     btnText: 'Выбрать модель',
     isDone: false,
     title: 'Местоположение',
-    arr: ['cityId', 'pointId'],
+    arr: ['Пункт выдачи'],
     onClick: (page) => {
       return (dispatch) => {
         dispatch(forwardStep(page))
@@ -26,7 +26,7 @@ export const FormSlider = [
     btnText: 'Дополнительно',
     isDone: false,
     title: 'Модель',
-    arr: ['cityId', 'pointId', 'carId'],
+    arr: ['Модель'],
     onClick: (page) => {
       return (dispatch) => {
         dispatch(forwardStep(page))
@@ -38,17 +38,7 @@ export const FormSlider = [
     btnText: 'Итого',
     isDone: false,
     title: 'Дополнительно',
-    arr: [
-      'cityId',
-      'pointId',
-      'carId',
-      'color',
-      'isFullTank',
-      'isNeedChildChair',
-      'isRightWheel',
-      'price',
-      'rateId'
-    ],
+    arr: ['Пункт выдачи', 'Модель', 'Длительность аренды', 'Тариф'],
 
     onClick: (page) => {
       return (dispatch) => {
