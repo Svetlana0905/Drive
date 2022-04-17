@@ -24,9 +24,7 @@ export const AddressPage = () => {
 
   const clearPoint = () => {
     setPoint('')
-    console.log(city)
     dispatch(addDataAddress({ city, point }))
-    // dispatch(changeDisabledBtn(true))
   }
 
   const clearCity = () => {

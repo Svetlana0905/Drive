@@ -6,7 +6,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import { forwardStep } from '../redux/orderSlice'
 
 import '../style/navigate.scss'
-// import { useEffect, useState } from 'react'
 
 export const FormSlider = [
   {
@@ -38,8 +37,7 @@ export const FormSlider = [
     btnText: 'Итого',
     isDone: false,
     title: 'Дополнительно',
-    arr: ['Пункт выдачи', 'Модель', 'Длительность аренды', 'Тариф'],
-
+    arr: ['Пункт выдачи', 'Модель', 'Длительность аренды'],
     onClick: (page) => {
       return (dispatch) => {
         dispatch(forwardStep(page))
@@ -51,20 +49,7 @@ export const FormSlider = [
     btnText: 'Заказать',
     isDone: false,
     title: 'Итого',
-    data: {
-      orderStatusId: { id: '5e26a191099b810b946c5d89', name: 'new' },
-      cityId: null,
-      pointId: null,
-      carId: null,
-      color: 'Любой',
-      dateFrom: 0,
-      dateTo: 0,
-      rateId: null,
-      isFullTank: false,
-      isNeedChildChair: false,
-      isRightWheel: false,
-      price: 0
-    }
+    arr: ['Пункт выдачи', 'Модель', 'Длительность аренды']
     // onClick: (style) => {
     //   return (dispatch) => {
     //     dispatch(forwardStep(!style))
@@ -76,7 +61,6 @@ export const FormSlider = [
 export const Navigate = () => {
   const page = useSelector((state) => state.order.numberPage)
   const biggerPage = useSelector((state) => state.order.biggerPage)
-  // console.log(biggerPage + ' bigger')
   const dispatch = useDispatch()
 
   const navName = 'nav-link'
@@ -86,9 +70,6 @@ export const Navigate = () => {
     else return navName
   }
 
-  const click = (id) => {
-    console.log(id + ' index')
-  }
   return (
     <>
       {FormSlider.map((item, index) => (
@@ -96,12 +77,10 @@ export const Navigate = () => {
           type="button"
           key={index}
           className={getClass(index, page)}
-          // disabled={index > page + 1}
           onClick={(e) => {
             if (index === page + 1 || index <= biggerPage + 1)
               dispatch(forwardStep(index))
             else if (index < page) dispatch(forwardStep(index))
-            click(index)
           }}>
           {item.title}
         </button>

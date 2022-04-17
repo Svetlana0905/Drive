@@ -4,20 +4,31 @@ import { useGetCarQuery } from '../../redux'
 import { RadioInput } from '../../components/Buttons/Buttons'
 import { Categories } from '../../redux/actions/Actions'
 import { useEffect, useState } from 'react'
-import { getModel } from '../../redux/orderSlice'
-import { useDispatch } from 'react-redux'
+import { getModel, getCategory } from '../../redux/orderSlice'
+import { useDispatch, useSelector } from 'react-redux'
 import stub from '../../assets/stub.jpg'
 
 export const CarPage = () => {
   const dispatch = useDispatch()
+  const categories = Categories()
+  let carData = []
 
-  const [filter, setFilter] = useState('')
+  const { data: car = [], isSuccess, isLoading } = useGetCarQuery()
+  const [filterChek, setFilterCheck] = useState(
+    useSelector((state) => state.order.categories)
+  )
+
+  const [filter, setFilter] = useState(`${filterChek}`)
   const [carModel, setCarModel] = useState('')
   const [idCar, setIdCar] = useState('')
-  const categories = Categories()
 
-  let carData = []
-  const { data: car = [], isSuccess, isLoading } = useGetCarQuery()
+  useEffect(() => {
+    filterChek === 'Все' ? setFilter('') : setFilter(filterChek)
+  }, [setFilter, filterChek, filter])
+
+  useEffect(() => {
+    if (filterChek) dispatch(getCategory({ filterChek }))
+  }, [dispatch, filterChek])
 
   useEffect(() => {
     if (carModel) dispatch(getModel({ carModel }))
@@ -34,22 +45,22 @@ export const CarPage = () => {
           <RadioInput
             text={'Все'}
             onChange={(e) => {
-              setFilter('')
+              setFilterCheck('Все')
             }}
             name={'car'}
             value={'Все'}
-            // defaultVal={'Все'}
+            defaultVal={filterChek}
           />
           {categories.map((item, id) => (
             <RadioInput
               text={item.name}
               onChange={(e) => {
-                setFilter(e.target.value)
+                setFilterCheck(e.target.value)
               }}
               key={id}
               name={'car'}
               value={item.name}
-              defaultVal={filter}
+              defaultVal={filterChek}
             />
           ))}
         </div>

@@ -14,27 +14,21 @@ export const OrderPage = () => {
   const numberPage = useSelector((state) => state.order.numberPage)
   const [isDisabledBtn, setDisabledBtn] = useState(true)
   const [data, setData] = useState([])
-  const [titleState, setTitleState] = useState([])
 
   const objOptions = useSelector((state) => state.order.options).flat()
 
-  console.log(objOptions)
-
   useEffect(() => {
+    const a = []
+    setDisabledBtn()
     setData(FormSlider[numberPage].arr)
-    setTitleState()
-    objOptions.map((item) => {
-      console.log(item)
-      return setTitleState(item[0])
-    })
-
-    objOptions.length >= data.length
-      ? setDisabledBtn(false)
-      : setDisabledBtn(true)
-
-    console.log(data)
-    console.log(titleState)
-  }, [setData, data, numberPage, titleState, isDisabledBtn, objOptions])
+    for (const item of objOptions) {
+      a.push(item[0])
+    }
+    // console.log(a)
+    data.map((item) =>
+      a.includes(item) ? setDisabledBtn(false) : setDisabledBtn(true)
+    )
+  }, [setData, data, numberPage, isDisabledBtn, objOptions])
 
   // const [visiblePage, setVisiblePage] = useState(false)
 

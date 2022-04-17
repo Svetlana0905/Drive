@@ -10,8 +10,9 @@ export const orderSlise = createSlice({
     minPrice: 0,
     maxPrice: 0,
     model: '',
-    colorCar: '',
-    tariffCar: '',
+    categories: '',
+    colorCar: 'Любой',
+    tariffCar: 'Суточный',
     chair: false,
     tank: false,
     rightWheel: false,
@@ -20,17 +21,13 @@ export const orderSlise = createSlice({
     carArray: [],
     options: [],
     dataId: {},
-    disabledBtn: false,
     wasChange: false
   },
   reducers: {
     forwardStep: (state, data) => {
-      const currentPage = data.payload
-      state.numberPage = currentPage
+      state.numberPage = data.payload
     },
-    changeDisabledBtn: (state, data) => {
-      state.disabledBtn = data.payload
-    },
+
     addDataAddress: (state, data) => {
       const addressData = data.payload
       state.city = addressData.city
@@ -45,9 +42,12 @@ export const orderSlise = createSlice({
         }
       } else state.disabledBtn = true
     },
+    getCategory: (state, data) => {
+      if (data.payload.filterChek) state.categories = data.payload.filterChek
+    },
     getModel: (state, data) => {
       const modelCar = data.payload
-      // console.log(modelCar)
+      console.log(modelCar)
       state.model = modelCar.carModel.name
       state.carArray = modelCar.carModel
       state.options.splice(state.numberPage)
@@ -56,7 +56,6 @@ export const orderSlise = createSlice({
         state.biggerPage = state.numberPage
         state.dataId.carId = `${modelCar.carModel.id}`
       }
-
       state.minPrice = modelCar.carModel.priceMin
       state.maxPrice = modelCar.carModel.priceMax
     },
@@ -125,9 +124,9 @@ export const {
   addDataAddress,
   forwardStep,
   getModel,
-  changeDisabledBtn,
   getPrices,
   getOptions,
+  getCategory,
   getOptArr
 } = orderSlise.actions
 export default orderSlise.reducer
