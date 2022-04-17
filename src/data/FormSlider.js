@@ -14,6 +14,7 @@ export const FormSlider = [
     isDone: false,
     title: 'Местоположение',
     arr: ['Пункт выдачи'],
+    order: 'close',
     onClick: (page) => {
       return (dispatch) => {
         dispatch(forwardStep(page))
@@ -26,6 +27,7 @@ export const FormSlider = [
     isDone: false,
     title: 'Модель',
     arr: ['Модель'],
+    order: 'close',
     onClick: (page) => {
       return (dispatch) => {
         dispatch(forwardStep(page))
@@ -38,6 +40,7 @@ export const FormSlider = [
     isDone: false,
     title: 'Дополнительно',
     arr: ['Пункт выдачи', 'Модель', 'Длительность аренды'],
+    order: 'close',
     onClick: (page) => {
       return (dispatch) => {
         dispatch(forwardStep(page))
@@ -49,12 +52,8 @@ export const FormSlider = [
     btnText: 'Заказать',
     isDone: false,
     title: 'Итого',
-    arr: ['Пункт выдачи', 'Модель', 'Длительность аренды']
-    // onClick: (style) => {
-    //   return (dispatch) => {
-    //     dispatch(forwardStep(!style))
-    //   }
-    // }
+    arr: ['Пункт выдачи', 'Модель', 'Длительность аренды'],
+    order: 'open'
   }
 ]
 

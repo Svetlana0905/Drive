@@ -6,11 +6,10 @@ import { Price } from '../../containers/Price'
 import { FormSlider, Navigate } from '../../data/FormSlider'
 import { BigButton } from '../../components/Buttons/Buttons'
 import { useState, useEffect } from 'react'
-// import { ConfirmPage } from '../ConfirmPage/ConfirmPage'
+import { ConfirmPage } from '../ConfirmPage/ConfirmPage'
 
 export const OrderPage = () => {
   const dispatch = useDispatch()
-  // const isDisabled = useSelector((state) => state.order.disabledBtn)
   const numberPage = useSelector((state) => state.order.numberPage)
   const [isDisabledBtn, setDisabledBtn] = useState(true)
   const [data, setData] = useState([])
@@ -18,23 +17,22 @@ export const OrderPage = () => {
   const objOptions = useSelector((state) => state.order.options).flat()
 
   useEffect(() => {
-    const a = []
+    const arrFieldName = []
     setDisabledBtn()
     setData(FormSlider[numberPage].arr)
     for (const item of objOptions) {
-      a.push(item[0])
+      arrFieldName.push(item[0])
     }
-    // console.log(a)
     data.map((item) =>
-      a.includes(item) ? setDisabledBtn(false) : setDisabledBtn(true)
+      arrFieldName.includes(item) ? setDisabledBtn(false) : setDisabledBtn(true)
     )
   }, [setData, data, numberPage, isDisabledBtn, objOptions])
 
-  // const [visiblePage, setVisiblePage] = useState(false)
+  const [visiblePage, setVisiblePage] = useState(false)
 
   return (
     <section className="order-page">
-      {/* <ConfirmPage stylePage={visiblePage} setVisiblePage={setVisiblePage} /> */}
+      <ConfirmPage visiblePage={visiblePage} setVisiblePage={setVisiblePage} />
       <Header homeStyle="order-page__header header" />
       <nav className="nav">
         <div className="nav__inner">{<Navigate />}</div>
@@ -47,12 +45,14 @@ export const OrderPage = () => {
             <Cart />
           </div>
           <Price />
-          {/* {console.log(FormSlider[numberPage].data.orderStatusId.name)} */}
           <BigButton
+            className={'btn-price'}
             text={FormSlider[numberPage].btnText}
             disabled={isDisabledBtn}
             onClick={() => {
-              dispatch(FormSlider[numberPage].onClick(numberPage + 1))
+              FormSlider[numberPage].order === 'open'
+                ? setVisiblePage(true)
+                : dispatch(FormSlider[numberPage].onClick(numberPage + 1))
             }}
           />
         </section>

@@ -26,9 +26,9 @@ export const ClearInputButton = ({ clearInput, name }) => {
   )
 }
 
-export const BigButton = ({ onClick, text, disabled }) => {
+export const BigButton = ({ onClick, text, disabled, className }) => {
   return (
-    <button onClick={onClick} className={'btn-price'} disabled={disabled}>
+    <button onClick={onClick} className={className} disabled={disabled}>
       {text}
     </button>
   )

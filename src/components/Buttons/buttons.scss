@@ -107,7 +107,11 @@
     width: 287px;
   }
   &.btn-price__override {
+    width: 177px;
     background: linear-gradient(90deg, #493013 0%, #7b0c3b 100%);
+  }
+  &.btn-price__small {
+    width: 177px;
   }
 }
 .btn-price[disabled] {

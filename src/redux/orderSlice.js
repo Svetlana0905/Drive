@@ -18,10 +18,10 @@ export const orderSlise = createSlice({
     rightWheel: false,
     startDate: '',
     endDate: '',
+    endDateId: null,
     carArray: [],
     options: [],
-    dataId: {},
-    wasChange: false
+    dataId: {}
   },
   reducers: {
     forwardStep: (state, data) => {
@@ -33,6 +33,7 @@ export const orderSlise = createSlice({
       state.city = addressData.city
       state.point = addressData.point
       state.options.length = 0
+      state.endDateId = null
       if (state.city) state.biggerPage = state.numberPage
       if (addressData.city && addressData.point) {
         state.options.push([['Пункт выдачи', `${state.city}, ${state.point}`]])
@@ -40,31 +41,31 @@ export const orderSlise = createSlice({
           cityId: `${addressData.cityId}`,
           pointId: `${addressData.pointId}`
         }
-      } else state.disabledBtn = true
+      }
     },
     getCategory: (state, data) => {
       if (data.payload.filterChek) state.categories = data.payload.filterChek
     },
     getModel: (state, data) => {
       const modelCar = data.payload
-      console.log(modelCar)
       state.model = modelCar.carModel.name
       state.carArray = modelCar.carModel
       state.options.splice(state.numberPage)
+      state.endDateId = null
       if (modelCar.carModel.name) {
         state.options.push([['Модель', `${state.model}`]])
         state.biggerPage = state.numberPage
-        state.dataId.carId = `${modelCar.carModel.id}`
       }
+      if (modelCar.carModel.id) state.dataId.carId = `${modelCar.carModel.id}`
       state.minPrice = modelCar.carModel.priceMin
       state.maxPrice = modelCar.carModel.priceMax
     },
     getOptions: (state, data) => {
-      // console.log(data.payload)
       if (data.payload.carColor) {
         state.colorCar = `${data.payload.carColor}`
         state.dataId.color = `${data.payload.carColor}`
       } else state.dataId.color = 'Любой'
+
       if (data.payload.carTariff) {
         state.tariffCar = data.payload.carTariff
         state.dataId.rateId = `${data.payload.carTariffВData.id}`
@@ -77,7 +78,6 @@ export const orderSlise = createSlice({
         state.tank = false
         state.dataId.isFullTank = false
       }
-
       if (data.payload.childChair) {
         state.chair = true
         state.dataId.isNeedChildChair = `${data.payload.childChair}`
@@ -85,7 +85,6 @@ export const orderSlise = createSlice({
         state.chair = false
         state.dataId.isNeedChildChair = false
       }
-
       if (data.payload.rightWheel) {
         state.rightWheel = true
         state.dataId.isRightWhell = `${data.payload.childChair}`
@@ -97,6 +96,11 @@ export const orderSlise = createSlice({
         state.dataId.dateFrom = data.payload.startDateId
         state.dataId.dateTo = data.payload.endDateId
       }
+      if (data.payload.endDateId) {
+        console.log(data.payload.endDateId)
+        state.endDateId = data.payload.endDateId
+      }
+
       if (data.payload.objOptions) {
         state.options.splice(state.numberPage)
         state.options.push(data.payload.objOptions)
@@ -111,7 +115,6 @@ export const orderSlise = createSlice({
       }, [])
       const maxPriceArray = data.payload.reduce((accum, item) => {
         accum.push(item.priceMax)
-        // console.log('rend')
         return accum
       }, [])
       state.minPrice = Math.min.apply(null, minPriceArray)

@@ -34,8 +34,12 @@ export const OptionsPage = () => {
 
   const [startDate, setStartDate] = useState(new Date())
   const [startDateId, setStartDateId] = useState('')
-  const [endDate, setEndDate] = useState()
-  const [endDateId, setEndDateId] = useState('')
+
+  const [endDateId, setEndDateId] = useState(
+    useSelector((state) => state.order.endDateId) // получение endDateId из stor для сохранения данных после рендерисна
+  )
+
+  const [endDate, setEndDate] = useState(() => endDateId)
 
   const [objOptions, setObjOptions] = useState({})
 
@@ -78,6 +82,9 @@ export const OptionsPage = () => {
   }
   const clearEndDate = () => {
     setEndDate(null)
+    // setEndDateId(null)
+    // console.log(endDateId)
+    // dispatch(getOptions({ endDateId }))
   }
 
   const startDateHandler = (item) => {
