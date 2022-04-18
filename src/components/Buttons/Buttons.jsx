@@ -55,14 +55,13 @@ export const RadioInput = ({ value, text, name, onChange, defaultVal }) => {
     </label>
   )
 }
-export const Checkbox = ({ text, value, name, checked, onChange }) => {
+export const Checkbox = ({ text, name, checked, onChange }) => {
   return (
     <label className="checkbox">
       <input
         className="checkbox__input"
         checked={checked}
         onChange={onChange}
-        value={value}
         name={name}
         type="checkbox"
       />

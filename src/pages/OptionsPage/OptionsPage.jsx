@@ -23,7 +23,6 @@ export const OptionsPage = () => {
     useSelector((state) => state.order.tariffCar)
   )
   const [carTariffВData, setCarTariffData] = useState([])
-
   const [tank, setTank] = useState(
     useSelector((state) => state.order.dataId.isFullTank)
   )
@@ -39,9 +38,9 @@ export const OptionsPage = () => {
   const [endDateId, setEndDateId] = useState(
     useSelector((state) => state.order.dataId.dateTo) // получение endDateId из stor для сохранения данных после рендерисна
   )
-  console.log(endDateId + 'endid')
+
   const [endDate, setEndDate] = useState(() => endDateId)
-  console.log(endDate + 'end')
+
   const [objOptions, setObjOptions] = useState({})
 
   const currentTime = endDate > startDate ? endDate - startDate : 0
@@ -99,7 +98,6 @@ export const OptionsPage = () => {
   }, [startDate, endDate])
 
   useEffect(() => {
-    console.log(endDateId + 'cleae end')
     dispatch(
       getOptions({
         objOptions,
@@ -213,7 +211,7 @@ export const OptionsPage = () => {
           <div className="options__inner options__inner-buttons">
             <Checkbox
               text={'Полный бак, 500р'}
-              checked={tank}
+              checked={!!tank}
               onChange={(e) => {
                 setTank(!tank)
               }}
@@ -221,13 +219,13 @@ export const OptionsPage = () => {
             />
             <Checkbox
               text={'Детское кресло, 200р'}
-              checked={childChair}
+              checked={!!childChair}
               onChange={(e) => setChildChair(!childChair)}
               name={'extra'}
             />
             <Checkbox
               text={'Правый руль, 1600р'}
-              checked={rightWheel}
+              checked={!!rightWheel}
               onChange={(e) => {
                 setRightWheel(!rightWheel)
               }}

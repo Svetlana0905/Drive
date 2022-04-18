@@ -12,7 +12,6 @@ export const orderSlise = createSlice({
     model: '',
     tariffCar: 'Суточный',
     categories: '',
-    tank: false,
     carArray: [],
     options: [],
     dataId: {}
@@ -80,7 +79,7 @@ export const orderSlise = createSlice({
         state.dataId.dateFrom = data.payload.startDateId
       }
       if (data.payload.endDateId) {
-        console.log(data.payload.endDateId + ' stor to')
+        // console.log(data.payload.endDateId + ' stor to')
         state.dataId.dateTo = data.payload.endDateId
       }
       if (data.payload.objOptions) {
