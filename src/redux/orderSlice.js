@@ -10,15 +10,9 @@ export const orderSlise = createSlice({
     minPrice: 0,
     maxPrice: 0,
     model: '',
-    categories: '',
-    colorCar: 'Любой',
     tariffCar: 'Суточный',
-    chair: false,
+    categories: '',
     tank: false,
-    rightWheel: false,
-    startDate: '',
-    endDate: '',
-    endDateId: null,
     carArray: [],
     options: [],
     dataId: {}
@@ -33,7 +27,7 @@ export const orderSlise = createSlice({
       state.city = addressData.city
       state.point = addressData.point
       state.options.length = 0
-      state.endDateId = null
+      state.dataId.endDateId = null
       if (state.city) state.biggerPage = state.numberPage
       if (addressData.city && addressData.point) {
         state.options.push([['Пункт выдачи', `${state.city}, ${state.point}`]])
@@ -51,7 +45,7 @@ export const orderSlise = createSlice({
       state.model = modelCar.carModel.name
       state.carArray = modelCar.carModel
       state.options.splice(state.numberPage)
-      state.endDateId = null
+      state.dataId.endDateId = null
       if (modelCar.carModel.name) {
         state.options.push([['Модель', `${state.model}`]])
         state.biggerPage = state.numberPage
@@ -61,46 +55,34 @@ export const orderSlise = createSlice({
       state.maxPrice = modelCar.carModel.priceMax
     },
     getOptions: (state, data) => {
-      if (data.payload.carColor) {
-        state.colorCar = `${data.payload.carColor}`
-        state.dataId.color = `${data.payload.carColor}`
-      } else state.dataId.color = 'Любой'
+      data.payload.carColor
+        ? (state.dataId.color = `${data.payload.carColor}`)
+        : (state.dataId.color = 'Любой')
 
       if (data.payload.carTariff) {
         state.tariffCar = data.payload.carTariff
         state.dataId.rateId = `${data.payload.carTariffВData.id}`
       } else state.tariffCar = 'На сутки'
 
-      if (data.payload.tank) {
-        state.tank = true
-        state.dataId.isFullTank = `${data.payload.tank}`
-      } else {
-        state.tank = false
-        state.dataId.isFullTank = false
-      }
-      if (data.payload.childChair) {
-        state.chair = true
-        state.dataId.isNeedChildChair = `${data.payload.childChair}`
-      } else {
-        state.chair = false
-        state.dataId.isNeedChildChair = false
-      }
-      if (data.payload.rightWheel) {
-        state.rightWheel = true
-        state.dataId.isRightWhell = `${data.payload.childChair}`
-      } else {
-        state.dataId.isRightWhell = false
-        state.rightWheel = false
-      }
-      if (data.payload.startDateId && data.payload.endDateId) {
+      data.payload.tank
+        ? (state.dataId.isFullTank = `${data.payload.tank}`)
+        : (state.dataId.isFullTank = false)
+
+      data.payload.childChair
+        ? (state.dataId.isNeedChildChair = `${data.payload.childChair}`)
+        : (state.dataId.isNeedChildChair = false)
+
+      data.payload.rightWheel
+        ? (state.dataId.isRightWhell = `${data.payload.childChair}`)
+        : (state.dataId.isRightWhell = false)
+
+      if (data.payload.startDateId) {
         state.dataId.dateFrom = data.payload.startDateId
-        state.dataId.dateTo = data.payload.endDateId
       }
       if (data.payload.endDateId) {
-        console.log(data.payload.endDateId)
-        state.endDateId = data.payload.endDateId
+        console.log(data.payload.endDateId + ' stor to')
+        state.dataId.dateTo = data.payload.endDateId
       }
-
       if (data.payload.objOptions) {
         state.options.splice(state.numberPage)
         state.options.push(data.payload.objOptions)

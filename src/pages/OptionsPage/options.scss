@@ -25,8 +25,11 @@
   }
   &__inner-buttons {
     padding-left: 19px;
-    gap: 8px;
+    gap: 18px;
     max-width: 310px;
+    @media (min-width: 768px) {
+      gap: 8px;
+    }
   }
   &__inner-data {
     width: 250px;

@@ -2,7 +2,7 @@ import './orderPage.scss'
 import { Header } from '../../components/Header/Header'
 import { useSelector, useDispatch } from 'react-redux'
 import { Cart } from '../../components/Cart/Cart'
-import { Price } from '../../containers/Price'
+import { Price, TotalPrice } from '../../containers/Price'
 import { FormSlider, Navigate } from '../../data/FormSlider'
 import { BigButton } from '../../components/Buttons/Buttons'
 import { useState, useEffect } from 'react'
@@ -45,6 +45,7 @@ export const OrderPage = () => {
             <Cart />
           </div>
           <Price />
+          <TotalPrice />
           <BigButton
             className={'btn-price'}
             text={FormSlider[numberPage].btnText}

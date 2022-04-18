@@ -17,30 +17,31 @@ import { Rate } from '../../components/Rate/Rate'
 export const OptionsPage = () => {
   const dispatch = useDispatch()
   const [carColor, setCarColor] = useState(
-    useSelector((state) => state.order.colorCar)
+    useSelector((state) => state.order.dataId.color)
   )
   const [carTariff, setCarTariff] = useState(
     useSelector((state) => state.order.tariffCar)
   )
   const [carTariffВData, setCarTariffData] = useState([])
 
-  const [tank, setTank] = useState(useSelector((state) => state.order.tank))
+  const [tank, setTank] = useState(
+    useSelector((state) => state.order.dataId.isFullTank)
+  )
   const [childChair, setChildChair] = useState(
-    useSelector((state) => state.order.chair)
+    useSelector((state) => state.order.dataId.isNeedChildChair)
   )
   const [rightWheel, setRightWheel] = useState(
-    useSelector((state) => state.order.rightWheel)
+    useSelector((state) => state.order.dataId.isRightWheel)
   )
-
   const [startDate, setStartDate] = useState(new Date())
   const [startDateId, setStartDateId] = useState('')
 
   const [endDateId, setEndDateId] = useState(
-    useSelector((state) => state.order.endDateId) // получение endDateId из stor для сохранения данных после рендерисна
+    useSelector((state) => state.order.dataId.dateTo) // получение endDateId из stor для сохранения данных после рендерисна
   )
-
+  console.log(endDateId + 'endid')
   const [endDate, setEndDate] = useState(() => endDateId)
-
+  console.log(endDate + 'end')
   const [objOptions, setObjOptions] = useState({})
 
   const currentTime = endDate > startDate ? endDate - startDate : 0
@@ -82,14 +83,11 @@ export const OptionsPage = () => {
   }
   const clearEndDate = () => {
     setEndDate(null)
-    // setEndDateId(null)
-    // console.log(endDateId)
-    // dispatch(getOptions({ endDateId }))
+    setEndDateId(null)
   }
 
   const startDateHandler = (item) => {
     setStartDate(item)
-
     setEndDate(null)
   }
   const endDateHandler = (item) => {
@@ -101,6 +99,7 @@ export const OptionsPage = () => {
   }, [startDate, endDate])
 
   useEffect(() => {
+    console.log(endDateId + 'cleae end')
     dispatch(
       getOptions({
         objOptions,
