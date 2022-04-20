@@ -76,7 +76,7 @@ export const OptionsPage = () => {
   }, [carColor, carTariff, valWheel, valChair, valTank, days, hours])
 
   const clearStartDate = () => {
-    setStartDate(new Date())
+    setStartDate(null)
     setEndDate(null)
   }
 
@@ -155,7 +155,7 @@ export const OptionsPage = () => {
             <DatePicker
               selected={startDate}
               minDate={new Date()}
-              onChange={startDateHandler}
+              onChange={(item) => startDateHandler(item)}
               minTime={
                 startDate.getDate() === new Date().getDate()
                   ? startDate
