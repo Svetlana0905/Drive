@@ -8,17 +8,12 @@ import { Dots } from '../Dots/Dots'
 export const Slider = () => {
   const [slideIndex, setSlideIndex] = useState(1)
   const dataLenght = SliderData.length
-
   const nextSlide = () => {
-    slideIndex !== SliderData.length
-      ? setSlideIndex(slideIndex + 1)
-      : setSlideIndex(1)
+    slideIndex !== dataLenght ? setSlideIndex(slideIndex + 1) : setSlideIndex(1)
   }
 
   const prevSlide = () => {
-    slideIndex !== 1
-      ? setSlideIndex(slideIndex - 1)
-      : setSlideIndex(SliderData.length)
+    slideIndex !== 1 ? setSlideIndex(slideIndex - 1) : setSlideIndex(dataLenght)
   }
 
   const moveDot = (index) => {

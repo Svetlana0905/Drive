@@ -8,14 +8,14 @@ import { LinksData } from '../../data/LinksData'
 
 export const SideBar = () => {
   const [isVisible, toggleVisible] = useToggle(false)
-
+  const classess = isVisible ? `sidebar sidebar_open` : `sidebar`
   return (
-    <section className={isVisible ? 'sidebar sidebar_open' : 'sidebar'}>
+    <section className={classess}>
       <Burger toggleVisible={toggleVisible} isVisible={isVisible} />
       {isVisible && (
-        <div className="sidebar__content">
+        <div className={`sidebar__content`}>
           {LinksData.map((item) => (
-            <Link to={item.link} className="sidebar__link" key={item.title}>
+            <Link to={item.link} className={`sidebar__link`} key={item.title}>
               {item.title}
             </Link>
           ))}

@@ -1,5 +1,5 @@
 @import '../../style/app.scss';
-.link_btn_big {
+.link-btn-big {
   display: inline-block;
   width: 250px;
   padding: 14px 0 13px;
@@ -19,13 +19,14 @@
   &:active {
     background: $btnbright20;
   }
-  @media (max-width: 590px) {
+  @media (max-width: 768px) {
     margin-left: 0px;
     padding: 18px 0 9px;
     width: 100%;
     border-radius: 0px;
   }
 }
+
 .slide_link {
   color: $white;
   text-decoration: none;
@@ -53,4 +54,8 @@
   &.slide_link__purple {
     background: linear-gradient(90deg, #281349 0%, #720c7b 100%);
   }
+}
+.disabled {
+  background: $gray50;
+  cursor: not-allowed;
 }
