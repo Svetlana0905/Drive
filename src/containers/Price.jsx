@@ -1,4 +1,4 @@
-import { useGetCarQuery } from '../redux'
+import { useGetCarQuery, useGetTariffQuery } from '../redux'
 import { Preload } from '../components/Preload/Preload'
 import { useSelector, useDispatch } from 'react-redux'
 import { getPrices } from '../redux/orderSlice'
@@ -33,19 +33,19 @@ export const Price = () => {
 export const TotalPrice = () => {
   // const dataId = useSelector((state) => state.order.dataId)
   // console.log(dataId.cityId)
-  // console.log(dataId.poit)
+  // console.log(dataId.pointId)
 
-  // const { data = [], isLoading, isSuccess } = useGetTariffQuery()
+  const { data = [], isLoading, isSuccess } = useGetTariffQuery()
 
-  // const getCost = () => {
-  //   console.log(dateEnd, endDateId)
-  // }
-  // getCost()
-  // if (isLoading) {
-  //   return <Preload size={'small'} />
-  // }
-  // if (isSuccess) {
-  //   console.log(data)
-  // }
+  const getCost = () => {
+    // console.log(dateEnd, endDateId)
+  }
+  getCost()
+  if (isLoading) {
+    return <Preload size={'small'} />
+  }
+  if (isSuccess) {
+    console.log(data)
+  }
   return <></>
 }

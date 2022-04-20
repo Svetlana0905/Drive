@@ -41,10 +41,15 @@ export const OptionsPage = () => {
   )
 
   const [objOptions, setObjOptions] = useState({})
+  const [days, setDays] = useState(0)
+  const [hours, setHour] = useState(0)
 
-  const currentTime = endDate > startDate ? endDate - startDate : null
-  const days = Math.floor(currentTime / 1000 / 60 / 60 / 24)
-  const hours = Math.floor(currentTime / 1000 / 60 / 60) % 24
+  useEffect(() => {
+    const currentTime = endDate > startDate ? endDate - startDate : null
+    setDays(Math.floor(currentTime / 1000 / 60 / 60 / 24))
+    setHour(Math.floor(currentTime / 1000 / 60 / 60) % 24)
+  }, [setDays, setHour, startDate, endDate])
+
   const carArray = useSelector((state) => state.order.carArray)
 
   const [valTank, setValTank] = useState('')
@@ -75,13 +80,12 @@ export const OptionsPage = () => {
     setObjOptions(Array.from(set))
   }, [carColor, carTariff, valWheel, valChair, valTank, days, hours])
 
-  const clearStartDate = () => {
-    setStartDate(null)
-    setEndDate(null)
-  }
-
   const startDateHandler = (item) => {
     setStartDate(item)
+    setEndDate(null)
+  }
+  const clearStartDate = () => {
+    setStartDate(new Date())
     setEndDate(null)
   }
   const endDateHandler = (item) => {
@@ -130,9 +134,9 @@ export const OptionsPage = () => {
           <p className="text">Цвет</p>
           <div className="options__radio-block">
             <RadioInput
-              text={'Любой'}
-              name={'color'}
-              value={'Любой'}
+              text="Любой"
+              name="color"
+              value="Любой"
               onChange={(e) => setCarColor(e.target.value)}
               defaultVal={carColor}
             />
@@ -140,7 +144,7 @@ export const OptionsPage = () => {
               <RadioInput
                 text={item}
                 key={id}
-                name={'color'}
+                name="color"
                 value={item}
                 onChange={(e) => setCarColor(e.target.value)}
                 defaultVal={carColor}

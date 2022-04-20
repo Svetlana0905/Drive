@@ -25,21 +25,21 @@ export const orderSlise = createSlice({
     },
 
     addDataAddress: (state, data) => {
-      const addressData = data.payload
-      // console.log(data.payload)
-      state.city = addressData.city
-      state.point = addressData.point
+      console.log(data.payload)
+      console.log(state.city)
+      state.city = data.payload.city
+      state.point = data.payload.point
+
       state.options.length = 0
       state.dataId.endDateId = null
       if (state.city) state.biggerPage = state.numberPage
-      if (addressData.city && addressData.point) {
+      if (data.payload.city && data.payload.point) {
         state.options.push([['Пункт выдачи', `${state.city}, ${state.point}`]])
-        state.dataId = {
-          cityId: `${addressData.cityId}`,
-          pointId: `${addressData.pointId}`
-        }
       }
+      if (data.payload.cityId) state.dataId.cityId = `${data.payload.cityId}`
+      if (data.payload.pointId) state.dataId.pointId = `${data.payload.pointId}`
     },
+
     getCategory: (state, data) => {
       if (data.payload.filterChek) state.categories = data.payload.filterChek
     },
@@ -113,12 +113,11 @@ export const orderSlise = createSlice({
 
 export const {
   addDataAddress,
-  getPoint,
   forwardStep,
   getModel,
   getPrices,
   getOptions,
   getCategory,
-  getOptArr
+  addAddressMap
 } = orderSlise.actions
 export default orderSlise.reducer
