@@ -1,5 +1,5 @@
 import './map.scss'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import { YMaps, Map, Placemark } from 'react-yandex-maps'
 
 export const MapBlock = ({
@@ -51,14 +51,17 @@ export const MapBlock = ({
     }
   }, [pointsArray, pointMap, city])
 
-  const mapHandler = (placemark) => {
-    if (placemark) {
-      setCity(placemark.city)
-      setPoint(placemark.point)
-      setCityId(placemark.cityId)
-      setPointId(placemark.pointId)
-    }
-  }
+  const mapHandler = useMemo(
+    (placemark) => {
+      if (placemark) {
+        setCity(placemark.city)
+        setPoint(placemark.point)
+        setCityId(placemark.cityId)
+        setPointId(placemark.pointId)
+      }
+    },
+    [setCity, setPoint, setCityId, setPointId]
+  )
 
   return (
     <YMaps
