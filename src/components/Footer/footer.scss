@@ -7,7 +7,7 @@
   align-items: flex-end;
   padding: 15px 16px 21px;
   background: $dark100;
-  @media (min-width: 590px) {
+  @media (min-width: 768px) {
     flex-direction: row;
     justify-content: space-between;
     padding: 0px 32px 32px 0;
@@ -33,7 +33,7 @@
     &:disabled {
       color: $gray100;
     }
-    @media (min-width: 590px) {
+    @media (min-width: 768px) {
       color: $dark100;
     }
     &:focus,

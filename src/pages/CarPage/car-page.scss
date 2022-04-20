@@ -1,0 +1,57 @@
+@import '../../style//app.scss';
+.car-page {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+  &__radio-block {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 37px;
+    padding-bottom: 48px;
+    padding-left: 19px;
+  }
+  &__cars {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    max-height: 100%;
+    overflow-y: auto;
+  }
+}
+.car {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 335px;
+  height: 190px;
+  padding: 15px;
+  border: 1px solid $gray50;
+  box-sizing: content-box;
+  &:hover {
+    border: 1px solid $gray100;
+  }
+  &__active {
+    border: 1px solid $green;
+  }
+  &__pic {
+    display: block;
+    position: relative;
+    width: 256px;
+    height: 116px;
+    align-self: flex-end;
+    &:after {
+      content: '';
+      font-size: 16px;
+      color: rgb(100, 100, 100);
+      display: block;
+      position: absolute;
+      z-index: 2;
+      top: 0;
+      left: 0;
+      width: 256px;
+      height: 116px;
+      background: url(../../assets/заглушка.jpg);
+    }
+  }
+}

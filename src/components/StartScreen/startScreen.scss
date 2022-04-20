@@ -5,7 +5,7 @@
   height: 100%;
   padding-left: 0px;
   width: 100%;
-  @media (min-width: 590px) {
+  @media (min-width: 768px) {
     padding-left: 118px;
   }
   @media (min-width: 1024px) {
@@ -17,14 +17,14 @@
   &__content {
     flex: 0 1 100%;
     padding: 16px 0 0;
-    @media (min-width: 590px) {
+    @media (min-width: 768px) {
       padding: 0;
     }
   }
   &__inner {
     margin-bottom: 32px;
     padding-left: 15px;
-    @media (min-width: 590px) {
+    @media (min-width: 768px) {
       padding-left: 0;
       padding-top: 134px;
       margin-bottom: 64px;
@@ -41,7 +41,7 @@
     line-height: 119%;
     margin-bottom: 11px;
     font-weight: 700;
-    @media (min-width: 590px) {
+    @media (min-width: 768px) {
       font-size: 70px;
       line-height: 70px;
       margin-bottom: 25px;
@@ -55,7 +55,7 @@
     font-size: 18px;
     line-height: 21px;
     color: $gray100;
-    @media (min-width: 590px) {
+    @media (min-width: 768px) {
       font-size: 26px;
       line-height: 30px;
     }
