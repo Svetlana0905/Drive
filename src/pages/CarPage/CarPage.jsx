@@ -60,30 +60,28 @@ export const CarPage = () => {
           ))}
         </div>
         <div className="car-page__cars">
-          <div className="car-page__inner">
-            {carData
-              .filter((item) => item.categoryId.name.includes(filter))
-              .map((item, id) => (
-                <div
-                  key={id}
-                  className={id === idCar ? 'car car__active' : 'car'}
-                  onClick={(e) => {
-                    dispatch(getModel(item))
-                    setIdCar(id)
-                  }}>
-                  <div>
-                    <p className="text-name">{item.name}</p>
-                    <p className="car__text text">
-                      {item.priceMax} - {item.priceMin} &#8381;
-                    </p>
-                  </div>
-                  <picture className="car__pic">
-                    <source srcSet={item.thumbnail.path} type="image/jpg" />
-                    <img src={stub} className="car__pic" alt={item.name} />
-                  </picture>
+          {carData
+            .filter((item) => item.categoryId.name.includes(filter))
+            .map((item, id) => (
+              <div
+                key={id}
+                className={id === idCar ? 'car car__active' : 'car'}
+                onClick={(e) => {
+                  dispatch(getModel(item))
+                  setIdCar(id)
+                }}>
+                <div>
+                  <p className="text-name">{item.name}</p>
+                  <p className="car__text text">
+                    {item.priceMax} - {item.priceMin} &#8381;
+                  </p>
                 </div>
-              ))}
-          </div>
+                <picture className="car__pic">
+                  <source srcSet={item.thumbnail.path} type="image/jpg" />
+                  <img src={stub} className="car__pic" alt={item.name} />
+                </picture>
+              </div>
+            ))}
         </div>
       </div>
     </section>
