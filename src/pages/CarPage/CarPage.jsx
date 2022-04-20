@@ -4,53 +4,58 @@ import { useGetCarQuery } from '../../redux'
 import { RadioInput } from '../../components/Buttons/Buttons'
 import { Categories } from '../../redux/actions/Actions'
 import { useEffect, useState } from 'react'
-import { getModel, isDisubled } from '../../redux/orderSlice'
-import { useDispatch } from 'react-redux'
+import { getModel, getCategory } from '../../redux/orderSlice'
+import { useDispatch, useSelector } from 'react-redux'
+import stub from '../../assets/stub.jpg'
 
 export const CarPage = () => {
   const dispatch = useDispatch()
-  const [filter, setFilter] = useState('')
-  const [carModel, setCarModel] = useState('')
-  const [idCar, setIdCar] = useState(null)
-
   const categories = Categories()
   let carData = []
 
   const { data: car = [], isSuccess, isLoading } = useGetCarQuery()
+  const [filterChek, setFilterCheck] = useState(
+    useSelector((state) => state.order.categories)
+  )
 
-  const clearFilter = () => {
-    setFilter('')
-  }
+  const [filter, setFilter] = useState(`${filterChek}`)
+  const [idCar, setIdCar] = useState('')
+
   useEffect(() => {
-    if (carModel) dispatch(getModel(carModel))
-    if (carModel) dispatch(isDisubled(false))
-  }, [setCarModel, carModel, dispatch])
-  if (isLoading) return <Preload />
+    filterChek === 'Все' ? setFilter('') : setFilter(filterChek)
+  }, [setFilter, filterChek, filter])
+
+  useEffect(() => {
+    if (filterChek) dispatch(getCategory({ filterChek }))
+  }, [dispatch, filterChek])
+
+  if (isLoading) return <Preload size={'big'} />
   if (isSuccess) {
     carData = car.data
   }
   return (
-    <section className="order-page__order">
+    <section className="cars">
       <div className="car-page ">
         <div className="car-page__radio-block">
-          <label className="radio">
-            <span className="radio__span text">Все</span>
-            <input
-              className="radio__input"
-              type="radio"
-              name={'car'}
-              // checked
-              onClick={clearFilter}
-            />
-            <span className="radio__box"></span>
-          </label>
+          <RadioInput
+            text={'Все'}
+            onChange={(e) => {
+              setFilterCheck('Все')
+            }}
+            name={'car'}
+            value={'Все'}
+            defaultVal={filterChek}
+          />
           {categories.map((item, id) => (
             <RadioInput
               text={item.name}
-              onClick={(e) => setFilter(e.target.value)}
+              onChange={(e) => {
+                setFilterCheck(e.target.value)
+              }}
               key={id}
               name={'car'}
               value={item.name}
+              defaultVal={filterChek}
             />
           ))}
         </div>
@@ -62,20 +67,19 @@ export const CarPage = () => {
                 key={id}
                 className={id === idCar ? 'car car__active' : 'car'}
                 onClick={(e) => {
-                  setCarModel(item)
+                  dispatch(getModel(item))
                   setIdCar(id)
                 }}>
                 <div>
-                  <p className="subtitle">{item.name}</p>
-                  <p className="text">
-                    {item.priceMax} - {item.priceMin}
+                  <p className="text-name">{item.name}</p>
+                  <p className="car__text text">
+                    {item.priceMax} - {item.priceMin} &#8381;
                   </p>
                 </div>
-                <img
-                  className="car__pic"
-                  src={item.thumbnail.path}
-                  alt={item.name}
-                />
+                <picture className="car__pic">
+                  <source srcSet={item.thumbnail.path} type="image/jpg" />
+                  <img src={stub} className="car__pic" alt={item.name} />
+                </picture>
               </div>
             ))}
         </div>

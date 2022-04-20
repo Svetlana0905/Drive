@@ -3,6 +3,7 @@
   display: flex;
   flex-direction: column;
   gap: 32px;
+  padding-bottom: 16px;
   &__radio-block {
     display: flex;
     flex-wrap: wrap;
@@ -13,11 +14,52 @@
     display: flex;
     flex-direction: column;
     gap: 16px;
+    &:last-child {
+      padding-bottom: 16px;
+    }
+    @media (min-width: 768px) {
+      &:last-child {
+        padding-bottom: 0px;
+      }
+    }
+  }
+  &__inner-buttons {
+    padding-left: 19px;
+    gap: 18px;
+    max-width: 310px;
+    @media (min-width: 768px) {
+      gap: 8px;
+    }
   }
   &__inner-data {
     width: 250px;
   }
-  &__tariff {
-    padding-left: 25px;
+}
+.input-text {
+  position: relative;
+  width: 224px;
+  font-family: 'Roboto';
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 16px;
+  border: none;
+  padding: 0 0 0px 8px;
+  border-bottom: 1px solid $gray100;
+  @media (min-width: 768px) {
+    font-size: 14px;
+    line-height: 16px;
+  }
+  &__inner {
+    display: flex;
+    position: relative;
+    align-self: flex-end;
+    gap: 15px;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 16px;
+    @media (min-width: 400px) {
+      flex-direction: row;
+      gap: 9px;
+    }
   }
 }

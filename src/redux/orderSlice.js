@@ -3,76 +3,99 @@ import { createSlice } from '@reduxjs/toolkit'
 export const orderSlise = createSlice({
   name: 'order',
   initialState: {
+    numberPage: 0,
+    biggerPage: 0,
     city: '',
     point: '',
-    fullLocation: '',
     minPrice: 0,
     maxPrice: 0,
     model: '',
-    colorCar: '',
-    tariffCar: '',
+    tariffCar: 'Суточный',
+    colorCar: 'Любой',
+    dateTo: '',
+    categories: 'Все',
     carArray: [],
-    numberPage: 0,
-    options: {},
-    sliderLength: 0,
-    disabledBtn: true,
-    wasChange: false
+    options: [],
+    anidate: 'anydate',
+    dataId: {}
   },
   reducers: {
-    addCity: (state, data) => {
-      const city = data.payload
-      state.city = city
-      state.fullLocation = `${city}`
-      state.options['Пункт выдачи'] = `${state.fullLocation}`
-      delete state.options['Модель']
-      delete state.options['Цвет']
-      delete state.options['Тариф']
-      state.wasChange = true
-    },
-    addStreet: (state, data) => {
-      const point = data.payload
-      state.point = point
-      state.fullLocation = `${state.city}, ${point}`
-      state.options['Пункт выдачи'] = `${state.fullLocation}`
-    },
     forwardStep: (state, data) => {
-      const lenght = data.payload.sliderLenght
-      state.sliderLength = lenght
-      data.payload.index < state.sliderLength
-        ? state.numberPage++
-        : (state.numberPage = lenght)
-      state.wasChange ? (state.disabledBtn = true) : (state.disabledBtn = false)
-    },
-    backStep: (state, data) => {
-      if (data.payload < state.numberPage) {
-        state.numberPage = data.payload
-        state.wasChange = state.disabledBtn
-        state.disabledBtn = false
-      } else state.numberPage = 0
+      state.numberPage = data.payload
     },
 
-    isDisubled: (state, data) => {
-      state.disabledBtn = data.payload
+    addDataAddress: (state, data) => {
+      console.log(data.payload)
+      console.log(state.city)
+      state.city = data.payload.city
+      state.point = data.payload.point
+
+      state.options.length = 0
+      state.dataId.endDateId = null
+      if (state.city) state.biggerPage = state.numberPage
+      if (data.payload.city && data.payload.point) {
+        state.options.push([['Пункт выдачи', `${state.city}, ${state.point}`]])
+      }
+      if (data.payload.cityId) state.dataId.cityId = `${data.payload.cityId}`
+      if (data.payload.pointId) state.dataId.pointId = `${data.payload.pointId}`
+    },
+
+    getCategory: (state, data) => {
+      if (data.payload.filterChek) state.categories = data.payload.filterChek
     },
     getModel: (state, data) => {
       const modelCar = data.payload
+
       state.model = modelCar.name
       state.carArray = modelCar
-      state.options['Модель'] = `${modelCar.name}`
+      state.options.splice(state.numberPage)
+      state.dataId.endDateId = null
+      if (modelCar.name) {
+        state.options.push([['Модель', `${state.model}`]])
+        state.biggerPage = state.numberPage
+      }
+      if (modelCar.id) state.dataId.carId = `${modelCar.id}`
       state.minPrice = modelCar.priceMin
       state.maxPrice = modelCar.priceMax
-      delete state.options['Цвет']
-      delete state.options['Тариф']
     },
     getOptions: (state, data) => {
-      console.log(data.payload)
-      const color = data.payload.carColor
-      state.colorCar = color
-      if (color) state.options['Цвет'] = `${color}`
-      const tariff = data.payload.carTariff
-      state.carTariff = tariff
-      if (tariff) state.options['Тариф'] = `${tariff}`
+      if (data.payload.carColor) {
+        state.dataId.color = `${data.payload.carColor}`
+        state.colorCar = `${data.payload.carColor}`
+      }
+
+      if (data.payload.carTariff) {
+        state.tariffCar = data.payload.carTariff
+        state.dataId.rateId = `${data.payload.carTariffВData.id}`
+      } else state.tariffCar = 'На сутки'
+
+      data.payload.tank
+        ? (state.dataId.isFullTank = `${data.payload.tank}`)
+        : (state.dataId.isFullTank = false)
+
+      data.payload.childChair
+        ? (state.dataId.isNeedChildChair = `${data.payload.childChair}`)
+        : (state.dataId.isNeedChildChair = false)
+
+      data.payload.rightWheel
+        ? (state.dataId.isRightWhell = `${data.payload.childChair}`)
+        : (state.dataId.isRightWhell = false)
+
+      if (data.payload.startDateId) {
+        state.dataId.dateFrom = data.payload.startDateId
+      }
+
+      data.payload.endDate
+        ? (state.dataId.dateTo = data.payload.endDate)
+        : (state.dataId.dateTo = null)
+
+      if (data.payload.objOptions) {
+        state.options.splice(state.numberPage)
+        state.options.push(data.payload.objOptions)
+        state.biggerPage = state.numberPage
+      }
     },
+
     getPrices: (state, data) => {
       const minPriceArray = data.payload.reduce((accum, item) => {
         accum.push(item.priceMin)
@@ -80,7 +103,6 @@ export const orderSlise = createSlice({
       }, [])
       const maxPriceArray = data.payload.reduce((accum, item) => {
         accum.push(item.priceMax)
-        // console.log('rend')
         return accum
       }, [])
       state.minPrice = Math.min.apply(null, minPriceArray)
@@ -90,13 +112,12 @@ export const orderSlise = createSlice({
 })
 
 export const {
-  addCity,
-  addStreet,
-  backStep,
+  addDataAddress,
   forwardStep,
   getModel,
-  isDisubled,
   getPrices,
-  getOptions
+  getOptions,
+  getCategory,
+  addAddressMap
 } = orderSlise.actions
 export default orderSlise.reducer

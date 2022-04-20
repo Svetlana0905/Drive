@@ -10,7 +10,6 @@ const baseQuery = fetchBaseQuery({
     return headers
   }
 })
-
 export const carApi = createApi({
   reducerPath: 'carApi',
   baseQuery,
@@ -26,6 +25,9 @@ export const carApi = createApi({
     }),
     getCtegory: build.query({
       query: () => `/db/category`
+    }),
+    getTariff: build.query({
+      query: () => `/db/rate`
     })
   })
 })
@@ -34,5 +36,6 @@ export const {
   useGetCityQuery,
   useGetPointQuery,
   useGetCarQuery,
-  useGetCtegoryQuery
+  useGetCtegoryQuery,
+  useGetTariffQuery
 } = carApi
