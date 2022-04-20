@@ -19,7 +19,6 @@ export const CarPage = () => {
   )
 
   const [filter, setFilter] = useState(`${filterChek}`)
-  const [carModel, setCarModel] = useState('')
   const [idCar, setIdCar] = useState('')
 
   useEffect(() => {
@@ -29,10 +28,6 @@ export const CarPage = () => {
   useEffect(() => {
     if (filterChek) dispatch(getCategory({ filterChek }))
   }, [dispatch, filterChek])
-
-  useEffect(() => {
-    if (carModel) dispatch(getModel({ carModel }))
-  }, [setCarModel, carModel, dispatch])
 
   if (isLoading) return <Preload size={'big'} />
   if (isSuccess) {
@@ -72,7 +67,7 @@ export const CarPage = () => {
                 key={id}
                 className={id === idCar ? 'car car__active' : 'car'}
                 onClick={(e) => {
-                  setCarModel(item)
+                  dispatch(getModel(item))
                   setIdCar(id)
                 }}>
                 <div>

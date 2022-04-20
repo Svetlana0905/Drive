@@ -11,9 +11,12 @@ export const orderSlise = createSlice({
     maxPrice: 0,
     model: '',
     tariffCar: 'Суточный',
-    categories: '',
+    colorCar: 'Любой',
+    dateTo: '',
+    categories: 'Все',
     carArray: [],
     options: [],
+    anidate: 'anydate',
     dataId: {}
   },
   reducers: {
@@ -23,6 +26,7 @@ export const orderSlise = createSlice({
 
     addDataAddress: (state, data) => {
       const addressData = data.payload
+      // console.log(data.payload)
       state.city = addressData.city
       state.point = addressData.point
       state.options.length = 0
@@ -41,22 +45,24 @@ export const orderSlise = createSlice({
     },
     getModel: (state, data) => {
       const modelCar = data.payload
-      state.model = modelCar.carModel.name
-      state.carArray = modelCar.carModel
+
+      state.model = modelCar.name
+      state.carArray = modelCar
       state.options.splice(state.numberPage)
       state.dataId.endDateId = null
-      if (modelCar.carModel.name) {
+      if (modelCar.name) {
         state.options.push([['Модель', `${state.model}`]])
         state.biggerPage = state.numberPage
       }
-      if (modelCar.carModel.id) state.dataId.carId = `${modelCar.carModel.id}`
-      state.minPrice = modelCar.carModel.priceMin
-      state.maxPrice = modelCar.carModel.priceMax
+      if (modelCar.id) state.dataId.carId = `${modelCar.id}`
+      state.minPrice = modelCar.priceMin
+      state.maxPrice = modelCar.priceMax
     },
     getOptions: (state, data) => {
-      data.payload.carColor
-        ? (state.dataId.color = `${data.payload.carColor}`)
-        : (state.dataId.color = 'Любой')
+      if (data.payload.carColor) {
+        state.dataId.color = `${data.payload.carColor}`
+        state.colorCar = `${data.payload.carColor}`
+      }
 
       if (data.payload.carTariff) {
         state.tariffCar = data.payload.carTariff
@@ -78,10 +84,11 @@ export const orderSlise = createSlice({
       if (data.payload.startDateId) {
         state.dataId.dateFrom = data.payload.startDateId
       }
-      if (data.payload.endDateId) {
-        // console.log(data.payload.endDateId + ' stor to')
-        state.dataId.dateTo = data.payload.endDateId
-      }
+
+      data.payload.endDate
+        ? (state.dataId.dateTo = data.payload.endDate)
+        : (state.dataId.dateTo = null)
+
       if (data.payload.objOptions) {
         state.options.splice(state.numberPage)
         state.options.push(data.payload.objOptions)
@@ -106,6 +113,7 @@ export const orderSlise = createSlice({
 
 export const {
   addDataAddress,
+  getPoint,
   forwardStep,
   getModel,
   getPrices,

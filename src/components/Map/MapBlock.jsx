@@ -2,7 +2,15 @@ import './map.scss'
 import { useState, useEffect } from 'react'
 import { YMaps, Map, Placemark } from 'react-yandex-maps'
 
-export const MapBlock = ({ city, point, setCity, setPoint, pointsArray }) => {
+export const MapBlock = ({
+  city,
+  point,
+  setCity,
+  setCityId,
+  setPoint,
+  setPointId,
+  pointsArray
+}) => {
   const [pointMap, setPointMap] = useState(null)
   const [markers, setMarkers] = useState([])
   const [currentPoint, setCurrentPoint] = useState(null)
@@ -17,7 +25,7 @@ export const MapBlock = ({ city, point, setCity, setPoint, pointsArray }) => {
   }, [city, point, pointMap])
 
   useEffect(() => {
-    setMarkers([]) // собираем массив маркеров из массива адресов для карты
+    setMarkers([])
     if (pointsArray.length && pointMap) {
       pointsArray.forEach((item) => {
         if (item.cityId) {
@@ -27,7 +35,16 @@ export const MapBlock = ({ city, point, setCity, setPoint, pointsArray }) => {
               const coordinates = result.geoObjects
                 .get(0)
                 .geometry.getCoordinates()
-              setMarkers((prev) => [...prev, coordinates])
+              setMarkers((prev) => [
+                {
+                  coordinates: coordinates,
+                  city: item.cityId.name,
+                  cityId: item.cityId.id,
+                  point: item.address,
+                  pointId: item.id
+                },
+                ...prev
+              ])
             })
         }
       })
@@ -36,18 +53,10 @@ export const MapBlock = ({ city, point, setCity, setPoint, pointsArray }) => {
 
   const mapHandler = (placemark) => {
     if (placemark) {
-      pointMap.geocode(placemark).then((res) => {
-        // данные из карты
-        const landmark = res.geoObjects.get(0)
-        setCity(landmark.properties.get('description').split(', ')[1]) // ответ в формате JSON берется только город без страны разделитель запятая
-        setPoint(landmark.properties.get('name'))
-      })
-    } else {
-      pointMap.geocode([45.03547, 38.975313]).then((res) => {
-        const nearestPoint = res.geoObjects.get(0)
-        setCity(nearestPoint.properties.get('description').split(', ')[1])
-        setPoint(nearestPoint.properties.get('name'))
-      })
+      setCity(placemark.city)
+      setPoint(placemark.point)
+      setCityId(placemark.cityId)
+      setPointId(placemark.pointId)
     }
   }
 
@@ -64,20 +73,22 @@ export const MapBlock = ({ city, point, setCity, setPoint, pointsArray }) => {
           onLoad={(ymaps) => {
             setPointMap(ymaps)
           }}
-          state={{ center: currentPoint || [45.03547, 38.975313], zoom: 13 }}
+          state={{ center: currentPoint || [47.221705, 39.712156], zoom: 13 }}
           width={'100%'}
           height={'352px'}>
           {markers &&
-            markers.map((item) => (
+            markers.map((item, index) => (
               <Placemark
                 options={{
                   preset: 'islands#circleIcon',
                   iconColor: '#0EC261'
                 }}
                 iconColor="#3caa3c"
-                geometry={item}
-                onClick={() => mapHandler(item)}
-                key={item}
+                geometry={item.coordinates}
+                onClick={(e) => {
+                  mapHandler(item)
+                }}
+                key={index}
               />
             ))}
         </Map>

@@ -10,8 +10,13 @@ export const AddressPage = () => {
   const dispatch = useDispatch()
   const [city, setCity] = useState(useSelector((state) => state.order.city))
   const [point, setPoint] = useState(useSelector((state) => state.order.point))
-  const [cityId, setCityId] = useState('')
-  const [pointId, setPointId] = useState('')
+
+  const [cityId, setCityId] = useState(
+    useSelector((state) => state.order.dataId.cityId)
+  )
+  const [pointId, setPointId] = useState(
+    useSelector((state) => state.order.dataId.pointId)
+  )
   const [filterPoint, setFilterPoint] = useState([])
 
   let pointsArray = useMemo(() => [], [])
@@ -21,17 +26,17 @@ export const AddressPage = () => {
   if (isPointsSuccess) {
     pointsArray = points.data
   }
-
   const clearPoint = () => {
     setPoint('')
-    dispatch(addDataAddress({ city, point }))
+    setPointId('')
   }
 
   const clearCity = () => {
     setPoint('')
+    setPointId('')
     setCity('')
-    dispatch(addDataAddress({ city }))
-    // dispatch(changeDisabledBtn(true))
+    setCityId('')
+    dispatch(addDataAddress({ city, cityId }))
   }
 
   useEffect(() => {
@@ -80,6 +85,8 @@ export const AddressPage = () => {
         setCity={setCity}
         setPoint={setPoint}
         pointsArray={pointsArray}
+        setPointId={setPointId}
+        setCityId={setCityId}
       />
     </section>
   ) : (

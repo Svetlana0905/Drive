@@ -16,13 +16,14 @@ import { Rate } from '../../components/Rate/Rate'
 
 export const OptionsPage = () => {
   const dispatch = useDispatch()
+  const [carTariffВData, setCarTariffData] = useState([])
+
   const [carColor, setCarColor] = useState(
-    useSelector((state) => state.order.dataId.color)
+    useSelector((state) => state.order.colorCar)
   )
   const [carTariff, setCarTariff] = useState(
     useSelector((state) => state.order.tariffCar)
   )
-  const [carTariffВData, setCarTariffData] = useState([])
   const [tank, setTank] = useState(
     useSelector((state) => state.order.dataId.isFullTank)
   )
@@ -35,15 +36,13 @@ export const OptionsPage = () => {
   const [startDate, setStartDate] = useState(new Date())
   const [startDateId, setStartDateId] = useState('')
 
-  const [endDateId, setEndDateId] = useState(
-    useSelector((state) => state.order.dataId.dateTo) // получение endDateId из stor для сохранения данных после рендерисна
+  const [endDate, setEndDate] = useState(
+    useSelector((state) => state.order.dataId.dateTo)
   )
-
-  const [endDate, setEndDate] = useState(() => endDateId)
 
   const [objOptions, setObjOptions] = useState({})
 
-  const currentTime = endDate > startDate ? endDate - startDate : 0
+  const currentTime = endDate > startDate ? endDate - startDate : null
   const days = Math.floor(currentTime / 1000 / 60 / 60 / 24)
   const hours = Math.floor(currentTime / 1000 / 60 / 60) % 24
   const carArray = useSelector((state) => state.order.carArray)
@@ -80,22 +79,22 @@ export const OptionsPage = () => {
     setStartDate(new Date())
     setEndDate(null)
   }
-  const clearEndDate = () => {
-    setEndDate(null)
-    setEndDateId(null)
-  }
 
   const startDateHandler = (item) => {
     setStartDate(item)
     setEndDate(null)
   }
   const endDateHandler = (item) => {
-    setEndDate(item)
+    setEndDate(new Date(item).getTime())
   }
   useEffect(() => {
     setStartDateId(new Date(startDate).getTime())
-    setEndDateId(new Date(endDate).getTime())
   }, [startDate, endDate])
+
+  const clearEndDate = () => {
+    setEndDate(null)
+    dispatch(getOptions({ endDate }))
+  }
 
   useEffect(() => {
     dispatch(
@@ -108,7 +107,7 @@ export const OptionsPage = () => {
         carTariff,
         carTariffВData,
         startDateId,
-        endDateId
+        endDate
       })
     )
   }, [
@@ -121,7 +120,7 @@ export const OptionsPage = () => {
     rightWheel,
     carTariff,
     startDateId,
-    endDateId
+    endDate
   ])
 
   return (
