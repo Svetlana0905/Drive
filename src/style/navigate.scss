@@ -1,4 +1,4 @@
-@import '../../style//app.scss';
+@import './app.scss';
 .nav {
   width: 100%;
   border-top: 1px solid $gray50;
@@ -51,7 +51,7 @@
       height: 8px;
       right: -23px;
       top: 3px;
-      background: url(../../assets/icons/nav_arrow.svg) no-repeat;
+      background: url(../assets/icons/nav_arrow.svg) no-repeat;
     }
   }
   &__disabled {

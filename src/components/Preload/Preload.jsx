@@ -1,8 +1,18 @@
 import './preload.scss'
-export const Preload = () => {
+export const Preload = ({ size }) => {
   return (
-    <div className="cssload-container">
-      <div className="cssload-zenith"></div>
+    <div
+      className={
+        size === 'big'
+          ? 'cssload-container cssload-container__big'
+          : 'cssload-container'
+      }>
+      <div
+        className={
+          size === 'big'
+            ? 'cssload-zenith cssload-zenith__big'
+            : 'cssload-zenith'
+        }></div>
     </div>
   )
 }

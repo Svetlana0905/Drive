@@ -1,5 +1,6 @@
 import './buttons.scss'
 import { useToggle } from '../../hooks/useToggle'
+import { useEffect, useState } from 'react'
 
 export const LangButton = () => {
   const [lang, toggleLang] = useToggle(false)
@@ -12,43 +13,59 @@ export const LangButton = () => {
 export const ArrowButtonSlider = ({ handleClick, styleArr }) => {
   return <button onClick={handleClick} className={styleArr} />
 }
-export const ClearInputButton = ({ clearInput }) => {
-  return <button onClick={clearInput} className="clear-input" />
-}
-export const ButtonPrice = ({ handleClick, disabled, text }) => {
-  const classess = disabled ? 'btn-price btn-price__disabled' : 'btn-price'
+export const ClearInputButton = ({ clearInput, name }) => {
   return (
-    <button onClick={handleClick} disabled={disabled} className={classess}>
+    <button
+      onClick={clearInput}
+      className={
+        name === 'calendar'
+          ? 'clear-input clear-input__calendar'
+          : 'clear-input'
+      }
+    />
+  )
+}
+
+export const BigButton = ({ onClick, text, disabled, className }) => {
+  return (
+    <button onClick={onClick} className={className} disabled={disabled}>
       {text}
     </button>
   )
 }
-export const RadioInput = ({ value, text, name, onClick }) => {
+
+export const RadioInput = ({ value, text, name, onChange, defaultVal }) => {
+  const [currentVal, setCurrentVal] = useState(defaultVal)
+
+  useEffect(() => {
+    setCurrentVal(defaultVal)
+  }, [setCurrentVal, defaultVal, currentVal])
+
   return (
     <label className="radio">
-      <span className="radio__span text">{text}</span>
       <input
         className="radio__input"
         type="radio"
-        onClick={onClick}
+        onChange={onChange}
         name={name}
         value={value}
+        checked={value === currentVal}
       />
-      <span className="radio__box"></span>
+      <span className="radio__span text">{text}</span>
     </label>
   )
 }
-export const Checkbox = ({ label, value, onClick, name }) => {
+export const Checkbox = ({ text, name, checked, onChange }) => {
   return (
-    <label className="check">
-      <span>{label}</span>
+    <label className="checkbox">
       <input
-        className="input-text"
-        value={value}
-        onClick={onClick}
+        className="checkbox__input"
+        checked={checked}
+        onChange={onChange}
         name={name}
         type="checkbox"
       />
+      <span className="radio__span text">{text}</span>
     </label>
   )
 }

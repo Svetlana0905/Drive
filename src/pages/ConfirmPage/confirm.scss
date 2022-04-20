@@ -1,0 +1,45 @@
+.confirm-page {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.9);
+  opacity: 0;
+  left: -150%;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  transition: all ease-in-out 0.3s;
+  &.confirm-page__active {
+    top: 0;
+    left: 0;
+    opacity: 1;
+    z-index: 100;
+  }
+  &__body {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+  &__title {
+    align-self: center;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 28px;
+  }
+  &__bittons {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    margin: 0 auto;
+    @media (min-width: 450px) {
+      flex-direction: row;
+    }
+  }
+}
