@@ -18,6 +18,7 @@ export const AddressPage = () => {
 
   let pointsArray = useMemo(() => [], [])
   const { data: citiesArr = [] } = useGetCityQuery()
+
   const { data: points = [], isSuccess: isPointsSuccess } = useGetPointQuery()
 
   if (isPointsSuccess) {
@@ -40,7 +41,7 @@ export const AddressPage = () => {
     if (city && point && cityId && pointId) {
       dispatch(addDataAddress({ city, point, pointId, cityId }))
     }
-  }, [city, point, cityId, pointId])
+  }, [city, point, cityId, pointId, dispatch])
 
   useEffect(() => {
     if (city && pointsArray) {

@@ -1,7 +1,7 @@
 import { useGetTariffQuery } from '../../redux/carApi'
 import { RadioInput } from '../Buttons/Buttons'
 
-export const Rate = ({ setCarTariff, carTariff, setCarTariffData }) => {
+export const Rate = ({ setCarTariff, carTariff, setCarTariffId }) => {
   const { data: rate = [], isLoading, isSuccess } = useGetTariffQuery()
   let rentArr = []
 
@@ -17,10 +17,10 @@ export const Rate = ({ setCarTariff, carTariff, setCarTariffData }) => {
           text={`${item.rateTypeId.name}, ${item.price} ₽`}
           onChange={(e) => {
             setCarTariff(e.target.value)
-            setCarTariffData(item)
+            setCarTariffId(item.id)
           }}
           value={item.rateTypeId.name}
-          name={'tariff'}
+          name="tariff"
           defaultVal={carTariff}
         />
       ))}

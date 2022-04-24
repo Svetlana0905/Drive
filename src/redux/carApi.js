@@ -13,6 +13,7 @@ const baseQuery = fetchBaseQuery({
 export const carApi = createApi({
   reducerPath: 'carApi',
   baseQuery,
+
   endpoints: (build) => ({
     getCity: build.query({
       query: () => `/db/city`
@@ -28,6 +29,26 @@ export const carApi = createApi({
     }),
     getTariff: build.query({
       query: () => `/db/rate`
+    }),
+    getOrderStatus: build.query({
+      query: () => `/db/orderStatus`
+    }),
+    addOrder: build.mutation({
+      query: (body) => ({
+        url: `/db/order/`,
+        method: 'POST',
+        body
+      })
+    }),
+    getOrderData: build.query({
+      query: (id) => `/db/order/${id}`
+    }),
+    deleteOrderData: build.mutation({
+      query: ({ id, ...data }) => ({
+        url: `/db/order/${id}`,
+        method: 'PUT',
+        body: data
+      })
     })
   })
 })
@@ -37,5 +58,9 @@ export const {
   useGetPointQuery,
   useGetCarQuery,
   useGetCtegoryQuery,
-  useGetTariffQuery
+  useGetTariffQuery,
+  useGetOrderStatusQuery,
+  useAddOrderMutation,
+  useGetOrderDataQuery,
+  useDeleteOrderDataMutation
 } = carApi

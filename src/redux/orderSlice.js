@@ -10,14 +10,20 @@ export const orderSlise = createSlice({
     minPrice: 0,
     maxPrice: 0,
     model: '',
-    tariffCar: 'Суточный',
+    tariffCar: 'Месячный',
     colorCar: 'Любой',
-    dateTo: '',
     categories: 'Все',
+    surcharge: {},
     carArray: [],
     options: [],
-    anidate: 'anydate',
-    dataId: {}
+    responseId: '',
+    responseData: {},
+    dataId: {
+      dateFrom: null,
+      dateTo: null,
+      rateId: '6259003d73b61100181028d9',
+      price: 0
+    }
   },
   reducers: {
     forwardStep: (state, data) => {
@@ -25,13 +31,11 @@ export const orderSlise = createSlice({
     },
 
     addDataAddress: (state, data) => {
-      console.log(data.payload)
-      console.log(state.city)
       state.city = data.payload.city
       state.point = data.payload.point
-
       state.options.length = 0
-      state.dataId.endDateId = null
+      state.dataId.dateFrom = null
+      state.dataId.dateTo = null
       if (state.city) state.biggerPage = state.numberPage
       if (data.payload.city && data.payload.point) {
         state.options.push([['Пункт выдачи', `${state.city}, ${state.point}`]])
@@ -45,11 +49,11 @@ export const orderSlise = createSlice({
     },
     getModel: (state, data) => {
       const modelCar = data.payload
-
       state.model = modelCar.name
       state.carArray = modelCar
       state.options.splice(state.numberPage)
-      state.dataId.endDateId = null
+      state.dataId.dateFrom = null
+      state.dataId.dateTo = null
       if (modelCar.name) {
         state.options.push([['Модель', `${state.model}`]])
         state.biggerPage = state.numberPage
@@ -63,23 +67,36 @@ export const orderSlise = createSlice({
         state.dataId.color = `${data.payload.carColor}`
         state.colorCar = `${data.payload.carColor}`
       }
-
       if (data.payload.carTariff) {
         state.tariffCar = data.payload.carTariff
-        state.dataId.rateId = `${data.payload.carTariffВData.id}`
-      } else state.tariffCar = 'На сутки'
+      } else state.tariffCar = 'Месячный'
 
-      data.payload.tank
-        ? (state.dataId.isFullTank = `${data.payload.tank}`)
-        : (state.dataId.isFullTank = false)
+      if (data.payload.carTariffId) {
+        state.dataId.rateId = `${data.payload.carTariffId}`
+      }
+      if (data.payload.tank) {
+        state.dataId.isFullTank = `${data.payload.tank}`
+        state.surcharge.tank = +500
+      } else {
+        state.dataId.isFullTank = false
+        state.surcharge.tank = +0
+      }
 
-      data.payload.childChair
-        ? (state.dataId.isNeedChildChair = `${data.payload.childChair}`)
-        : (state.dataId.isNeedChildChair = false)
+      if (data.payload.childChair) {
+        state.dataId.isNeedChildChair = `${data.payload.childChair}`
+        state.surcharge.child = +200
+      } else {
+        state.dataId.isNeedChildChair = false
+        state.surcharge.child = +0
+      }
 
-      data.payload.rightWheel
-        ? (state.dataId.isRightWhell = `${data.payload.childChair}`)
-        : (state.dataId.isRightWhell = false)
+      if (data.payload.rightWheel) {
+        state.dataId.isRightWhell = `${data.payload.childChair}`
+        state.surcharge.whell = +1600
+      } else {
+        state.dataId.isRightWhell = false
+        state.surcharge.whell = +0
+      }
 
       if (data.payload.startDateId) {
         state.dataId.dateFrom = data.payload.startDateId
@@ -95,7 +112,6 @@ export const orderSlise = createSlice({
         state.biggerPage = state.numberPage
       }
     },
-
     getPrices: (state, data) => {
       const minPriceArray = data.payload.reduce((accum, item) => {
         accum.push(item.priceMin)
@@ -107,6 +123,28 @@ export const orderSlise = createSlice({
       }, [])
       state.minPrice = Math.min.apply(null, minPriceArray)
       state.maxPrice = Math.max.apply(null, maxPriceArray)
+    },
+    getFullPrice: (state, data) => {
+      if (data.payload) {
+        state.dataId.price = +data.payload.netPrice + +data.payload.extra
+        state.dataId.orderStatusId = '5e26a191099b810b946c5d89'
+      } else {
+        state.dataId.price = null
+      }
+    },
+    getResponse: (state, data) => {
+      if (data.payload) state.responseId = data.payload
+    },
+    getResponseDate: (state, data) => {
+      state.responseData = data.payload
+    },
+    clearDate: (state, data) => {
+      state.dataId.price = null
+      state.options.length = 0
+      state.city = ''
+      state.point = ''
+      state.dataId.price = 0
+      state.responseId = ''
     }
   }
 })
@@ -118,6 +156,9 @@ export const {
   getPrices,
   getOptions,
   getCategory,
-  addAddressMap
+  getFullPrice,
+  getResponse,
+  getResponseDate,
+  clearDate
 } = orderSlise.actions
 export default orderSlise.reducer
