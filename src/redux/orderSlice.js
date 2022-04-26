@@ -117,15 +117,15 @@ export const orderSlise = createSlice({
     },
     getPrices: (state, data) => {
       const minPriceArray = data.payload.reduce((accum, item) => {
-        accum.push(item.priceMin)
+        accum.push(+item.priceMin)
         return accum
       }, [])
       const maxPriceArray = data.payload.reduce((accum, item) => {
-        accum.push(item.priceMax)
+        accum.push(+item.priceMax)
         return accum
       }, [])
-      state.minPrice = Math.min.apply(null, minPriceArray)
-      state.maxPrice = Math.max.apply(null, maxPriceArray)
+      state.minPrice = Math.min(...minPriceArray)
+      state.maxPrice = Math.max(...maxPriceArray)
     },
     getFullPrice: (state, data) => {
       if (data.payload) {
