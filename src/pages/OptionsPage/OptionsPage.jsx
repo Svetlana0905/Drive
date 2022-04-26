@@ -31,8 +31,8 @@ export const OptionsPage = () => {
   const [childChair, setChildChair] = useState(
     useSelector((state) => state.order.dataId.isNeedChildChair)
   )
-  const [rightWheel, setRightWheel] = useState(
-    useSelector((state) => state.order.dataId.isRightWheel)
+  const [rightWheell, setRightWheell] = useState(
+    useSelector((state) => state.order.dataId.isRightWheell)
   )
 
   const [startDate, setStartDate] = useState(
@@ -63,8 +63,8 @@ export const OptionsPage = () => {
   useEffect(() => {
     setValTank(tank ? 'Да' : '')
     setValChair(childChair ? 'Да' : '')
-    setValWheel(rightWheel ? 'Да' : '')
-  }, [tank, childChair, rightWheel])
+    setValWheel(rightWheell ? 'Да' : '')
+  }, [tank, childChair, rightWheell])
 
   useEffect(() => {
     const set = new Set()
@@ -86,6 +86,7 @@ export const OptionsPage = () => {
 
   const startDateHandler = (item) => {
     setStartDate(item.getTime())
+    setStartDateId(new Date(startDate).getTime())
     setEndDate(null)
   }
   const clearStartDate = () => {
@@ -110,7 +111,7 @@ export const OptionsPage = () => {
         carColor,
         tank,
         childChair,
-        rightWheel,
+        rightWheell,
         carTariffId,
         carTariff,
         startDateId,
@@ -124,7 +125,7 @@ export const OptionsPage = () => {
     carColor,
     tank,
     childChair,
-    rightWheel,
+    rightWheell,
     startDateId,
     carTariff,
     endDate
@@ -231,9 +232,9 @@ export const OptionsPage = () => {
             />
             <Checkbox
               text={'Правый руль, 1600р'}
-              checked={!!rightWheel}
+              checked={!!rightWheell}
               onChange={(e) => {
-                setRightWheel(!rightWheel)
+                setRightWheell(!rightWheell)
               }}
               name={'extra'}
             />

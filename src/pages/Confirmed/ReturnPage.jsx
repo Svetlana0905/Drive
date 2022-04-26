@@ -9,7 +9,7 @@ export const ReturnPage = ({ visiblePage }) => {
       <div className="confirm-page__body">
         <p className="confirm-page__title">Заказ отменен</p>
         <div className="confirm-page__bittons">
-          <Link className={'btn-price'} to={`/drive`}>
+          <Link className={'btn-price'} to={`/`}>
             На главную
           </Link>
         </div>

@@ -16,8 +16,6 @@ export const OrderPage = () => {
 
   const objOptions = useSelector((state) => state.order.options).flat()
 
-  // const handlerSendOrder =
-
   useEffect(() => {
     const arrFieldName = []
     setDisabledBtn()

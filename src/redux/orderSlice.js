@@ -34,11 +34,12 @@ export const orderSlise = createSlice({
       state.city = data.payload.city
       state.point = data.payload.point
       state.options.length = 0
+      state.biggerPage = 0
       state.dataId.dateFrom = null
       state.dataId.dateTo = null
-      if (state.city) state.biggerPage = state.numberPage
       if (data.payload.city && data.payload.point) {
         state.options.push([['Пункт выдачи', `${state.city}, ${state.point}`]])
+        state.biggerPage = state.numberPage + 1
       }
       if (data.payload.cityId) state.dataId.cityId = `${data.payload.cityId}`
       if (data.payload.pointId) state.dataId.pointId = `${data.payload.pointId}`
@@ -52,11 +53,12 @@ export const orderSlise = createSlice({
       state.model = modelCar.name
       state.carArray = modelCar
       state.options.splice(state.numberPage)
+      state.biggerPage = state.numberPage
       state.dataId.dateFrom = null
       state.dataId.dateTo = null
       if (modelCar.name) {
         state.options.push([['Модель', `${state.model}`]])
-        state.biggerPage = state.numberPage
+        state.biggerPage = state.numberPage + 1
       }
       if (modelCar.id) state.dataId.carId = `${modelCar.id}`
       state.minPrice = modelCar.priceMin
@@ -75,7 +77,7 @@ export const orderSlise = createSlice({
         state.dataId.rateId = `${data.payload.carTariffId}`
       }
       if (data.payload.tank) {
-        state.dataId.isFullTank = `${data.payload.tank}`
+        state.dataId.isFullTank = data.payload.tank
         state.surcharge.tank = +500
       } else {
         state.dataId.isFullTank = false
@@ -83,15 +85,15 @@ export const orderSlise = createSlice({
       }
 
       if (data.payload.childChair) {
-        state.dataId.isNeedChildChair = `${data.payload.childChair}`
+        state.dataId.isNeedChildChair = data.payload.childChair
         state.surcharge.child = +200
       } else {
         state.dataId.isNeedChildChair = false
         state.surcharge.child = +0
       }
 
-      if (data.payload.rightWheel) {
-        state.dataId.isRightWhell = `${data.payload.childChair}`
+      if (data.payload.rightWheell) {
+        state.dataId.isRightWhell = data.payload.rightWheell
         state.surcharge.whell = +1600
       } else {
         state.dataId.isRightWhell = false
@@ -101,7 +103,9 @@ export const orderSlise = createSlice({
       if (data.payload.startDateId) {
         state.dataId.dateFrom = data.payload.startDateId
       }
-
+      if (data.payload.endDate) {
+        state.biggerPage = state.numberPage + 1
+      } else state.biggerPage = state.numberPage
       data.payload.endDate
         ? (state.dataId.dateTo = data.payload.endDate)
         : (state.dataId.dateTo = null)
@@ -109,7 +113,6 @@ export const orderSlise = createSlice({
       if (data.payload.objOptions) {
         state.options.splice(state.numberPage)
         state.options.push(data.payload.objOptions)
-        state.biggerPage = state.numberPage
       }
     },
     getPrices: (state, data) => {
@@ -144,7 +147,7 @@ export const orderSlise = createSlice({
       state.city = ''
       state.point = ''
       state.dataId.price = 0
-      state.responseId = ''
+      state.biggerPage = 0
     }
   }
 })

@@ -16,14 +16,8 @@ export const ConfirmPage = ({ visiblePage, setVisiblePage }) => {
   let param = useSelector((state) => state.order.responseId)
   const navigate = useNavigate()
 
-  const goTo = () => navigate(`/drive/order/${param}`, { replace: true })
+  const goTo = () => navigate(`/order/${param}`, { replace: true })
 
-  // const handleAddOrder = async (...param) => {
-  //   if (dataId) {
-  //     await addOrder(dataId).unwrap()
-  //     goTo(param)
-  //   }
-  // }
   const handleAddOrder = async () => {
     if (dataId) {
       await addOrder(dataId).unwrap()

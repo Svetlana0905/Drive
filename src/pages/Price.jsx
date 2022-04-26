@@ -41,45 +41,58 @@ export const Price = () => {
         ((currentTime / (1000 * 60 * 60 * 24 * 30)) % 12) + 1
       )
       const years = Math.floor(currentTime / (1000 * 60 * 60 * 24 * 30 * 12))
-      if (rate === '62593cac73b61100181028ee') {
-        if (minutes === 0 && hours === 0) {
-          setNetPrice(day * +itemTar[0].price)
-        }
-        if (minutes > 0 || hours > 0) {
-          setNetPrice((day + 1) * +itemTar[0].price)
-        }
-      } else if (rate === '6259003d73b61100181028d9') {
-        setNetPrice(mounth * +itemTar[0].price)
-      } else if (rate === '62593c9d73b61100181028ed' && minutes <= 59) {
-        setNetPrice(minutes * +itemTar[0].price)
-      } else if (rate === '62593cca73b61100181028ef') {
-        if (day <= 7) {
-          setNetPrice(+itemTar[0].price)
-        }
-        if (day > 7) {
-          setNetPrice(Math.ceil(day / 7) * +itemTar[0].price)
-        }
-      } else if (rate === '62593cd573b61100181028f0') {
-        if (day <= 7) {
-          setNetPrice(+itemTar[0].price)
-        }
-        if (day > 7) {
-          setNetPrice(Math.ceil(day / 7) * +itemTar[0].price)
-        }
-      } else if (rate === '62593cf073b61100181028f1') {
-        if (mounth < 3) {
-          setNetPrice(+itemTar[0].price)
-        } else if (mounth > 3 && mounth <= 12)
-          setNetPrice(Math.ceil(mounth / 3) * +itemTar[0].price)
-      } else if (rate === '62593d0273b61100181028f2') {
-        if (years === 0) {
-          setNetPrice(itemTar[0].price)
-        }
-        if (mounth >= 12 && mounth < 24) {
-          setNetPrice(2 * itemTar[0].price)
-        }
+
+      switch (true) {
+        case rate === '6259003d73b61100181028d9':
+          setNetPrice(mounth * +itemTar[0].price)
+          break
+        case rate === '62593c9d73b61100181028ed' && minutes <= 59:
+          setNetPrice(minutes * +itemTar[0].price)
+          break
+        case rate === '62593cac73b61100181028ee':
+          if (minutes === 0 && hours === 0) {
+            setNetPrice(day * +itemTar[0].price)
+          }
+          if (minutes > 0 || hours > 0) {
+            setNetPrice((day + 1) * +itemTar[0].price)
+          }
+          break
+        case rate === '62593cca73b61100181028ef':
+          if (day <= 7) {
+            setNetPrice(+itemTar[0].price)
+          }
+          if (day > 7) {
+            setNetPrice(Math.ceil(day / 7) * +itemTar[0].price)
+          }
+          break
+        case rate === '62593cd573b61100181028f0':
+          if (day <= 7) {
+            setNetPrice(+itemTar[0].price)
+          }
+          if (day > 7) {
+            setNetPrice(Math.ceil(day / 7) * +itemTar[0].price)
+          }
+          break
+        case rate === '62593cf073b61100181028f1':
+          if (mounth < 3) {
+            setNetPrice(+itemTar[0].price)
+          }
+          if (mounth > 3 && mounth <= 12) {
+            setNetPrice(Math.ceil(mounth / 3) * +itemTar[0].price)
+          }
+          break
+        case rate === '62593d0273b61100181028f2':
+          if (years === 0) {
+            setNetPrice(itemTar[0].price)
+          }
+          if (mounth >= 12 && mounth < 24) {
+            setNetPrice(2 * itemTar[0].price)
+          }
+          break
+        default:
+          setNetPrice(null)
       }
-    } else setNetPrice(null)
+    }
   }, [dateFrom, dateTo, rate, tariffData])
 
   useEffect(() => {
