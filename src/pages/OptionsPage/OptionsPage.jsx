@@ -90,7 +90,7 @@ export const OptionsPage = () => {
     setEndDate(null)
   }
   const clearStartDate = () => {
-    setStartDate(new Date())
+    setStartDate(null)
     setEndDate(null)
   }
   const endDateHandler = (item) => {

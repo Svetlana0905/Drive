@@ -31,7 +31,7 @@ export const Price = () => {
   }, [setExtra, surcharge])
 
   useEffect(() => {
-    if (dateFrom && dateTo) {
+    if (dateTo > dateFrom) {
       const itemTar = tariffData.data.filter((item) => item.id.includes(rate))
       const currentTime = dateTo - dateFrom
       const minutes = Math.floor((currentTime / (1000 * 60)) % 60)
@@ -46,8 +46,10 @@ export const Price = () => {
         case rate === '6259003d73b61100181028d9':
           setNetPrice(mounth * +itemTar[0].price)
           break
-        case rate === '62593c9d73b61100181028ed' && minutes <= 59:
-          setNetPrice(minutes * +itemTar[0].price)
+        case rate === '62593c9d73b61100181028ed':
+          if (minutes <= 59) {
+            setNetPrice(minutes * +itemTar[0].price)
+          }
           break
         case rate === '62593cac73b61100181028ee':
           if (minutes === 0 && hours === 0) {
@@ -92,7 +94,7 @@ export const Price = () => {
         default:
           setNetPrice(null)
       }
-    }
+    } else setNetPrice(null)
   }, [dateFrom, dateTo, rate, tariffData])
 
   useEffect(() => {
