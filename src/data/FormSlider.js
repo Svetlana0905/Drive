@@ -11,7 +11,6 @@ export const FormSlider = [
   {
     page: <AddressPage />,
     btnText: 'Выбрать модель',
-    isDone: false,
     title: 'Местоположение',
     arr: ['Пункт выдачи'],
     order: 'close',
@@ -24,7 +23,6 @@ export const FormSlider = [
   {
     page: <CarPage />,
     btnText: 'Дополнительно',
-    isDone: false,
     title: 'Модель',
     arr: ['Модель'],
     order: 'close',
@@ -37,7 +35,6 @@ export const FormSlider = [
   {
     page: <OptionsPage />,
     btnText: 'Итого',
-    isDone: false,
     title: 'Дополнительно',
     arr: ['Пункт выдачи', 'Модель', 'Длительность аренды'],
     order: 'close',
@@ -50,7 +47,6 @@ export const FormSlider = [
   {
     page: <AddOrder />,
     btnText: 'Заказать',
-    isDone: false,
     title: 'Итого',
     arr: ['Пункт выдачи', 'Модель', 'Длительность аренды'],
     order: 'open'
@@ -63,23 +59,26 @@ export const Navigate = () => {
   const dispatch = useDispatch()
 
   const navName = 'nav-link'
-  const getClass = (id, linkId) => {
+  const getClass = (id, linkId, big) => {
     if (id < linkId) return `${navName} ${navName}__disabled`
     else if (id === linkId) return `${navName} ${navName}__active`
+    else if (id < big) return `${navName} ${navName}__disabled`
     else return navName
   }
-
+  const dis = (id, bigger) => {
+    if (id <= bigger) return false
+    else return true
+  }
   return (
     <>
       {FormSlider.map((item, index) => (
         <button
           type="button"
           key={index}
-          className={getClass(index, page)}
+          className={getClass(index, page, biggerPage)}
+          disabled={dis(index, biggerPage)}
           onClick={(e) => {
-            if (index === page + 1 || index <= biggerPage + 1)
-              dispatch(forwardStep(index))
-            else if (index < page) dispatch(forwardStep(index))
+            dispatch(forwardStep(index))
           }}>
           {item.title}
         </button>

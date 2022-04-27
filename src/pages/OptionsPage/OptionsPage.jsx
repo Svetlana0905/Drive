@@ -16,8 +16,9 @@ import { Rate } from '../../components/Rate/Rate'
 
 export const OptionsPage = () => {
   const dispatch = useDispatch()
-  const [carTariffВData, setCarTariffData] = useState([])
-
+  const [carTariffId, setCarTariffId] = useState(
+    useSelector((state) => state.order.dataId.rateId)
+  )
   const [carColor, setCarColor] = useState(
     useSelector((state) => state.order.colorCar)
   )
@@ -30,10 +31,13 @@ export const OptionsPage = () => {
   const [childChair, setChildChair] = useState(
     useSelector((state) => state.order.dataId.isNeedChildChair)
   )
-  const [rightWheel, setRightWheel] = useState(
-    useSelector((state) => state.order.dataId.isRightWheel)
+  const [rightWheell, setRightWheell] = useState(
+    useSelector((state) => state.order.dataId.isRightWheell)
   )
-  const [startDate, setStartDate] = useState(new Date())
+
+  const [startDate, setStartDate] = useState(
+    useSelector((state) => state.order.dataId.dateFrom)
+  )
   const [startDateId, setStartDateId] = useState('')
 
   const [endDate, setEndDate] = useState(
@@ -59,8 +63,8 @@ export const OptionsPage = () => {
   useEffect(() => {
     setValTank(tank ? 'Да' : '')
     setValChair(childChair ? 'Да' : '')
-    setValWheel(rightWheel ? 'Да' : '')
-  }, [tank, childChair, rightWheel])
+    setValWheel(rightWheell ? 'Да' : '')
+  }, [tank, childChair, rightWheell])
 
   useEffect(() => {
     const set = new Set()
@@ -76,16 +80,17 @@ export const OptionsPage = () => {
     if (valWheel) set.add(wheel)
     if (valTank) set.add(tank)
     if (valChair) set.add(chair)
-    if (hours && days) set.add(rent)
+    if (hours || days) set.add(rent)
     setObjOptions(Array.from(set))
   }, [carColor, carTariff, valWheel, valChair, valTank, days, hours])
 
   const startDateHandler = (item) => {
-    setStartDate(item)
+    setStartDate(item.getTime())
+    setStartDateId(new Date(startDate).getTime())
     setEndDate(null)
   }
   const clearStartDate = () => {
-    setStartDate(new Date())
+    setStartDate(null)
     setEndDate(null)
   }
   const endDateHandler = (item) => {
@@ -99,7 +104,6 @@ export const OptionsPage = () => {
     setEndDate(null)
     dispatch(getOptions({ endDate }))
   }
-
   useEffect(() => {
     dispatch(
       getOptions({
@@ -107,23 +111,23 @@ export const OptionsPage = () => {
         carColor,
         tank,
         childChair,
-        rightWheel,
+        rightWheell,
+        carTariffId,
         carTariff,
-        carTariffВData,
         startDateId,
         endDate
       })
     )
   }, [
     objOptions,
-    carTariffВData,
+    carTariffId,
     dispatch,
     carColor,
     tank,
     childChair,
-    rightWheel,
-    carTariff,
+    rightWheell,
     startDateId,
+    carTariff,
     endDate
   ])
 
@@ -161,7 +165,7 @@ export const OptionsPage = () => {
               minDate={new Date()}
               onChange={(item) => startDateHandler(item)}
               minTime={
-                startDate.getDate() === new Date().getDate()
+                startDate === new Date().getDate()
                   ? startDate
                   : setHours(setMinutes(new Date(), 0), 0)
               }
@@ -184,7 +188,7 @@ export const OptionsPage = () => {
               selected={endDate}
               minDate={startDate}
               onChange={(item) => endDateHandler(item)}
-              minTime={startDate.getTime()}
+              minTime={startDate}
               maxTime={setHours(setMinutes(new Date(), 59), 23)}
               className="input-text"
               placeholderText={'Введите дату и время'}
@@ -205,7 +209,7 @@ export const OptionsPage = () => {
             <Rate
               setCarTariff={setCarTariff}
               carTariff={carTariff}
-              setCarTariffData={setCarTariffData}
+              setCarTariffId={setCarTariffId}
             />
           </div>
         </div>
@@ -228,9 +232,9 @@ export const OptionsPage = () => {
             />
             <Checkbox
               text={'Правый руль, 1600р'}
-              checked={!!rightWheel}
+              checked={!!rightWheell}
               onChange={(e) => {
-                setRightWheel(!rightWheel)
+                setRightWheell(!rightWheell)
               }}
               name={'extra'}
             />

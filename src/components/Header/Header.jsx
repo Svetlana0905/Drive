@@ -4,7 +4,7 @@ import map from '../../assets/icons/map.svg'
 export const Header = ({ homeStyle }) => {
   return (
     <header className={homeStyle}>
-      <Link to="/drive" className="logo">
+      <Link to="/" className="logo">
         Need for drive
       </Link>
       <p className="choice-sity">
